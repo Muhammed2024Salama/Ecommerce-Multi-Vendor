@@ -31,23 +31,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-/** Admin Route */
-Route::get('admin/dashboard',[
-    AdminController::class ,
-    'dashboard'
-])
-    /** Middleware Role */
-    ->middleware(['auth','role:admin'])
-    /** End Middleware Role */
-    ->name('admin.dashboard');
-
-/** Vendor Route */
-Route::get('vendor/dashboard',[
-    VendorController::class ,
-    'dashboard'
-])
-    /** Middleware Role */
-    ->middleware(['auth','role:vendor'])
-    /** End Middleware Role */
-    ->name('vendor.dashboard');
