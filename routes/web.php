@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Ecommerce\Backend\Controllers\AdminController;
+use Ecommerce\Backend\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +31,17 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+/** Admin Route */
+Route::get('admin/dashboard',[
+    AdminController::class ,
+    'dashboard'
+])
+    ->name('admin.dashboard');
+
+/** Vendor Route */
+Route::get('vendor/dashboard',[
+    VendorController::class ,
+    'dashboard'
+])
+    ->name('vendor.dashboard');
