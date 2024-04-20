@@ -1,6 +1,6 @@
 <?php
 
-use Ecommerce\Backend\Controllers\VendorController;
+use Ecommerce\Backend\Controllers\Vendor\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*

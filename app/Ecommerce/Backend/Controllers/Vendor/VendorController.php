@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Backend\Controllers;
+namespace Ecommerce\Backend\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 
