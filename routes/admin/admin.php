@@ -40,3 +40,11 @@ Route::post('profile/update',[
 ])
     /** Middleware & Prefix added to RouteServiceProvider */
     ->name('profile.update');
+
+/** Profile Update Routes */
+Route::post('profile/update/password',[
+    ProfileController::class ,
+    'updatePassword'
+])
+    /** Middleware & Prefix added to RouteServiceProvider */
+    ->name('password.update');

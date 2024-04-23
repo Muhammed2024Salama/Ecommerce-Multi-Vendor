@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use function Laravel\Prompts\password;
 
 class ProfileController extends Controller
 {
@@ -50,6 +51,20 @@ class ProfileController extends Controller
 
         $user->save();
 
+        return redirect()->back();
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'current_password' => ['required','current_password'],
+            'password' => ['required','confirmed','min:8']
+            // At The End Of Validation We Compare that current_password & password === password_confirmation
+        ]);
+        $request->user()->update([
+            'password' => bcrypt($request->password)
+        ]);
         return redirect()->back();
     }
 }
