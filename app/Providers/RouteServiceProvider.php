@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
                 /** Prefix Admin */
                 ->prefix('admin')
                 ->as('admin.')
-                /** Edd Prefix */
+                /** End Prefix */
                 ->group(base_path('routes/admin/admin.php'));
             /** End Middleware Role */
 
@@ -48,7 +48,7 @@ class RouteServiceProvider extends ServiceProvider
                 /** Prefix Admin */
                 ->prefix('vendor')
                 ->as('vendor.')
-                /** Edd Prefix */
+                /** End Prefix */
                 ->group(base_path('routes/vendor/vendor.php'));
         });
     }

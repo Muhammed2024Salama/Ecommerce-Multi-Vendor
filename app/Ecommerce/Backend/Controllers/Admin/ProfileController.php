@@ -51,9 +51,14 @@ class ProfileController extends Controller
 
         $user->save();
 
+        toastr()->success('Profile Updated Successfully ! ');
         return redirect()->back();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updatePassword(Request $request)
     {
         // dd($request->all());
@@ -61,10 +66,14 @@ class ProfileController extends Controller
             'current_password' => ['required','current_password'],
             'password' => ['required','confirmed','min:8']
             // At The End Of Validation We Compare that current_password & password === password_confirmation
+            // So We didn't add password_confirmation'
         ]);
         $request->user()->update([
             'password' => bcrypt($request->password)
         ]);
+
+        toastr()->success('Profile Password Updated Successfully ! ');
+
         return redirect()->back();
     }
 }
