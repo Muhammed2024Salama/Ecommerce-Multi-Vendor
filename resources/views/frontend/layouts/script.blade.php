@@ -30,8 +30,23 @@
 <script src="{{ asset('Frontend/js/isotope.pkgd.min.js') }}"></script>
 <!--venobox js-->
 <script src="{{ asset('Frontend/js/venobox.min.js') }}"></script>
+<!--toastr js-->
+<script  href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <!--classycountdown js-->
 <script src="{{ asset('Frontend/js/jquery.classycountdown.js') }}"></script>
 
 <!--main/custom js-->
 <script src="{{ asset('Frontend/js/main.js') }}"></script>
+
+{{--Validation Script By Toastr --}}
+<script>
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            @php
+                toastr()->error($error)
+            @endphp
+        @endforeach
+    @endif
+</script>
+{{-- End Validation Script By Toastr --}}
