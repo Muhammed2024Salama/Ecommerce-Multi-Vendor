@@ -72,7 +72,9 @@ class ProfileController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
+           // Start Toastr Notification
         toastr()->success('Profile Password Updated Successfully ! ');
+           // End Toastr Notification
 
         return redirect()->back();
     }

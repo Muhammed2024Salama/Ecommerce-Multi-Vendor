@@ -29,7 +29,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        /** Multi Auth */
+        /** Multi Auth
+         Check if he logged in with
+            . Admin
+            . Vendor
+            . User
+         */
         if ($request->user()->role == 'admin') {
             return redirect()->intended('/admin/dashboard');
         } elseif ($request->user()->role == 'vendor') {
