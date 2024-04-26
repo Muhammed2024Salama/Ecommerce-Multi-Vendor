@@ -65,7 +65,8 @@ Route::group([
 
 Route::get('/auth/redirect', function(){
     return Socialite::driver('github')->redirect();
-})->name('github.login');
+})
+    ->name('github.login');
 
 Route::get('/auth/callback' , function () {
    $user = Socialite::driver('github')->user();
@@ -79,6 +80,7 @@ Route::get('/auth/callback' , function () {
 
     Auth::login($user, true);
 
-    toastr()
+    toastr()->success('Login To Github Authenticated Successfully ! ');
+
     return redirect('/user/dashboard');
 });
