@@ -39,7 +39,7 @@ $("#myEvent").fullCalendar({
       textColor: '#fff'
     },
     {
-      title: 'Social Distortion Concert',
+      title: 'Auth Distortion Concert',
       start: '2018-01-24',
       end: '2018-01-27',
       backgroundColor: "#000",

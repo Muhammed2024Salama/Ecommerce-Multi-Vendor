@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
-use Ecommerce\Base\Social\Controllers\SocialiteController;
+use Ecommerce\Base\Auth\Controllers\GoogleAuthController;
+use Ecommerce\Base\Auth\Controllers\SocialiteController;
 use Ecommerce\Frontend\Controllers\HomeController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -69,4 +70,17 @@ Route::get('/auth/redirect', [
 Route::get('/auth/callback', [
     SocialiteController::class ,
     'handleProviderCallback'
+]);
+
+/** Google Socialite Login */
+
+Route::get('/auth/google',[
+    GoogleAuthController::class ,
+    'redirect'
+])
+    ->name('google-auth');
+
+Route::get('/auth/google/callback' , [
+    GoogleAuthController::class ,
+    'callbackGoogle'
 ]);

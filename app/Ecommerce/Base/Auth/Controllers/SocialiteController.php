@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Base\Social\Controllers;
+namespace Ecommerce\Base\Auth\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;

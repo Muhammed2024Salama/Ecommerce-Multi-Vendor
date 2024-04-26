@@ -81,8 +81,10 @@
                                         <button class="common_btn" type="submit">login</button>
                                         <p class="social_text">Sign in with social account</p>
                                         <ul class="wsus__login_link">
-                                            <li><a href="#"><i class="fab fa-google"></i></a></li>
-                                            <li><a href="{{ route('github.login') }}"><i class="fab fa-github"></i></a></li>
+                                            <li><a href="{{ route('google-auth') }}"><i class="fab fa-google"></i></a></li>
+                                            <li><a href="{{ route('github.login') }}" class="github-login-btn">
+                                                    <i class="fab fa-github github-icon-black">
+                                                    </i></a></li>
                                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
 {{--                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>--}}
