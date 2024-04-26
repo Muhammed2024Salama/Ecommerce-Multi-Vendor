@@ -1,14 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Models\User;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
+use Ecommerce\Base\Social\Controllers\SocialiteController;
 use Ecommerce\Frontend\Controllers\HomeController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,24 +60,13 @@ Route::group([
 
 /** Github Socialite Login */
 
-Route::get('/auth/redirect', function(){
-    return Socialite::driver('github')->redirect();
-})
+Route::get('/auth/redirect', [
+    SocialiteController::class ,
+    'redirectToProvider'
+])
     ->name('github.login');
 
-Route::get('/auth/callback' , function () {
-   $user = Socialite::driver('github')->user();
-
-    $user = User::firstOrCreate([
-        'email' => $user->email
-    ],[
-        'name' => $user->name,
-        'password' => bcrypt(Str::random(24))
-    ]);
-
-    Auth::login($user, true);
-
-    toastr()->success('Login To Github Authenticated Successfully ! ');
-
-    return redirect('/user/dashboard');
-});
+Route::get('/auth/callback', [
+    SocialiteController::class ,
+    'handleProviderCallback'
+]);
