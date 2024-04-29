@@ -6,6 +6,7 @@ use Ecommerce\Base\Auth\Controllers\GoogleAuthController;
 use Ecommerce\Base\Auth\Controllers\SocialiteController;
 use Ecommerce\Frontend\Controllers\HomeController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
+use Ecommerce\Frontend\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +58,24 @@ Route::group([
        'index'
    ])
        ->name('dashboard');
+
+   Route::get('profile',[
+       UserProfileController::class ,
+       'index'
+   ])
+       ->name('profile');
+
+   Route::put('profile' , [
+       UserProfileController::class ,
+       'updateProfile'
+   ])
+       ->name('profile.update');
+
+        Route::post('profile' , [
+            UserProfileController::class ,
+            'updatePassword'
+        ])
+            ->name('profile.update.password');
 });
 
 /** Github Socialite Login */
@@ -71,6 +90,7 @@ Route::get('/auth/callback', [
     SocialiteController::class ,
     'handleProviderCallback'
 ]);
+/** End Of Github Socialite Login */
 
 /** Google Socialite Login */
 
@@ -84,3 +104,5 @@ Route::get('/auth/google/callback' , [
     GoogleAuthController::class ,
     'callbackGoogle'
 ]);
+
+/** End Of Google Socialite Login */
