@@ -16,8 +16,14 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next , $role): Response
     {
         /** Multi Auth  */
-        if ($request->user()->role !== $role ) {
-            return redirect()->route('dashboard');
+        if($request->user()->role !== $role){
+            if($request->user()->role == 'vendor'){
+                return redirect()->route('vendor.dashboard');
+            }elseif ($request->user()->role == 'admin'){
+                return redirect()->route('admin.dashboard');
+            }else {
+                return redirect()->route('user.dashboard');
+            }
         }
         /** End Multi Auth */
         return $next($request);

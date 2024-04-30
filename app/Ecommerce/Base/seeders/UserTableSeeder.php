@@ -1,8 +1,7 @@
 <?php
 
-namespace Database\Seeders;
+namespace Ecommerce\Base\seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

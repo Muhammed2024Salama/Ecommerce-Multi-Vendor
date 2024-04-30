@@ -2,6 +2,7 @@
 
 use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
+use Ecommerce\Backend\Controllers\Admin\Slider\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,3 +49,6 @@ Route::post('profile/update/password',[
 ])
     /** Middleware & Prefix added to RouteServiceProvider */
     ->name('password.update');
+
+/** Slider Routes */
+Route::resource('slider' , SliderController::class);

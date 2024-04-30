@@ -39,44 +39,11 @@ require __DIR__.'/auth.php';
 
 /** Redirect To Admin Login  */
 
-Route::get('admin/login', [
+Route::post('admin/login', [
     AdminController::class ,
     'login'
 ])
     ->name('admin.login');
-
-/** User Dashboard  */
-
-Route::group([
-    'middleware' => [
-        'auth', 'verified'
-    ] ,
-    'prefix' => 'user' , 'as' => 'user.']
-    , function () {
-   Route::get('dashboard' , [
-       UserDashboardController::class ,
-       'index'
-   ])
-       ->name('dashboard');
-
-   Route::get('profile',[
-       UserProfileController::class ,
-       'index'
-   ])
-       ->name('profile');
-
-   Route::put('profile' , [
-       UserProfileController::class ,
-       'updateProfile'
-   ])
-       ->name('profile.update');
-
-        Route::post('profile' , [
-            UserProfileController::class ,
-            'updatePassword'
-        ])
-            ->name('profile.update.password');
-});
 
 /** Github Socialite Login */
 
@@ -106,3 +73,38 @@ Route::get('/auth/google/callback' , [
 ]);
 
 /** End Of Google Socialite Login */
+
+
+/** User Dashboard  */
+
+Route::group([
+    'middleware' => [
+        'auth', 'verified'
+    ] ,
+    'prefix' => 'user' , 'as' => 'user.']
+    , function () {
+   Route::get('dashboard' , [
+       UserDashboardController::class ,
+       'index'
+   ])
+       ->name('dashboard');
+
+   Route::get('profile',[
+       UserProfileController::class ,
+       'index'
+   ])
+       ->name('profile');
+
+   Route::put('profile' , [
+       UserProfileController::class ,
+       'updateProfile'
+   ])
+       ->name('profile.update');
+
+    Route::post('profile' , [
+        UserProfileController::class ,
+        'updatePassword'
+    ])
+        ->name('profile.update.password');
+});
+

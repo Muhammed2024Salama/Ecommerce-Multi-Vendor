@@ -51,7 +51,10 @@ class ProfileController extends Controller
 
         $user->save();
 
+        // Start Toastr Notification
         toastr()->success('Profile Updated Successfully ! ');
+        // End Toastr Notification
+
         return redirect()->back();
     }
 
