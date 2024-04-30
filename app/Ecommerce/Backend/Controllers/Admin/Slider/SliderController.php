@@ -3,6 +3,7 @@
 namespace Ecommerce\Backend\Controllers\Admin\Slider;
 
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\Models\Slider;
 use Illuminate\Http\Request;
 
 class SliderController extends Controller
@@ -28,7 +29,32 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $request->validate([
+            // 'banner' => ['required' , 'image' , 'max:2000'],
+            'type' => ['string' , 'max:200'],
+            'title' => ['required','max:200'],
+            'starting_price' => ['max:200'],
+            'btn_url' => ['active_url'],
+            'serial' => ['required'],
+            'status' => ['required']
+        ]);
+
+        $slider = new Slider();
+
+        $slider->type = $request->type;
+        $slider->starting_price = $request->starting_price;
+        $slider->btn_url = $request->btn_url;
+        $slider->serial = $request->serial;
+        $slider->status = $request->status;
+
+        $slider->save();
+
+        // Start Toastr Notification
+        toastr('Created Successfully ! ' , 'success');
+        // End Toastr Notification
+
+        return redirect()->back();
     }
 
     /**
