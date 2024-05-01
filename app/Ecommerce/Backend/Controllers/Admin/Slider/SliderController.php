@@ -17,7 +17,6 @@ class SliderController extends Controller
     public function index(SliderDataTable $dataTable)
     {
         return $dataTable->render('admin.slider.index');
-//        return view('admin.slider.index');
     }
 
     /**
