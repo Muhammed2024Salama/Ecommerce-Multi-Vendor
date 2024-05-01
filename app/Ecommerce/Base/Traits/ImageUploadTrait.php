@@ -50,8 +50,11 @@ trait ImageUploadTrait {
             return '/uploads/' . $imageName;
         }
     }
-
-    /** Handle Delete File  */
+    /**
+     * Handle Delete File
+     * @param string $path
+     * @return void
+     */
     public function deleteImage(string $path)
     {
         /** Check File If Exists Or Not If Exists Delete Old  */

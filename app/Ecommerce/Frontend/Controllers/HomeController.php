@@ -3,6 +3,7 @@
 namespace Ecommerce\Frontend\Controllers;
 
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -11,6 +12,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.home.home');
+        $sliders = Slider::where('status' , 1)->orderBy('serial' , 'asc')->get();
+        // dd($sliders)
+        return view('frontend.home.home' ,
+            compact(
+                'sliders'
+            ));
     }
 }
