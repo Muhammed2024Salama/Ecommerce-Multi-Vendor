@@ -3,6 +3,7 @@
 namespace Ecommerce\Base\Traits;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 trait ImageUploadTrait {
 
@@ -15,6 +16,31 @@ trait ImageUploadTrait {
     public function uploadImage(Request $request, $inputName, $path)
     {
         if ($request->hasFile($inputName)) {
+            $image = $request->file($inputName);
+            $extension = $image->getClientOriginalExtension();
+            $imageName = 'media_' . uniqid() . '.' . $extension;
+
+            $image->move(public_path($path), $imageName);
+
+            return '/uploads/' . $imageName;
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param $inputName
+     * @param $path
+     * @param $oldPath
+     * @return string|void
+     */
+    public function updateImage(Request $request, $inputName, $path , $oldPath=null)
+    {
+        if ($request->hasFile($inputName)) {
+            /** Check File If Exists Or Not If Exists Delete Old  */
+            if (File::exists(public_path($oldPath))) {
+                File::delete(public_path($oldPath));
+            }
+
             $image = $request->file($inputName);
             $extension = $image->getClientOriginalExtension();
             $imageName = 'media_' . uniqid() . '.' . $extension;
