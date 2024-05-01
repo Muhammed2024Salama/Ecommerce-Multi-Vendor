@@ -14,7 +14,12 @@
 <script src="{{ asset('Backend/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
 <script src="{{ asset('Backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
 <script src="{{ asset('Backend/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
-<script  href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script  src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{{-- Start JS yajra DataTable https://datatables.net/ --}}
+<script src="//cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+{{-- End JS yajra DataTable https://datatables.net/ --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('Backend/assets/js/page/index-0.js') }}"></script>
@@ -33,4 +38,5 @@
         @endforeach
     @endif
 </script>
+@stack('scripts')
 {{-- End Validation Script By Toastr --}}

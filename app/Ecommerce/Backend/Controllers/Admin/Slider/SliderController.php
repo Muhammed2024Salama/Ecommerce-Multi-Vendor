@@ -2,6 +2,7 @@
 
 namespace Ecommerce\Backend\Controllers\Admin\Slider;
 
+use App\DataTables\SliderDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Models\Slider;
 use Ecommerce\Base\Traits\ImageUploadTrait;
@@ -13,9 +14,10 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(SliderDataTable $dataTable)
     {
-        return view('admin.slider.index');
+        return $dataTable->render('admin.slider.index');
+//        return view('admin.slider.index');
     }
 
     /**
@@ -47,6 +49,7 @@ class SliderController extends Controller
         /** Start Handle File Upload */
             $imagePath = $this->uploadImage($request, 'banner' , 'uploads');
         /** End Handle File Upload */
+
         $slider->banner = $imagePath;
         $slider->type = $request->type;
         $slider->starting_price = $request->starting_price;

@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="{{ asset('Backend/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Backend/assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    {{-- Start Css yajra DataTable https://datatables.net/ --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    {{-- Start Css yajra DataTable https://datatables.net/ --}}
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('Backend/assets/css/style.css') }}">
