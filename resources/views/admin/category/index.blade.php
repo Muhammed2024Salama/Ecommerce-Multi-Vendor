@@ -4,7 +4,7 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Category</h1>
+            <h1>All Categories</h1>
         </div>
 
         <div class="section-body">
