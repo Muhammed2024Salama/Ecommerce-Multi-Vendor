@@ -99,10 +99,19 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         // dd($id);
-//        delete-item
         $category = Category::findOrFail($id);
         $category->delete();
 
         return response(['status' => 'success' , 'Deleted Successfully !']);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        // dd($request->all());
+        $category = Category::findOrFail($request->id);
+        $category->status = $request->status == 'true' ? 1 : 0;
+        $category->save();
+
+        return response(['message' => 'Status has been updated!']);
     }
 }

@@ -54,5 +54,14 @@ Route::post('profile/update/password',[
 /** Slider Routes */
 Route::resource('slider' , SliderController::class);
 
+/** Category Change Status */
+
+Route::get('change-status',[
+    CategoryController::class ,
+    'changeStatus'
+])
+    ->name('category.change-status');
+
 /** Category Routes */
+
 Route::resource('category' , CategoryController::class);
