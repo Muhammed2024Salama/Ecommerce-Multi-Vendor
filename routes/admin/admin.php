@@ -4,6 +4,7 @@ use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
+use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,3 +66,15 @@ Route::get('change-status',[
 /** Category Routes */
 
 Route::resource('category' , CategoryController::class);
+
+/** Sub Category Change Status */
+
+Route::get('subcategory/change-status',[
+    SubCategoryController::class ,
+    'changeStatus'
+])
+    ->name('sub-category.change-status');
+
+/** Sub Category Routes */
+
+Route::resource('sub-category' , SubCategoryController::class);
