@@ -50,6 +50,7 @@ trait ImageUploadTrait {
             return '/uploads/' . $imageName;
         }
     }
+
     /**
      * Handle Delete File
      * @param string $path
@@ -62,5 +63,4 @@ trait ImageUploadTrait {
             File::delete(public_path($path));
         }
     }
-
 }

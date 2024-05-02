@@ -1,8 +1,9 @@
 <?php
 
 use Ecommerce\Backend\Controllers\Admin\AdminController;
+use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
-use Ecommerce\Backend\Controllers\Admin\Slider\SliderController;
+use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,3 +53,6 @@ Route::post('profile/update/password',[
 
 /** Slider Routes */
 Route::resource('slider' , SliderController::class);
+
+/** Category Routes */
+Route::resource('category' , CategoryController::class);

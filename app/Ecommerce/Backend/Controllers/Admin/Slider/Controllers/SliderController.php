@@ -1,11 +1,10 @@
 <?php
 
-namespace Ecommerce\Backend\Controllers\Admin\Slider;
+namespace Ecommerce\Backend\Controllers\Admin\Slider\Controllers;
 
 use App\DataTables\SliderDataTable;
 use App\Http\Controllers\Controller;
-
-use Ecommerce\Backend\Controllers\Admin\Models\Slider;
+use Ecommerce\Backend\Controllers\Admin\Slider\Models\Slider;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;

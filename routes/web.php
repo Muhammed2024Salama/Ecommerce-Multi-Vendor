@@ -39,7 +39,7 @@ require __DIR__.'/auth.php';
 
 /** Redirect To Admin Login  */
 
-Route::post('admin/login', [
+Route::get('admin/login', [
     AdminController::class ,
     'login'
 ])

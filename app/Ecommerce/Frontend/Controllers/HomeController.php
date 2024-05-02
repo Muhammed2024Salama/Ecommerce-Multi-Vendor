@@ -3,7 +3,7 @@
 namespace Ecommerce\Frontend\Controllers;
 
 use App\Http\Controllers\Controller;
-use Ecommerce\Backend\Controllers\Admin\Models\Slider;
+use Ecommerce\Backend\Controllers\Admin\Slider\Models\Slider;
 
 class HomeController extends Controller
 {

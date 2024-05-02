@@ -2,14 +2,12 @@
 
 namespace App\DataTables;
 
-use Ecommerce\Backend\Controllers\Admin\Models\Slider;
+use Ecommerce\Backend\Controllers\Admin\Slider\Models\Slider;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class SliderDataTable extends DataTable
