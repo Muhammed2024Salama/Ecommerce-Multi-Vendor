@@ -2,6 +2,7 @@
 
 use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
+use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
@@ -57,7 +58,7 @@ Route::resource('slider' , SliderController::class);
 
 /** Category Change Status */
 
-Route::get('change-status',[
+Route::put('change-status',[
     CategoryController::class ,
     'changeStatus'
 ])
@@ -69,7 +70,7 @@ Route::resource('category' , CategoryController::class);
 
 /** Sub Category Change Status */
 
-Route::get('subcategory/change-status',[
+Route::put('subcategory/change-status',[
     SubCategoryController::class ,
     'changeStatus'
 ])
@@ -78,3 +79,23 @@ Route::get('subcategory/change-status',[
 /** Sub Category Routes */
 
 Route::resource('sub-category' , SubCategoryController::class);
+
+/** Chile Category Change Status */
+
+Route::put('child-category/change-status', [
+    ChildCategoryController::class ,
+    'changeStatus'
+])
+    ->name('child-category.change-status');
+
+/**  */
+Route::get('get-subcategories', [
+    ChildCategoryController::class ,
+    'getSubCategories'
+])
+    ->name('get-subcategories');
+
+/** Chile Category Routes */
+
+Route::resource('child-category', ChildCategoryController::class);
+
