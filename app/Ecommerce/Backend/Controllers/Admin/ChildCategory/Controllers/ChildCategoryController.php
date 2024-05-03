@@ -128,4 +128,17 @@ class ChildCategoryController extends Controller
 
         return response(['status' => 'success' , 'message' => 'Deleted Successfully !' ]);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
+     */
+    public function changeStatus(Request $request)
+    {
+        $category = ChildCategory::findOrFail($request->id);
+        $category->status = $request->status == 'true' ? 1 : 0;
+        $category->save();
+
+        return response(['message' => 'Status has been updated!']);
+    }
 }
