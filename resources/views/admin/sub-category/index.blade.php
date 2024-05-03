@@ -4,7 +4,7 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Sub Categories</h1>
+            <h1>Sub Category</h1>
         </div>
 
         <div class="section-body">
@@ -41,7 +41,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{route('admin.category.change-status')}}",
+                    url: "{{route('admin.sub-category.change-status')}}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
