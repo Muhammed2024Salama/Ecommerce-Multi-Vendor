@@ -4,7 +4,10 @@ namespace Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers;
 
 use App\DataTables\SubCategoryDataTable;
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
+use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SubCategoryController extends Controller
 {
@@ -21,7 +24,8 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.sub-category.create' , compact('categories'));
     }
 
     /**
@@ -29,7 +33,24 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'category' => ['required'],
+            'name' => ['required','max:200' , 'unique:sub_categories,name'],
+            'status' => ['required']
+        ]);
+        $subcategory = new SubCategory();
+
+        $subcategory->category_id = $request->category;
+        $subcategory->name = $request->name;
+        $subcategory->slug = Str::slug($request->name);
+        $subcategory->status = $request->status;
+
+        $subcategory->save();
+
+        toastr('Created Successfully ! ' , 'success');
+
+        return redirect()->route('admin.sub-category.index');
     }
 
     /**
