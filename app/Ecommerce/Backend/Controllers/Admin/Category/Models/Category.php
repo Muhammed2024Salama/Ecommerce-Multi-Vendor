@@ -10,6 +10,9 @@ class Category extends Model
 {
     use HasFactory;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function subCategories()
     {
         return $this->hasMany(SubCategory::class);
