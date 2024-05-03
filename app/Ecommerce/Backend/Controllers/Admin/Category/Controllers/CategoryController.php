@@ -5,6 +5,7 @@ namespace Ecommerce\Backend\Controllers\Admin\Category\Controllers;
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
+use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -100,6 +101,10 @@ class CategoryController extends Controller
     {
         // dd($id);
         $category = Category::findOrFail($id);
+        $subCategory = SubCategory::where('category_id', $category->id)->count();
+        if($subCategory > 0){
+            return response(['status' => 'error', 'message' => 'This items contain, sub items for delete this you have to delete the sub items first!']);
+        }
         $category->delete();
 
         return response(['status' => 'success' , 'Deleted Successfully !']);
