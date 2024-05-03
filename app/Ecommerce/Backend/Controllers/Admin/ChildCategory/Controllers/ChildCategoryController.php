@@ -45,7 +45,7 @@ class ChildCategoryController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        
+
         $request->validate([
             'category' => ['required'],
             'sub_category' => ['required'],
