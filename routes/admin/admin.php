@@ -1,6 +1,7 @@
 <?php
 
 use Ecommerce\Backend\Controllers\Admin\AdminController;
+use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
@@ -98,4 +99,17 @@ Route::get('get-subcategories', [
 /** Chile Category Routes */
 
 Route::resource('child-category', ChildCategoryController::class);
+
+
+/** brand Change Status */
+
+Route::put('brand/change-status',[
+    BrandController::class ,
+    'changeStatus'
+])
+    ->name('brand.change-status');
+
+/** brand Routes */
+
+Route::resource('brand' , BrandController::class);
 

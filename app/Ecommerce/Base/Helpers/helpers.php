@@ -1,5 +1,10 @@
 <?php
 
+
+/**
+ * @param array $route
+ * @return string|void
+ */
 /** Set Sidebar Item Active */
 
 function setActive(array $route)
