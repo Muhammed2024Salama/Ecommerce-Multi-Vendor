@@ -1,5 +1,12 @@
 @php
-    $categories = \Ecommerce\Backend\Controllers\Admin\Category\Models\Category::all();
+    $categories = \Ecommerce\Backend\Controllers\Admin\Category\Models\Category::where('status' , 1)
+    ->with(['subCategories' => function ($query) {
+            $query->where('status' , 1)
+            ->with(['childCategories' => function ($query) {
+                $query->where('status' , 1);
+            }]);
+        }])
+    ->get();
 //    dd($categories);
 @endphp
 <nav class="wsus__main_menu d-none d-lg-block">
