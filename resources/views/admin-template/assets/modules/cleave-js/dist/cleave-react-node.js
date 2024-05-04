@@ -576,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var MIXINS_KEY = 'mixins';
 
-	// Helper function to allow the creation of anonymous functions which do not
+	// Helpers function to allow the creation of anonymous functions which do not
 	// have .name set to the name of the variable being assigned to.
 	function identity(fn) {
 	  return fn;
@@ -1690,7 +1690,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	function makeEmptyFunction(arg) {

@@ -31,8 +31,12 @@
             "Ecommerce\\": "app/Ecommerce",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Ecommerce/Base/Helpers/helpers.php"
+        ]
     },
+
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
