@@ -5,6 +5,7 @@ namespace Ecommerce\Backend\Controllers\Admin\Brand\Controllers;
 use App\DataTables\BrandDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Brand\Models\Brand;
+use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -107,6 +108,20 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+
+        $this->deleteImage($brand->logo);
+        $brand->delete();
+
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->status = $request->status == 'true' ? 1 : 0;
+        $category->save();
+
+        return response(['message' => 'Status has been updated ! ']);
     }
 }
