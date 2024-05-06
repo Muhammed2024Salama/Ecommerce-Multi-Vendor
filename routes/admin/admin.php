@@ -7,6 +7,7 @@ use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryC
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
+use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,4 +113,8 @@ Route::put('brand/change-status',[
 /** brand Routes */
 
 Route::resource('brand' , BrandController::class);
+
+/** Vendor Profile Routes */
+
+Route::resource('vendor-profile' , AdminVendorProfileController::class);
 

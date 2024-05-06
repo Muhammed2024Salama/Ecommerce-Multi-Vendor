@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Ecommerce\Base\seeders\AdminProfileSeeder;
 use Ecommerce\Base\seeders\UserTableSeeder;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call(UserTableSeeder::class);
+//        $this->call(UserTableSeeder::class);
+        $this->call(AdminProfileSeeder::class);
     }
 }
