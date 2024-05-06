@@ -4,17 +4,21 @@ namespace Ecommerce\Backend\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Vendor\Models\Vendor;
+use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminVendorProfileController extends Controller
 {
+    use ImageUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.vendor-profile.index');
+        $profile = Vendor::where('user_id' , Auth::user()->id)->first();
+        return view('admin.vendor-profile.index' , compact('profile'));
     }
 
     /**
@@ -33,21 +37,19 @@ class AdminVendorProfileController extends Controller
         // dd($request->all());
         $request->validate([
             'banner' => ['nullable','image', 'max:3000'],
-            'shop_name' => ['required', 'max:200'],
             'phone' => ['required', 'max:50'],
             'email' => ['required', 'email', 'max:200'],
             'address' => ['required'],
             'description' => ['required'],
-            'fb_link' => ['nullable', 'url'],
-            'tw_link' => ['nullable', 'url'],
-            'insta_link' => ['nullable', 'url'],
+            'fb_link' => ['nullable', 'active_url'],
+            'tw_link' => ['nullable', 'active_url'],
+            'insta_link' => ['nullable', 'active_url'],
         ]);
 
         $vendor = Vendor::where('user_id', Auth::user()->id)->first();
         $bannerPath = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
         $vendor->banner = empty(!$bannerPath) ? $bannerPath : $vendor->banner;
         $vendor->phone = $request->phone;
-        $vendor->shop_name = $request->shop_name;
         $vendor->email = $request->email;
         $vendor->address = $request->address;
         $vendor->description = $request->description;
