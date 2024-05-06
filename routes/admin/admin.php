@@ -4,6 +4,7 @@ use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
+use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
@@ -117,4 +118,26 @@ Route::resource('brand' , BrandController::class);
 /** Vendor Profile Routes */
 
 Route::resource('vendor-profile' , AdminVendorProfileController::class);
+
+/** Products Profile Routes */
+Route::get('product/get-subcategories', [
+    ProductController::class ,
+    'getSubCategories'
+])
+    ->name('product.get-subcategories');
+
+Route::get('product/get-child-categories', [
+    ProductController::class ,
+    'getChildCategories'
+])
+    ->name('product.get-child-categories');
+
+Route::put('product/change-status', [
+    ProductController::class ,
+    'changeStatus'
+])
+    ->name('product.change-status');
+
+Route::resource('products' , ProductController::class);
+
 
