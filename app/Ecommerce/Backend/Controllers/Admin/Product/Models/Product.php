@@ -4,12 +4,21 @@ namespace Ecommerce\Backend\Controllers\Admin\Product\Models;
 
 use Ecommerce\Backend\Controllers\Admin\Brand\Models\Brand;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
+use Ecommerce\Backend\Controllers\Vendor\Models\Vendor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     use HasFactory;
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -25,6 +34,14 @@ class Product extends Model
     public function productImageGalleries()
     {
         return $this->hasMany(ProductImageGallery::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class);
     }
 
     /**

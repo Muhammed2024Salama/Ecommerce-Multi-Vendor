@@ -7,6 +7,7 @@ use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryC
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductImageGalleryController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantController;
+use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantItemController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
@@ -152,6 +153,49 @@ Route::put('products-variant/change-status', [
 ])
     ->name('products-variant.change-status');
 
-/** Products variant item route */
+/** Products variant route */
 
 Route::resource('products-variant', ProductVariantController::class);
+
+/** Products variant item route */
+
+Route::get('products-variant-item/{productId}/{variantId}', [
+    ProductVariantItemController::class ,
+    'index'])
+    ->name('products-variant-item.index');
+
+Route::get('products-variant-item/create/{productId}/{variantId}' , [
+    ProductVariantItemController::class ,
+    'create'
+])
+    ->name('products-variant-item.create');
+
+Route::post('products-variant-item', [
+    ProductVariantItemController::class ,
+    'store'
+])
+    ->name('products-variant-item.store');
+
+Route::get('products-variant-item-edit/{variantItemId}', [
+    ProductVariantItemController::class,
+    'edit'
+])
+    ->name('products-variant-item.edit');
+
+Route::put('products-variant-item-update/{variantItemId}', [
+    ProductVariantItemController::class,
+    'update'
+])
+    ->name('products-variant-item.update');
+
+Route::delete('products-variant-item/{variantItemId}', [
+    ProductVariantItemController::class,
+    'destroy'
+])
+    ->name('products-variant-item.destroy');
+
+Route::put('products-variant-item-status', [
+    ProductVariantItemController::class,
+    'changeStatus'
+])
+    ->name('products-variant-item.change-status');
