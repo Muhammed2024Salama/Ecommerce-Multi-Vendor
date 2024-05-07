@@ -5,6 +5,7 @@ use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
+use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductImageGalleryController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
@@ -140,4 +141,6 @@ Route::put('product/change-status', [
 
 Route::resource('products' , ProductController::class);
 
+/** Products image gallery route */
 
+Route::resource('products-image-gallery', ProductImageGalleryController::class);

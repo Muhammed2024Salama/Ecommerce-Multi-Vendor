@@ -8,6 +8,7 @@ use Ecommerce\Backend\Controllers\Admin\Brand\Models\Brand;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Models\ChildCategory;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
+use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductImageGallery;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
@@ -172,7 +173,20 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        /** Delete the main product image */
+        $this->deleteImage($product->thumb_image);
+
+        /** Delete product gallery images */
+        $galleryImages = ProductImageGallery::where('product_id', $product->id)->get();
+        foreach($galleryImages as $image){
+            $this->deleteImage($image->image);
+            $image->delete();
+        }
+
+        $product->delete();
+
     }
 
     /**
