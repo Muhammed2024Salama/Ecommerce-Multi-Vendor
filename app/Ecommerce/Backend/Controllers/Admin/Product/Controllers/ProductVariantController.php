@@ -5,6 +5,7 @@ namespace Ecommerce\Backend\Controllers\Admin\Product\Controllers;
 use App\DataTables\ProductVariantDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
+use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductVariant;
 use Illuminate\Http\Request;
 
 class ProductVariantController extends Controller
@@ -23,7 +24,7 @@ class ProductVariantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product.product-variant.create');
     }
 
     /**
@@ -31,7 +32,22 @@ class ProductVariantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'product' => ['integer', 'required'],
+            'name' => ['required', 'max:200'],
+            'status' => ['required']
+        ]);
+
+        $varinat = new ProductVariant();
+        $varinat->product_id = $request->product;
+        $varinat->name = $request->name;
+        $varinat->status = $request->status;
+        $varinat->save();
+
+        toastr('Created Successfully!', 'success', 'success');
+
+        return redirect()->route('admin.products-variant.index', ['product' => $request->product]);
     }
 
     /**
@@ -47,7 +63,8 @@ class ProductVariantController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $variant = ProductVariant::findOrFail($id);
+        return view('admin.product.product-variant.edit', compact('variant'));
     }
 
     /**
@@ -55,7 +72,19 @@ class ProductVariantController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'status' => ['required']
+        ]);
+
+        $varinat = ProductVariant::findOrFail($id);
+        $varinat->name = $request->name;
+        $varinat->status = $request->status;
+        $varinat->save();
+
+        toastr('Updated Successfully!', 'success', 'success');
+
+        return redirect()->route('admin.products-variant.index', ['product' => $varinat->product_id]);
     }
 
     /**
@@ -63,6 +92,24 @@ class ProductVariantController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $varinat = ProductVariant::findOrFail($id);
+
+        $varinat->delete();
+
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
+     */
+    public function changeStatus(Request $request)
+    {
+        $varinat = ProductVariant::findOrFail($request->id);
+        $varinat->status = $request->status == 'true' ? 1 : 0;
+        $varinat->save();
+
+        return response(['message' => 'Status has been updated!']);
     }
 }
