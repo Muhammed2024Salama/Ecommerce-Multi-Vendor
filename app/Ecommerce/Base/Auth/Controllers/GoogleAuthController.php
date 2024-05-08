@@ -28,7 +28,7 @@ class GoogleAuthController extends Controller
 
             $user = User::where('google_id', $googleUser->getId())->first();
 
-            if (!$user) {
+            if ( !$user) {
                 // Create a new user if not found
                 $newUser = User::create([
                     'name' => $googleUser->getName(),

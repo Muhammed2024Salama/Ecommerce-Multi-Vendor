@@ -180,7 +180,7 @@ class ProductController extends Controller
 
         /** Delete product gallery images */
         $galleryImages = ProductImageGallery::where('product_id', $product->id)->get();
-        foreach($galleryImages as $image){
+        foreach($galleryImages as $image) {
             $this->deleteImage($image->image);
             $image->delete();
         }
