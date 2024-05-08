@@ -8,7 +8,7 @@ use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminVendorProfileController extends Controller
+class VendorShopProfileController extends Controller
 {
     use ImageUploadTrait;
 
@@ -17,8 +17,8 @@ class AdminVendorProfileController extends Controller
      */
     public function index()
     {
-        $profile = Vendor::where('user_id' , Auth::user()->id)->first();
-        return view('admin.vendor-profile.index' , compact('profile'));
+        $profile = Vendor::where('user_id', Auth::user()->id)->first();
+        return view('vendor.shop-profile.index', compact('profile'));
     }
 
     /**
@@ -34,7 +34,6 @@ class AdminVendorProfileController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'banner' => ['nullable','image', 'max:3000'],
             'shop_name' => ['required', 'max:200'],
@@ -42,16 +41,16 @@ class AdminVendorProfileController extends Controller
             'email' => ['required', 'email', 'max:200'],
             'address' => ['required'],
             'description' => ['required'],
-            'fb_link' => ['nullable', 'url'],
-            'tw_link' => ['nullable', 'url'],
-            'insta_link' => ['nullable', 'url'],
+            'fb_link' => ['nullable', 'active_url'],
+            'tw_link' => ['nullable', 'active_url'],
+            'insta_link' => ['nullable', 'active_url'],
         ]);
 
         $vendor = Vendor::where('user_id', Auth::user()->id)->first();
         $bannerPath = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
         $vendor->banner = empty(!$bannerPath) ? $bannerPath : $vendor->banner;
-        $vendor->phone = $request->phone;
         $vendor->shop_name = $request->shop_name;
+        $vendor->phone = $request->phone;
         $vendor->email = $request->email;
         $vendor->address = $request->address;
         $vendor->description = $request->description;
@@ -60,10 +59,9 @@ class AdminVendorProfileController extends Controller
         $vendor->insta_link = $request->insta_link;
         $vendor->save();
 
-        toastr('Updated Successfully!', 'success');
+        toastr('Updated Successfully !', 'success');
 
         return redirect()->back();
-
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProfileController;
+use Ecommerce\Backend\Controllers\Vendor\VendorShopProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,7 @@ Route::post('profile' , [
     'updatePassword'
 ])
     ->name('profile.update.password');
+
+/** Vendor Shop Profile  */
+
+Route::resource('shop-profile',VendorShopProfileController::class);

@@ -22,11 +22,16 @@
                                 <div class="form-group">
                                     <label>Preview</label>
                                     <br>
-                                    <img width="200px" src="{{ asset($profile->banner) }}" alt="">
+                                    <img width="200px" src="{{asset($profile->banner)}}" alt="">
                                 </div>
                                 <div class="form-group">
                                     <label>Banner</label>
                                     <input type="file" class="form-control" name="banner">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Shop Name</label>
+                                    <input type="text" class="form-control" name="shop_name" value="{{$profile->shop_name}}">
                                 </div>
 
                                 <div class="form-group">

@@ -33,5 +33,91 @@
 <!--classycountdown js-->
 <script src="{{ asset('Frontend/js/jquery.classycountdown.js') }}"></script>
 
+<script src="{{asset('Backend/assets/modules/summernote/summernote-bs4.js')}}"></script>
+
 <!--main/custom js-->
 <script src="{{ asset('Frontend/js/main.js') }}"></script>
+
+<script>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        toastr.error("{{$error}}")
+        @endforeach
+    @endif
+</script>
+
+<script>
+    /** summernote **/
+    $('.summernote').summernote({
+        height:150
+    })
+
+    /** date picker **/
+    $('.datepicker').daterangepicker({
+        locale: {
+            format: 'YYYY-MM-DD'
+        },
+        singleDatePicker: true
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+
+        $('body').on('click', '.delete-item', function(event){
+            event.preventDefault();
+
+            let deleteUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: deleteUrl,
+
+                        success: function(data){
+
+                            if(data.status == 'success'){
+                                Swal.fire(
+                                    'Deleted!',
+                                    data.message,
+                                    'success'
+                                )
+                                window.location.reload();
+                            }else if (data.status == 'error'){
+                                Swal.fire(
+                                    'Cant Delete',
+                                    data.message,
+                                    'error'
+                                )
+                            }
+                        },
+                        error: function(xhr, status, error){
+                            console.log(error);
+                        }
+                    })
+                }
+            })
+        })
+
+    })
+</script>
+
+@stack('scripts')
+
+

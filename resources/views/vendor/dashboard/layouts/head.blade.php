@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('Frontend/css/ranger_style.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/jquery.classycountdown.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/venobox.min.css') }}">
+    <link rel="stylesheet" href="{{asset('Backend/assets/modules/summernote/summernote-bs4.css')}}">
+
 
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/responsive.css') }}">
