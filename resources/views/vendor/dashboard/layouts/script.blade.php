@@ -34,6 +34,7 @@
 <script src="{{ asset('Frontend/js/jquery.classycountdown.js') }}"></script>
 
 <script src="{{asset('Backend/assets/modules/summernote/summernote-bs4.js')}}"></script>
+<script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
 <!--main/custom js-->
 <script src="{{ asset('Frontend/js/main.js') }}"></script>

@@ -1,6 +1,7 @@
 <?php
 
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
+use Ecommerce\Backend\Controllers\Vendor\VendorProductController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProfileController;
 use Ecommerce\Backend\Controllers\Vendor\VendorShopProfileController;
 use Illuminate\Support\Facades\Route;
@@ -45,3 +46,7 @@ Route::post('profile' , [
 /** Vendor Shop Profile  */
 
 Route::resource('shop-profile',VendorShopProfileController::class);
+
+/** Vendor Product Routes */
+
+Route::resource('products',VendorProductController::class);

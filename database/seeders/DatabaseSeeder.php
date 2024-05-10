@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Ecommerce\Base\seeders\AdminProfileSeeder;
+use Ecommerce\Base\seeders\UserTableSeeder;
 use Ecommerce\Base\seeders\VendorShopProfileSeeder;
 use Illuminate\Database\Seeder;
 
