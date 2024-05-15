@@ -49,4 +49,24 @@ Route::resource('shop-profile',VendorShopProfileController::class);
 
 /** Vendor Product Routes */
 
+Route::get('product/get-subcategories', [
+    VendorProductController::class ,
+    'getSubCategories'
+])
+    ->name('product.get-subcategories');
+
+Route::get('product/get-child-categories', [
+    VendorProductController::class ,
+    'getChildCategories'
+])
+    ->name('product.get-child-categories');
+
+Route::put('product/change-status', [
+    VendorProductController::class ,
+    'changeStatus'
+])
+     ->name('product.change-status');
+
+
+
 Route::resource('products',VendorProductController::class);

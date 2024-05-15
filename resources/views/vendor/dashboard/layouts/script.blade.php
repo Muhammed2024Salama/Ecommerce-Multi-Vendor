@@ -1,49 +1,53 @@
 <!--jquery library js-->
-<script src="{{ asset('Frontend/js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
 <!--bootstrap js-->
-<script src="{{ asset('Frontend/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"></script>
 <!--font-awesome js-->
-<script src="{{ asset('Frontend/js/Font-Awesome.js') }}"></script>
+<script src="{{asset('frontend/js/Font-Awesome.js')}}"></script>
 <!--select2 js-->
-<script src="{{ asset('Frontend/js/select2.min.js') }}"></script>
+<script src="{{asset('frontend/js/select2.min.js')}}"></script>
 <!--slick slider js-->
-<script src="{{ asset('Frontend/js/slick.min.js') }}"></script>
+<script src="{{asset('frontend/js/slick.min.js')}}"></script>
 <!--simplyCountdown js-->
-<script src="{{ asset('Frontend/js/simplyCountdown.js') }}"></script>
+<script src="{{asset('frontend/js/simplyCountdown.js')}}"></script>
 <!--product zoomer js-->
-<script src="{{ asset('Frontend/js/jquery.exzoom.js') }}"></script>
+<script src="{{asset('frontend/js/jquery.exzoom.js')}}"></script>
 <!--nice-number js-->
-<script src="{{ asset('Frontend/js/jquery.nice-number.min.js') }}"></script>
+<script src="{{asset('frontend/js/jquery.nice-number.min.js')}}"></script>
 <!--counter js-->
-<script src="{{ asset('Frontend/js/jquery.waypoints.min.j') }}s"></script>
-<script src="{{ asset('Frontend/js/jquery.countup.min.js') }}"></script>
+<script src="{{asset('frontend/js/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.countup.min.js')}}"></script>
 <!--add row js-->
-<script src="{{ asset('Frontend/js/add_row_custon.js') }}"></script>
+<script src="{{asset('frontend/js/add_row_custon.js')}}"></script>
 <!--multiple-image-video js-->
-<script src="{{ asset('Frontend/js/multiple-image-video.js') }}"></script>
+<script src="{{asset('frontend/js/multiple-image-video.js')}}"></script>
 <!--sticky sidebar js-->
-<script src="{{ asset('Frontend/js/sticky_sidebar.js') }}"></script>
+<script src="{{asset('frontend/js/sticky_sidebar.js')}}"></script>
 <!--price ranger js-->
-<script src="{{ asset('Frontend/js/ranger_jquery-ui.min.js') }}"></script>
-<script src="{{ asset('Frontend/js/ranger_slider.js') }}"></script>
+<script src="{{asset('frontend/js/ranger_jquery-ui.min.js')}}"></script>
+<script src="{{asset('frontend/js/ranger_slider.js')}}"></script>
 <!--isotope js-->
-<script src="{{ asset('Frontend/js/isotope.pkgd.min.js') }}"></script>
+<script src="{{asset('frontend/js/isotope.pkgd.min.js')}}"></script>
 <!--venobox js-->
-<script src="{{ asset('Frontend/js/venobox.min.js') }}"></script>
+<script src="{{asset('frontend/js/venobox.min.js')}}"></script>
 <!--classycountdown js-->
-<script src="{{ asset('Frontend/js/jquery.classycountdown.js') }}"></script>
+<script src="{{asset('frontend/js/jquery.classycountdown.js')}}"></script>
 
-<script src="{{asset('Backend/assets/modules/summernote/summernote-bs4.js')}}"></script>
+<script src="{{asset('backend/assets/modules/summernote/summernote-bs4.js')}}"></script>
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('backend/assets/modules/moment.min.js')}}"></script>
+<script src="{{asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!--main/custom js-->
-<script src="{{ asset('Frontend/js/main.js') }}"></script>
+<script src="{{asset('frontend/js/main.js')}}"></script>
 
 <script>
     @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        toastr.error("{{$error}}")
-        @endforeach
+    @foreach ($errors->all() as $error)
+    toastr.error("{{$error}}")
+    @endforeach
     @endif
 </script>
 
@@ -61,6 +65,8 @@
         singleDatePicker: true
     });
 </script>
+
+<!-- Dynamic Delete alart -->
 
 <script>
     $(document).ready(function(){
@@ -120,5 +126,3 @@
 </script>
 
 @stack('scripts')
-
-
