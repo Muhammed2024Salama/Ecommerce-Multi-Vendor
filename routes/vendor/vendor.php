@@ -67,6 +67,4 @@ Route::put('product/change-status', [
 ])
      ->name('product.change-status');
 
-
-
 Route::resource('products',VendorProductController::class);
