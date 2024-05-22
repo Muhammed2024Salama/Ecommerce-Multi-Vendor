@@ -2,6 +2,7 @@
 
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductController;
+use Ecommerce\Backend\Controllers\Vendor\VendorProductImageGalleryController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProfileController;
 use Ecommerce\Backend\Controllers\Vendor\VendorShopProfileController;
 use Illuminate\Support\Facades\Route;
@@ -68,3 +69,6 @@ Route::put('product/change-status', [
      ->name('product.change-status');
 
 Route::resource('products',VendorProductController::class);
+
+/** Products image gallery route */
+Route::resource('products-image-gallery', VendorProductImageGalleryController::class);

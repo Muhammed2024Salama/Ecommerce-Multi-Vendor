@@ -153,7 +153,7 @@
                                             <option {{$product->status == 0 ? 'selected' : ''}} value="0">Inactive</option>
                                         </select>
                                     </div>
-                                    <button type="submmit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>
                         </div>

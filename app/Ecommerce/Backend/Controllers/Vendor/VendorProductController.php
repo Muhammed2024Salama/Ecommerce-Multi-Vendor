@@ -8,6 +8,8 @@ use Ecommerce\Backend\Controllers\Admin\Brand\Models\Brand;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Models\ChildCategory;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
+use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductImageGallery;
+use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductVariant;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
@@ -23,7 +25,6 @@ class VendorProductController extends Controller
     public function index(VendorProductDataTable $dataTable)
     {
         return $dataTable->render('vendor.product.index');
-        //return view('vendor.product.index');
     }
 
     /**
@@ -86,6 +87,7 @@ class VendorProductController extends Controller
         toastr('Created Successfully!', 'success');
 
         return redirect()->route('vendor.products.index');
+
     }
 
     /**
@@ -128,6 +130,7 @@ class VendorProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $request->validate([
             'image' => ['nullable', 'image', 'max:3000'],
             'name' => ['required', 'max:200'],
@@ -178,6 +181,7 @@ class VendorProductController extends Controller
         toastr('Updated Successfully!', 'success');
 
         return redirect()->route('vendor.products.index');
+
     }
 
     /**
@@ -185,13 +189,34 @@ class VendorProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        if($product->vendor_id != Auth::user()->vendor->id){
+            abort(404);
+        }
+
+        /** Delte the main product image */
+        $this->deleteImage($product->thumb_image);
+
+        /** Delete product gallery images */
+        $galleryImages = ProductImageGallery::where('product_id', $product->id)->get();
+        foreach($galleryImages as $image){
+            $this->deleteImage($image->image);
+            $image->delete();
+        }
+
+        /** Delete product variants if exist */
+        $variants = ProductVariant::where('product_id', $product->id)->get();
+
+        foreach($variants as $variant){
+            $variant->productVariantItems()->delete();
+            $variant->delete();
+        }
+
+        $product->delete();
+
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
-     */
     public function changeStatus(Request $request)
     {
         $product = Product::findOrFail($request->id);
@@ -202,9 +227,9 @@ class VendorProductController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
+     * Get all product sub categores
      */
+
     public function getSubCategories(Request $request)
     {
         $subCategories = SubCategory::where('category_id', $request->id)->get();
@@ -212,10 +237,6 @@ class VendorProductController extends Controller
         return $subCategories;
     }
 
-    /**
-     * @param Request $request
-     * @return mixed
-     */
     public function getChildCategories(Request $request)
     {
         $childCategories = ChildCategory::where('sub_category_id', $request->id)->get();
