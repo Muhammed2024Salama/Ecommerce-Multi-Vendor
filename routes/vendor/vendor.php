@@ -3,6 +3,7 @@
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductImageGalleryController;
+use Ecommerce\Backend\Controllers\Vendor\VendorProductVariantController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProfileController;
 use Ecommerce\Backend\Controllers\Vendor\VendorShopProfileController;
 use Illuminate\Support\Facades\Route;
@@ -72,3 +73,28 @@ Route::resource('products',VendorProductController::class);
 
 /** Products image gallery route */
 Route::resource('products-image-gallery', VendorProductImageGalleryController::class);
+
+/** Products variant route */
+
+Route::put('products-variant/change-status', [
+    VendorProductVariantController::class ,
+    'changeStatus'
+])
+    ->name('products-variant.change-status');
+
+Route::resource('products-variant', VendorProductVariantController::class);
+
+/** Products variant item route */
+//Route::get('products-variant-item/{productId}/{variantId}', [VendorProductVariantItemController::class, 'index'])->name('products-variant-item.index');
+//
+//Route::get('products-variant-item/create/{productId}/{variantId}', [VendorProductVariantItemController::class, 'create'])->name('products-variant-item.create');
+//
+//Route::post('products-variant-item', [VendorProductVariantItemController::class, 'store'])->name('products-variant-item.store');
+//
+//Route::get('products-variant-item-edit/{variantItemId}', [VendorProductVariantItemController::class, 'edit'])->name('products-variant-item.edit');
+//
+//Route::put('products-variant-item-update/{variantItemId}', [VendorProductVariantItemController::class, 'update'])->name('products-variant-item.update');
+//
+//Route::delete('products-variant-item/{variantItemId}', [VendorProductVariantItemController::class, 'destroy'])->name('products-variant-item.destroy');
+//
+//Route::put('products-variant-item-status', [VendorProductVariantItemController::class, 'chageStatus'])->name('products-variant-item.chages-status');

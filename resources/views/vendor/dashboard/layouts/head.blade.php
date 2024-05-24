@@ -7,7 +7,7 @@
     <title>
         @yield('title')
     </title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="{{ route('Frontend/images/favicon.png') }}">
     <link rel="stylesheet" href="{{asset('Frontend/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('Frontend/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('Frontend/css/select2.min.css')}}">
