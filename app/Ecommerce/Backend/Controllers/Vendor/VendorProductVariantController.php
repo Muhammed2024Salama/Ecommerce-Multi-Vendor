@@ -6,6 +6,7 @@ use App\DataTables\VendorProductVariantDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductVariant;
+use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductVariantItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -113,19 +114,15 @@ class VendorProductVariantController extends Controller
             abort(404);
         }
 
-//        $variantItemCheck = ProductVariantItem::where('product_variant_id', $varinat->id)->count();
-//        if($variantItemCheck > 0){
-//            return response(['status' => 'error', 'message' => 'This variant contain variant items in it delete the variant items first for delete this variant!']);
-//        }
-//        $varinat->delete();
+        $variantItemCheck = ProductVariantItem::where('product_variant_id', $varinat->id)->count();
+        if($variantItemCheck > 0){
+            return response(['status' => 'error', 'message' => 'This variant contain variant items in it delete the variant items first for delete this variant!']);
+        }
+        $varinat->delete();
 
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
-     */
     public function changeStatus(Request $request)
     {
         $varinat = ProductVariant::findOrFail($request->id);
