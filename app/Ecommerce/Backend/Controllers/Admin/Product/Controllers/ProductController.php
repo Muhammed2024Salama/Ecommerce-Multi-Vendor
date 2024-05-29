@@ -18,7 +18,6 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     use ImageUploadTrait;
-
     /**
      * Display a listing of the resource.
      */
@@ -34,15 +33,14 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.product.create', compact('categories', 'brands'));    }
+        return view('admin.product.create', compact('categories', 'brands'));
+    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // dd(Auth::user()->vendor);
         $request->validate([
             'image' => ['required', 'image', 'max:3000'],
             'name' => ['required', 'max:200'],
@@ -64,7 +62,6 @@ class ProductController extends Controller
         $product->thumb_image = $imagePath;
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
-        $product->vendor_id = Auth::user()->vendor->id;
         $product->category_id = $request->category;
         $product->sub_category_id = $request->sub_category;
         $product->child_category_id = $request->child_category;
@@ -80,14 +77,14 @@ class ProductController extends Controller
         $product->offer_end_date = $request->offer_end_date;
         $product->product_type = $request->product_type;
         $product->status = $request->status;
-        $product->is_approved = 1;
         $product->seo_title = $request->seo_title;
         $product->seo_description = $request->seo_description;
         $product->save();
 
-        toastr('Created Successfully ! ', 'success');
+        toastr('Created Successfully!', 'success');
 
         return redirect()->route('admin.products.index');
+
     }
 
     /**
@@ -108,13 +105,7 @@ class ProductController extends Controller
         $childCategories = ChildCategory::where('sub_category_id', $product->sub_category_id)->get();
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.product.edit', compact(
-            'product',
-            'categories',
-            'brands',
-            'subCategories',
-            'childCategories'
-        ));
+        return view('admin.product.edit', compact('product', 'categories', 'brands', 'subCategories', 'childCategories'));
     }
 
     /**
@@ -166,6 +157,7 @@ class ProductController extends Controller
         toastr('Updated Successfully!', 'success');
 
         return redirect()->route('admin.products.index');
+
     }
 
     /**
@@ -174,25 +166,33 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
+        if(OrderProduct::where('product_id',$product->id)->count() > 0){
+            return response(['status' => 'error', 'message' => 'This product have orders can\'t delete it.']);
+        }
 
-        /** Delete the main product image */
+        /** Delte the main product image */
         $this->deleteImage($product->thumb_image);
 
         /** Delete product gallery images */
         $galleryImages = ProductImageGallery::where('product_id', $product->id)->get();
-        foreach($galleryImages as $image) {
+        foreach($galleryImages as $image){
             $this->deleteImage($image->image);
             $image->delete();
         }
 
+        /** Delete product variants if exist */
+        $variants = ProductVariant::where('product_id', $product->id)->get();
+
+        foreach($variants as $variant){
+            $variant->productVariantItems()->delete();
+            $variant->delete();
+        }
+
         $product->delete();
 
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
-     */
     public function changeStatus(Request $request)
     {
         $product = Product::findOrFail($request->id);
@@ -203,9 +203,9 @@ class ProductController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
+     * Get all product sub categores
      */
+
     public function getSubCategories(Request $request)
     {
         $subCategories = SubCategory::where('category_id', $request->id)->get();
@@ -213,10 +213,6 @@ class ProductController extends Controller
         return $subCategories;
     }
 
-    /**
-     * @param Request $request
-     * @return mixed
-     */
     public function getChildCategories(Request $request)
     {
         $childCategories = ChildCategory::where('sub_category_id', $request->id)->get();

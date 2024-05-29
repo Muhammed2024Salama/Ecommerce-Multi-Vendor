@@ -1,9 +1,5 @@
 @extends('vendor.dashboard.layouts.master')
 
-@section('title')
-{{--    {{$settings->site_name}} || Product--}}
-@endsection
-
 @section('content')
     <!--=============================
     DASHBOARD START

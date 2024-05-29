@@ -8,6 +8,7 @@ use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductImageGalleryController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantItemController;
+use Ecommerce\Backend\Controllers\Admin\Product\Controllers\SellerProductController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
@@ -199,3 +200,23 @@ Route::put('products-variant-item-status', [
     'changeStatus'
 ])
     ->name('products-variant-item.change-status');
+
+/** Seller product routes */
+
+Route::get('seller-products', [
+    SellerProductController::class ,
+    'index'
+])
+    ->name('seller-products.index');
+
+Route::get('seller-pending-products', [
+    SellerProductController::class ,
+    'pendingProducts'
+])
+    ->name('seller-pending-products.index');
+
+Route::put('change-approve-status', [
+    SellerProductController::class,
+    'changeApproveStatus'
+])
+    ->name('change-approve-status');
