@@ -11,6 +11,7 @@ use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantContro
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantItemController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\SellerProductController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
+use Ecommerce\Backend\Controllers\Admin\Settings\Controllers\SettingController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
 use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
@@ -259,3 +260,34 @@ Route::delete('flash-sale/{id}', [
     'destory'
 ])
     ->name('flash-sale.destory');
+
+/** settings routes */
+Route::get('settings', [
+    SettingController::class ,
+    'index'
+])
+    ->name('settings.index');
+
+Route::put('generale-setting-update', [
+    SettingController::class ,
+    'generalSettingUpdate'
+])
+    ->name('generale-setting-update');
+
+Route::put('email-setting-update', [
+    SettingController::class,
+    'emailConfigSettingUpdate'
+])
+    ->name('email-setting-update');
+
+Route::put('logo-setting-update', [
+    SettingController::class,
+    'logoSettingUpdate'
+])
+    ->name('logo-setting-update');
+
+Route::put('pusher-setting-update', [
+    SettingController::class,
+    'pusherSettingUpdate'
+])
+    ->name('pusher-setting-update');
