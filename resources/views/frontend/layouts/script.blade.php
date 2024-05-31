@@ -49,4 +49,5 @@
         @endforeach
     @endif
 </script>
+@stack('scripts')
 {{-- End Validation Script By Toastr --}}

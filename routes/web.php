@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Base\Auth\Controllers\GoogleAuthController;
 use Ecommerce\Base\Auth\Controllers\SocialiteController;
+use Ecommerce\Frontend\Controllers\FlashSaleController;
 use Ecommerce\Frontend\Controllers\HomeController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
 use Ecommerce\Frontend\Controllers\UserProfileController;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 /** View Frontend Template  */
 
 Route::get('/', [
-    HomeController::class ,
+    HomeController::class,
     'index'
 ])
     ->name('home');
@@ -35,40 +36,48 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
 
 /** Redirect To Admin Login  */
 
 Route::get('admin/login', [
-    AdminController::class ,
+    AdminController::class,
     'login'
 ])
     ->name('admin.login');
 
-/** Github Socialite Login */
+Route::get('flash-sale', [
+    FlashSaleController::class,
+    'index'
+])
+    ->name('flash-sale');
+
+
+/** GitHub Socialite Login */
 
 Route::get('/auth/redirect', [
-    SocialiteController::class ,
+    SocialiteController::class,
     'redirectToProvider'
 ])
     ->name('github.login');
 
 Route::get('/auth/callback', [
-    SocialiteController::class ,
+    SocialiteController::class,
     'handleProviderCallback'
 ]);
-/** End Of Github Socialite Login */
+/** End Of GitHub Socialite Login */
 
 /** Google Socialite Login */
 
-Route::get('/auth/google',[
-    GoogleAuthController::class ,
+Route::get('/auth/google', [
+    GoogleAuthController::class,
     'redirect'
 ])
     ->name('google-auth');
 
-Route::get('/auth/google/callback' , [
-    GoogleAuthController::class ,
+Route::get('/auth/google/callback', [
+    GoogleAuthController::class,
     'callbackGoogle'
 ]);
 
@@ -78,33 +87,33 @@ Route::get('/auth/google/callback' , [
 /** User Dashboard  */
 
 Route::group([
-    'middleware' => [
-        'auth', 'verified'
-    ] ,
-    'prefix' => 'user' , 'as' => 'user.']
+        'middleware' => [
+            'auth', 'verified'
+        ],
+        'prefix' => 'user', 'as' => 'user.']
     , function () {
-   Route::get('dashboard' , [
-       UserDashboardController::class ,
-       'index'
-   ])
-       ->name('dashboard');
+        Route::get('dashboard', [
+            UserDashboardController::class,
+            'index'
+        ])
+            ->name('dashboard');
 
-   Route::get('profile',[
-       UserProfileController::class ,
-       'index'
-   ])
-       ->name('profile');
+        Route::get('profile', [
+            UserProfileController::class,
+            'index'
+        ])
+            ->name('profile');
 
-   Route::put('profile' , [
-       UserProfileController::class ,
-       'updateProfile'
-   ])
-       ->name('profile.update');
+        Route::put('profile', [
+            UserProfileController::class,
+            'updateProfile'
+        ])
+            ->name('profile.update');
 
-    Route::post('profile' , [
-        UserProfileController::class ,
-        'updatePassword'
-    ])
-        ->name('profile.update.password');
-});
+        Route::post('profile', [
+            UserProfileController::class,
+            'updatePassword'
+        ])
+            ->name('profile.update.password');
+    });
 

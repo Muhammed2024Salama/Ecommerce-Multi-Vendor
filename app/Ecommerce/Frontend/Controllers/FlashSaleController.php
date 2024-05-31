@@ -5,24 +5,16 @@ namespace Ecommerce\Frontend\Controllers;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Models\FlashSale;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Models\FlashSaleItem;
-use Ecommerce\Backend\Controllers\Admin\Slider\Models\Slider;
 
-class HomeController extends Controller
+class FlashSaleController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function index()
     {
-        $sliders = Slider::where('status', 1)->orderBy('serial', 'asc')->get();
         $flashSaleDate = FlashSale::first();
-        $flashSaleItems = FlashSaleItem::where('show_at_home', 1)->where('status', 1)->pluck('product_id')->toArray();
-
-        return view('frontend.home.home',
-            compact(
-                'sliders',
-                'flashSaleDate',
-                'flashSaleItems'
-            ));
+        $flashSaleItems = FlashSaleItem::where('status', 1)->orderBy('id', 'ASC')->pluck('product_id')->toArray();
+        return view('frontend.pages.flash-sale', compact('flashSaleDate', 'flashSaleItems'));
     }
 }

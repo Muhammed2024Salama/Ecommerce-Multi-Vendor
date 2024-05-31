@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductVariant;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductVariantItem;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+
 
 class VendorProductVariantItemController extends Controller
 {

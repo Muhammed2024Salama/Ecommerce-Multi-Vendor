@@ -4,6 +4,7 @@ use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
+use Ecommerce\Backend\Controllers\Admin\FlashSale\Controllers\FlashSaleController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductImageGalleryController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantController;
@@ -220,3 +221,41 @@ Route::put('change-approve-status', [
     'changeApproveStatus'
 ])
     ->name('change-approve-status');
+
+/** Flash Sale Routes */
+
+Route::get('flash-sale', [
+    FlashSaleController::class,
+    'index'
+])
+    ->name('flash-sale.index');
+
+Route::put('flash-sale', [
+    FlashSaleController::class,
+    'update'
+])
+    ->name('flash-sale.update');
+
+Route::post('flash-sale/add-product', [
+    FlashSaleController::class,
+    'addProduct'
+])
+    ->name('flash-sale.add-product');
+
+Route::put('flash-sale/show-at-home/status-change', [
+    FlashSaleController::class,
+    'chageShowAtHomeStatus'
+])
+    ->name('flash-sale.show-at-home.change-status');
+
+Route::put('flash-sale-status', [
+    FlashSaleController::class,
+    'changeStatus'
+])
+    ->name('flash-sale-status');
+
+Route::delete('flash-sale/{id}', [
+    FlashSaleController::class,
+    'destory'
+])
+    ->name('flash-sale.destory');
