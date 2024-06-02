@@ -4,6 +4,7 @@ use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
+use Ecommerce\Backend\Controllers\Admin\Coupon\Controllers\CouponController;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Controllers\FlashSaleController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductImageGalleryController;
@@ -260,6 +261,16 @@ Route::delete('flash-sale/{id}', [
     'destory'
 ])
     ->name('flash-sale.destory');
+
+/** Coupon Routes */
+
+Route::put('coupons/change-status', [
+    CouponController::class,
+    'changeStatus'
+])
+    ->name('coupons.change-status');
+
+Route::resource('coupons', CouponController::class);
 
 /** settings routes */
 Route::get('settings', [

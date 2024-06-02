@@ -80,6 +80,11 @@
                     <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link"
                                                                                href="{{ route('admin.flash-sale.index') }}">Flash
                             Sale</a></li>
+
+                    <li class="{{ setActive(['admin.coupons.*']) }}"><a class="nav-link"
+                                                                               href="{{ route('admin.coupons.index') }}">Coupons
+                        </a></li>
+
                     <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link"
                                                                                href="{{ route('admin.vendor-profile.index') }}">Vendor
                             Profile</a></li>
@@ -98,7 +103,8 @@
                 </ul>
             </li>
 
-            <li><a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="far fa-square"></i> <span>Settings</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="far fa-square"></i> <span>Settings</span></a>
+            </li>
 
 
             {{--            <li class="dropdown">--}}
