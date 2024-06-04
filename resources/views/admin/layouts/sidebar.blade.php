@@ -82,8 +82,12 @@
                             Sale</a></li>
 
                     <li class="{{ setActive(['admin.coupons.*']) }}"><a class="nav-link"
-                                                                               href="{{ route('admin.coupons.index') }}">Coupons
+                                                                        href="{{ route('admin.coupons.index') }}">Coupons
                         </a></li>
+
+                    <li class="{{ setActive(['admin.shipping-rule.*']) }}"><a class="nav-link"
+                                                                              href="{{ route('admin.shipping-rule.index') }}">Shipping
+                            Rule</a></li>
 
                     <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link"
                                                                                href="{{ route('admin.vendor-profile.index') }}">Vendor

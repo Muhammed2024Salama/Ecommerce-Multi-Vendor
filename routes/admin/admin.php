@@ -13,6 +13,7 @@ use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantItemCo
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\SellerProductController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Settings\Controllers\SettingController;
+use Ecommerce\Backend\Controllers\Admin\ShippingRule\Controllers\ShippingRuleController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
 use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
@@ -271,6 +272,16 @@ Route::put('coupons/change-status', [
     ->name('coupons.change-status');
 
 Route::resource('coupons', CouponController::class);
+
+/** Shipping Rule Routes */
+
+Route::put('shipping-rule/change-status', [
+    ShippingRuleController::class,
+    'changeStatus'
+])
+    ->name('shipping-rule.change-status');
+
+Route::resource('shipping-rule', ShippingRuleController::class);
 
 /** settings routes */
 Route::get('settings', [

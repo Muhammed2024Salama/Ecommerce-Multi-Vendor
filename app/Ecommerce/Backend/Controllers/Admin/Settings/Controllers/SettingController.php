@@ -4,10 +4,13 @@ namespace Ecommerce\Backend\Controllers\Admin\Settings\Controllers;
 
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
+use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    use ImageUploadTrait;
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
@@ -51,5 +54,7 @@ class SettingController extends Controller
         toastr('Updated successfully!', 'success', 'Success');
 
         return redirect()->back();
+
     }
+
 }
