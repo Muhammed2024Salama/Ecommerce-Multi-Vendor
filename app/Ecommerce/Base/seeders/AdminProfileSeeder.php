@@ -2,8 +2,8 @@
 
 namespace Ecommerce\Base\seeders;
 
-use App\Models\User;
 use Ecommerce\Backend\Controllers\Vendor\Models\Vendor;
+use Ecommerce\Frontend\Models\User;
 use Illuminate\Database\Seeder;
 
 class AdminProfileSeeder extends Seeder

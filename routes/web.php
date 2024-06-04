@@ -7,6 +7,7 @@ use Ecommerce\Base\Auth\Controllers\SocialiteController;
 use Ecommerce\Frontend\Controllers\FlashSaleController;
 use Ecommerce\Frontend\Controllers\FrontendProductController;
 use Ecommerce\Frontend\Controllers\HomeController;
+use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
 use Ecommerce\Frontend\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -106,12 +107,7 @@ Route::get('/auth/google/callback', [
 
 /** User Dashboard  */
 
-Route::group([
-        'middleware' => [
-            'auth', 'verified'
-        ],
-        'prefix' => 'user', 'as' => 'user.']
-    , function () {
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
         Route::get('dashboard', [
             UserDashboardController::class,
             'index'
@@ -135,5 +131,9 @@ Route::group([
             'updatePassword'
         ])
             ->name('profile.update.password');
+
+        /** User Address Route */
+        Route::resource('address', UserAddressController::class);
+
     });
 

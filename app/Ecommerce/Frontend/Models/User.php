@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Ecommerce\Frontend\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Ecommerce\Backend\Controllers\Vendor\Models\Vendor;
