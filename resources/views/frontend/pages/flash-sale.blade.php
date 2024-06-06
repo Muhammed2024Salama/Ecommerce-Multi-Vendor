@@ -1,7 +1,8 @@
+@php use Ecommerce\Backend\Controllers\Admin\Product\Models\Product; @endphp
 @extends('frontend.layouts.master')
 
 @section('title')
-{{--{{$settings->site_name}} || Flash Sale--}}
+    {{--{{$settings->site_name}} || Flash Sale--}}
 @endsection
 
 @section('content')
@@ -52,19 +53,21 @@
 
                 <div class="row">
 {{--                    @php--}}
-{{--                        $products = \Ecommerce\Backend\Controllers\Admin\Product\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')--}}
-{{--                    ->with(['variants', 'category', 'productImageGalleries'])--}}
-{{--                        ->whereIn('id', $flashSaleItems)->get();--}}
+{{--                        $products = Product::withAvg('reviews', 'rating')--}}
+{{--                            ->withCount('reviews')--}}
+{{--                            ->with(['variants', 'category', 'productImageGalleries'])--}}
+{{--                            ->whereIn('id', $flashSaleItems)--}}
+{{--                            ->get();--}}
 {{--                    @endphp--}}
 {{--                    @foreach ($products as $product)--}}
-{{--                        <x-product-card :product="$product" />--}}
+{{--                        <x-product-card :product="$product"/>--}}
 {{--                    @endforeach--}}
                 </div>
-                {{-- <div class="mt-5">
-                    @if ($flashSaleItems->hasPages())
-                        {{$flashSaleItems->links()}}
-                    @endif
-                </div> --}}
+                 <div class="mt-5">
+{{--                    @if ($flashSaleItems->hasPages())--}}
+{{--                        {{$flashSaleItems->links()}}--}}
+{{--                    @endif--}}
+                </div>
             </div>
         </div>
     </section>
@@ -75,13 +78,13 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function(){
-        simplyCountdown('.simply-countdown-one', {
-            year: {{date('Y', strtotime($flashSaleDate->end_date))}},
-            month: {{date('m', strtotime($flashSaleDate->end_date))}},
-            day: {{date('d', strtotime($flashSaleDate->end_date))}},
-        });
-    })
-</script>
+    <script>
+        $(document).ready(function () {
+            simplyCountdown('.simply-countdown-one', {
+                year: {{date('Y', strtotime($flashSaleDate->end_date))}},
+                month: {{date('m', strtotime($flashSaleDate->end_date))}},
+                day: {{date('d', strtotime($flashSaleDate->end_date))}},
+            });
+        })
+    </script>
 @endpush

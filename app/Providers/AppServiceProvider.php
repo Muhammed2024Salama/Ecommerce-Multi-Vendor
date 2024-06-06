@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Config;
@@ -28,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         $generalSetting = GeneralSetting::first();
 
-        /** set time zone */
+//        /** set time zone */
         if ($generalSetting) {
             Config::set('app.timezone', $generalSetting->time_zone);
         } else {
