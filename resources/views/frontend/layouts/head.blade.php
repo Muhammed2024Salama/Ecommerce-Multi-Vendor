@@ -1,7 +1,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
     <title>
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('Frontend/css/ranger_style.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/jquery.classycountdown.css') }}">
     <link rel="stylesheet" href="{{ asset('Frontend/css/venobox.min.css') }}">
-{{--    toastr css --}}
+    {{--    toastr css --}}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">

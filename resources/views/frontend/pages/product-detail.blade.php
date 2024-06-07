@@ -17,7 +17,7 @@
                         <h4>products details</h4>
                         <ul>
                             <li><a href="#">home</a></li>
-                            <li><a href="#">product</a></li>
+                            <li><a href="#">peoduct</a></li>
                             <li><a href="#">product details</a></li>
                         </ul>
                     </div>
@@ -38,7 +38,7 @@
             <div class="wsus__details_bg">
                 <div class="row">
                     <div class="col-xl-4 col-md-5 col-lg-5" style="z-index:999">
-                        <div id="sticky_pro_zoom">
+                        <div id="sticky_pro_zoom" >
                             <div class="exzoom hidden" id="exzoom">
                                 <div class="exzoom_img_box">
                                     @if ($product->video_link)
@@ -48,11 +48,9 @@
                                         </a>
                                     @endif
                                     <ul class='exzoom_img_ul'>
-                                        <li><img class="zoom ing-fluid w-100" src="{{asset($product->thumb_image)}}"
-                                                 alt="product"></li>
+                                        <li><img class="zoom ing-fluid w-100" src="{{asset($product->thumb_image)}}" alt="product"></li>
                                         @foreach ($product->productImageGalleries as $productImage)
-                                            <li><img class="zoom ing-fluid w-100" src="{{asset($productImage->image)}}"
-                                                     alt="product"></li>
+                                            <li><img class="zoom ing-fluid w-100" src="{{asset($productImage->image)}}" alt="product"></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -70,16 +68,12 @@
                         <div class="wsus__pro_details_text">
                             <a class="title" href="javascript:;">{{$product->name}}</a>
                             @if ($product->qty > 0)
-                                <p class="wsus__stock_area"><span class="in_stock">in stock</span> ({{$product->qty}}
-                                    item)</p>
+                                <p class="wsus__stock_area"><span class="in_stock">in stock</span> ({{$product->qty}} item)</p>
                             @elseif ($product->qty === 0)
-                                <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{$product->qty}}
-                                    item)</p>
+                                <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{$product->qty}} item)</p>
                             @endif
                             @if (checkDiscount($product))
-                                <h4>{{$settings->currency_icon}}{{$product->offer_price}}
-                                    <del>{{$settings->currency_icon}}{{$product->price}}</del>
-                                </h4>
+                                <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>
                             @else
                                 <h4>{{$settings->currency_icon}}{{$product->price}}</h4>
                             @endif
@@ -112,10 +106,7 @@
                                                     <select class="select_2" name="variants_items[]">
                                                         @foreach ($variant->productVariantItems as $variantItem)
                                                             @if ($variantItem->status != 0)
-                                                                <option
-                                                                    value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}}
-                                                                    (${{$variantItem->price}})
-                                                                </option>
+                                                                <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} (${{$variantItem->price}})</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -129,32 +120,30 @@
                                 <div class="wsus__quentity">
                                     <h5>quentity :</h5>
                                     <div class="select_number">
-                                        <input class="number_area" name="qty" type="text" min="1" max="100" value="1"/>
+                                        <input class="number_area" name="qty" type="text" min="1" max="100" value="1" />
                                     </div>
 
                                 </div>
 
                                 <ul class="wsus__button_area">
-                                    <li>
-                                        <button type="submit" class="add_cart" href="#">add to cart</button>
-                                    </li>
+                                    <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
 
 
                                     <li><a style="border: 1px solid gray;
                                         padding: 7px 11px;
-                                        border-radius: 100%;" href="javascript:;" class="add_to_wishlist"
-                                           data-id="{{$product->id}}"><i class="fal fa-heart"></i></a></li>
+                                        border-radius: 100%;" href="javascript:;" class="add_to_wishlist" data-id="{{$product->id}}"><i class="fal fa-heart"></i></a></li>
 
                                     <li>
                                         <button type="button" style="border: 1px solid gray;
                                         padding: 7px 11px;
                                         margin-left: 7px;
-                                        border-radius: 100%; background-color: #0088cc" class="btn"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        border-radius: 100%; background-color: #0088cc" class="btn"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="far fa-comment-alt text-light"></i>
                                         </button>
 
                                     </li>
+
+
 
 
                                 </ul>
@@ -174,21 +163,18 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="pills-home-tab7" data-bs-toggle="pill"
                                             data-bs-target="#pills-home22" type="button" role="tab"
-                                            aria-controls="pills-home" aria-selected="true">Description
-                                    </button>
+                                            aria-controls="pills-home" aria-selected="true">Description</button>
                                 </li>
 
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                                             data-bs-target="#pills-contact" type="button" role="tab"
-                                            aria-controls="pills-contact" aria-selected="false">Vendor Info
-                                    </button>
+                                            aria-controls="pills-contact" aria-selected="false">Vendor Info</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
                                             data-bs-target="#pills-contact2" type="button" role="tab"
-                                            aria-controls="pills-contact2" aria-selected="false">Reviews
-                                    </button>
+                                            aria-controls="pills-contact2" aria-selected="false">Reviews</button>
                                 </li>
 
                             </ul>
@@ -211,8 +197,7 @@
                                         <div class="row">
                                             <div class="col-xl-6 col-xxl-5 col-md-6">
                                                 <div class="wsus__vebdor_img">
-                                                    <img src="{{asset($product->vendor->banner)}}" alt="vensor"
-                                                         class="img-fluid w-100">
+                                                    <img src="{{asset($product->vendor->banner)}}" alt="vensor" class="img-fluid w-100">
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
@@ -260,8 +245,7 @@
                                                         @foreach ($reviews as $review)
                                                             <div class="wsus__main_comment">
                                                                 <div class="wsus__comment_img">
-                                                                    <img src="{{asset($review->user->image)}}"
-                                                                         alt="user"
+                                                                    <img src="{{asset($review->user->image)}}" alt="user"
                                                                          class="img-fluid w-100">
                                                                 </div>
                                                                 <div class="wsus__comment_text reply">
@@ -275,8 +259,7 @@
 
                                                                             @foreach ($review->productReviewGalleries as $image)
 
-                                                                                <li><img src="{{asset($image->image)}}"
-                                                                                         alt="product"
+                                                                                <li><img src="{{asset($image->image)}}" alt="product"
                                                                                          class="img-fluid "></li>
                                                                             @endforeach
                                                                         @endif
@@ -309,11 +292,9 @@
                                                         @endphp
 
                                                         @if ($isBrought === true)
-                                                            <div class="wsus__post_comment rev_mar"
-                                                                 id="sticky_sidebar3">
+                                                            <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
                                                                 <h4>write a Review</h4>
-                                                                <form action="{{route('user.review.create')}}"
-                                                                      enctype="multipart/form-data" method="POST">
+                                                                <form action="{{route('user.review.create')}}" enctype="multipart/form-data" method="POST">
                                                                     @csrf
                                                                     <p class="rating">
                                                                         <span>select your rating : </span>
@@ -323,8 +304,7 @@
 
                                                                         <div class="col-xl-12 mb-4">
                                                                             <div class="wsus__single_com">
-                                                                                <select name="rating" id=""
-                                                                                        class="form-control">
+                                                                                <select name="rating" id="" class="form-control">
                                                                                     <option value="">Select</option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
@@ -349,14 +329,11 @@
                                                                             <input type="file" name="images[]" multiple>
                                                                         </div>
                                                                     </div>
-                                                                    <input type="hidden" name="product_id" id=""
-                                                                           value="{{$product->id}}">
-                                                                    <input type="hidden" name="vendor_id" id=""
-                                                                           value="{{$product->vendor_id}}">
+                                                                    <input type="hidden" name="product_id" id="" value="{{$product->id}}">
+                                                                    <input type="hidden" name="vendor_id" id="" value="{{$product->vendor_id}}">
 
                                                                     <button class="common_btn" type="submit">submit
-                                                                        review
-                                                                    </button>
+                                                                        review</button>
                                                                 </form>
                                                             </div>
                                                         @endif
@@ -409,8 +386,8 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function () {
-            $('.message_modal').on('submit', function (e) {
+        $(document).ready(function(){
+            $('.message_modal').on('submit', function(e) {
                 e.preventDefault();
                 let formData = $(this).serialize();
 
@@ -418,7 +395,7 @@
                     method: 'POST',
                     url: '{{ route("user.send-message") }}',
                     data: formData,
-                    beforeSend: function () {
+                    beforeSend: function() {
                         let html = `<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span> Sending..`
 
                         $('.send-button').html(html);
@@ -426,17 +403,17 @@
 
 
                     },
-                    success: function (response) {
+                    success: function(response) {
                         $('.message-box').val('');
                         $('.modal-body').append(`<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`)
                         toastr.success(response.message);
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         toastr.error(xhr.responseJSON.message);
                         $('.send-button').html('Send');
                         $('.send-button').prop('disabled', false);
                     },
-                    complete: function () {
+                    complete: function() {
                         $('.send-button').html('Send');
                         $('.send-button').prop('disabled', false);
                     }

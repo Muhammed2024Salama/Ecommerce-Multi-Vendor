@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Base\Auth\Controllers\GoogleAuthController;
 use Ecommerce\Base\Auth\Controllers\SocialiteController;
+use Ecommerce\Frontend\Controllers\CartController;
 use Ecommerce\Frontend\Controllers\FlashSaleController;
 use Ecommerce\Frontend\Controllers\FrontendProductController;
 use Ecommerce\Frontend\Controllers\HomeController;
@@ -56,8 +57,9 @@ Route::get('flash-sale', [
     ->name('flash-sale');
 
 /** Product route */
+
 Route::get('products', [
-    FrontendProductController::class ,
+    FrontendProductController::class,
     'productsIndex'
 ])
     ->name('products.index');
@@ -73,6 +75,74 @@ Route::get('change-product-list-view', [
     'chageListView'
 ])
     ->name('change-product-list-view');
+
+/** Cart routes */
+
+Route::post('add-to-cart', [
+    CartController::class,
+    'addToCart'
+])
+    ->name('add-to-cart');
+
+Route::get('cart-details', [
+    CartController::class,
+    'cartDetails'
+])
+    ->name('cart-details');
+
+Route::post('cart/update-quantity', [
+    CartController::class,
+    'updateProductQty'
+])
+    ->name('cart.update-quantity');
+
+Route::get('clear-cart', [
+    CartController::class,
+    'clearCart'
+])
+    ->name('clear.cart');
+
+Route::get('cart/remove-product/{rowId}', [
+    CartController::class,
+    'removeProduct'
+])
+    ->name('cart.remove-product');
+
+Route::get('cart-count', [
+    CartController::class,
+    'getCartCount'
+])
+    ->name('cart-count');
+
+Route::get('cart-products', [
+    CartController::class,
+    'getCartProducts'
+])
+    ->name('cart-products');
+
+Route::post('cart/remove-sidebar-product', [
+    CartController::class,
+    'removeSidebarProduct'
+])
+    ->name('cart.remove-sidebar-product');
+
+Route::get('cart/sidebar-product-total', [
+    CartController::class,
+    'cartTotal'
+])
+    ->name('cart.sidebar-product-total');
+
+Route::get('apply-coupon', [
+    CartController::class,
+    'applyCoupon'
+])
+    ->name('apply-coupon');
+
+Route::get('coupon-calculation', [
+    CartController::class,
+    'couponCalculation'
+])
+    ->name('coupon-calculation');
 
 
 /** GitHub Socialite Login */
@@ -108,32 +178,32 @@ Route::get('/auth/google/callback', [
 /** User Dashboard  */
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
-        Route::get('dashboard', [
-            UserDashboardController::class,
-            'index'
-        ])
-            ->name('dashboard');
+    Route::get('dashboard', [
+        UserDashboardController::class,
+        'index'
+    ])
+        ->name('dashboard');
 
-        Route::get('profile', [
-            UserProfileController::class,
-            'index'
-        ])
-            ->name('profile');
+    Route::get('profile', [
+        UserProfileController::class,
+        'index'
+    ])
+        ->name('profile');
 
-        Route::put('profile', [
-            UserProfileController::class,
-            'updateProfile'
-        ])
-            ->name('profile.update');
+    Route::put('profile', [
+        UserProfileController::class,
+        'updateProfile'
+    ])
+        ->name('profile.update');
 
-        Route::post('profile', [
-            UserProfileController::class,
-            'updatePassword'
-        ])
-            ->name('profile.update.password');
+    Route::post('profile', [
+        UserProfileController::class,
+        'updatePassword'
+    ])
+        ->name('profile.update.password');
 
-        /** User Address Route */
-        Route::resource('address', UserAddressController::class);
+    /** User Address Route */
+    Route::resource('address', UserAddressController::class);
 
-    });
+});
 
