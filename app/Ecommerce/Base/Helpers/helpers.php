@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @param array $route
  * @return string|void
@@ -74,4 +73,15 @@ function productType(string $type)
             return '';
             break;
     }
+}
+
+/** get total cart amount */
+
+function getCartTotal()
+{
+    $total = 0;
+    foreach (\Cart::content() as $product) {
+        $total += ($product->price + $product->options->variants_total) * $product->qty;
+    }
+    return $total;
 }

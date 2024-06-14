@@ -24,34 +24,45 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        $this->configureRateLimiting();
 
         $this->routes(function () {
             Route::middleware('api')
-                    /** Start Prefix API */
+                /** Start Prefix API */
                 ->prefix('api/v1')
-                    /** End Prefix API */
+                /** End Prefix API */
                 ->group(base_path('routes/v1/api.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware('web','auth','role:admin') /** Middleware Role */
-                /** Start Prefix Admin */
-                ->prefix('admin')
+            Route::middleware('web', 'auth', 'role:admin')/** Middleware Role */
+            /** Start Prefix Admin */
+            ->prefix('admin')
                 ->as('admin.')
                 /** End Prefix admin */
                 ->group(base_path('routes/admin/admin.php'));
             /** End Middleware Role */
 
-            Route::middleware('web','auth','role:vendor')
+            Route::middleware('web', 'auth', 'role:vendor')
                 /** Start Prefix Vendor */
                 ->prefix('vendor')
                 ->as('vendor.')
                 /** End Prefix Vendor */
                 ->group(base_path('routes/vendor/vendor.php'));
+        });
+    }
+
+
+    /**
+     * Configure the rate limiters for the application.
+     *
+     * @return void
+     */
+    protected function configureRateLimiting(): void
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
     }
 }

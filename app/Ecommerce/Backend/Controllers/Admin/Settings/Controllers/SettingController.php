@@ -11,19 +11,14 @@ class SettingController extends Controller
 {
     use ImageUploadTrait;
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
-     */
     public function index()
     {
         $generalSettings = GeneralSetting::first();
+
         return view('admin.setting.index', compact('generalSettings'));
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function generalSettingUpdate(Request $request)
     {
         // dd($request->all());
@@ -56,5 +51,4 @@ class SettingController extends Controller
         return redirect()->back();
 
     }
-
 }
