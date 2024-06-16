@@ -206,6 +206,7 @@ class CartController extends Controller
             return response(['status' => 'error', 'message' => 'you can not apply this coupon']);
         }
 
+        /** Start  Validations */
         if($coupon->discount_type === 'amount'){
             Session::put('coupon', [
                 'coupon_name' => $coupon->name,
@@ -221,6 +222,8 @@ class CartController extends Controller
                 'discount' => $coupon->discount
             ]);
         }
+
+        /** End  Validations */
 
         return response(['status' => 'success', 'message' => 'Coupon applied successfully!']);
     }

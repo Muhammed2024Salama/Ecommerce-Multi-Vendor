@@ -4,6 +4,9 @@
  * @param array $route
  * @return string|void
  */
+
+use Illuminate\Support\Facades\Session;
+
 /** Set Sidebar Item Active */
 
 function setActive(array $route)
@@ -75,7 +78,10 @@ function productType(string $type)
     }
 }
 
-/** get total cart amount */
+/**
+ * @return float|int
+ * get total cart amount
+ */
 
 function getCartTotal()
 {
@@ -84,4 +90,25 @@ function getCartTotal()
         $total += ($product->price + $product->options->variants_total) * $product->qty;
     }
     return $total;
+}
+
+/**
+ * @return float|int|mixed|void
+ * get payable total amount
+ */
+function getMainCartTotal(){
+    if(Session::has('coupon')){
+        $coupon = Session::get('coupon');
+        $subTotal = getCartTotal();
+        if($coupon['discount_type'] === 'amount'){
+            $total = $subTotal - $coupon['discount'];
+            return $total;
+        }elseif($coupon['discount_type'] === 'percent'){
+            $discount = $subTotal - ($subTotal * $coupon['discount'] / 100);
+            $total = $subTotal - $discount;
+            return $total;
+        }
+    }else {
+        return getCartTotal();
+    }
 }
