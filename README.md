@@ -1,60 +1,50 @@
-# Ecommerce Multi Auth with Laravel
+Laravel Logo
+Build Status Total Downloads Latest Stable Version License
 
-## Overview
+About Laravel
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-Ecommerce Multi Auth with Laravel is a comprehensive solution for building an online marketplace or store with Laravel, a popular PHP framework. This project integrates multiple authentication systems, Toastr for elegant notifications, and various payment methods for seamless transactions.
+Simple, fast routing engine.
+Powerful dependency injection container.
+Multiple back-ends for session and cache storage.
+Expressive, intuitive database ORM.
+Database agnostic schema migrations.
+Robust background job processing.
+Real-time event broadcasting.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Features
+Learning Laravel
+Laravel has the most extensive and thorough documentation and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-- **Multi-Authentication System**: Supports different user roles (e.g., customers and administrators) with separate authentication mechanisms.
-- **Toastr Notifications**: Provides real-time feedback to users about their actions with elegant pop-up messages.
-- **Payment Methods Integration**: Supports multiple payment gateways (e.g., PayPal, Stripe) for secure online transactions.
-- **Product Management**: Administrators can add, edit, and delete products, including details like name, description, and price.
-- **Shopping Cart**: Users can add items to their cart, update quantities, and proceed to checkout.
-- **Order Management**: Administrators can view and manage orders, including order status, payment status, and shipping details.
-- **Security**: Built-in Laravel security features ensure the safety of user data and transactions.
+You may also try the Laravel Bootcamp, where you will be guided through building a modern Laravel application from scratch.
 
-## Installation
+If you don't feel like reading, Laracasts can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-1. Clone the repository:
+Laravel Sponsors
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel Partners program.
 
-   ```bash
-   git clone https://github.com/Muhammed2024Salama/Ecommerce-Multi-Vendor.gitname/ecommerce-multi-auth-laravel.git
+Premium Partners
+Vehikl
+Tighten Co.
+WebReinvent
+Kirschbaum Development Group
+64 Robots
+Curotec
+Cyber-Duck
+DevSquad
+Jump24
+Redberry
+Active Logic
+byte5
+OP.GG
+Contributing
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the Laravel documentation.
 
-## Install dependencies:
-    cd Ecommerce-Multi-Vendor
-    composer install
+Code of Conduct
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the Code of Conduct.
 
-## Set up environment variables:
-    cp .env.example .env
-    php artisan key:generate
+Security Vulnerabilities
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## Configure your database in the .env file:
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=your_database_name
-    DB_USERNAME=your_database_username
-    DB_PASSWORD=your_database_password
-
-## Migrate and seed the database:
-    php artisan migrate --seed
-
-## Serve the application:
-    php artisan serve
-
-## Usage
-    Visit the application in your browser (by default, it should be available at http://localhost:8000).
-    Register as a customer or log in as an administrator to access the respective functionalities.
-    Add products to your cart, proceed to checkout, and complete the payment using the available payment methods.
-
-## Contributing
-    Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
-
-## License
-    This project is licensed under the MIT License.
-
-
-Feel free to customize this template according to your project's specific details, such as repository URL, database configurations, and additional instructions. Once you've edited the README.md file, commit and push it to your GitHub repository to make it visible to others.
-
-
+License
+The Laravel framework is open-sourced software licensed under the MIT license.
