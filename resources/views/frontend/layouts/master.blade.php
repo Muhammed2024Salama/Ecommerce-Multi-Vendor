@@ -29,9 +29,9 @@
 
     <link rel="stylesheet" href="{{asset('Frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('Frontend/css/responsive.css')}}">
-{{--    @if($settings->layout === 'RTL')--}}
-{{--    <link rel="stylesheet" href="{{asset('Frontend/css/rtl.css')}}">--}}
-{{--    @endif--}}
+    @if($settings->layout === 'RTL')
+    <link rel="stylesheet" href="{{asset('Frontend/css/rtl.css')}}">
+    @endif
 {{--    @vite(['resources/js/app.js'])--}}
 </head>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Backend\Controllers\Admin\Payment\Controllers;
+namespace Ecommerce\Frontend\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

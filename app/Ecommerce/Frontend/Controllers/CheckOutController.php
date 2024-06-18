@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Backend\Controllers\Admin\CheckOut\Controllers;
+namespace Ecommerce\Frontend\Controllers;
 
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\ShippingRule\Models\ShippingRule;

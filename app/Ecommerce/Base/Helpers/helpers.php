@@ -112,3 +112,23 @@ function getMainCartTotal(){
         return getCartTotal();
     }
 }
+
+/**
+ * @return int|mixed
+ * get selected shipping fee from session
+ */
+function getShppingFee(){
+    if(Session::has('shipping_method')){
+        return Session::get('shipping_method')['cost'];
+    }else {
+        return 0;
+    }
+}
+
+/**
+ * @return float|int|mixed|null
+ * get payable amount
+ */
+function getFinalPayableAmount(){
+    return  getMainCartTotal() + getShppingFee();
+}

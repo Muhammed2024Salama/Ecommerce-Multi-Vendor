@@ -2,14 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
-use Ecommerce\Backend\Controllers\Admin\CheckOut\Controllers\CheckOutController;
-use Ecommerce\Backend\Controllers\Admin\Payment\Controllers\PaymentController;
 use Ecommerce\Base\Auth\Controllers\GoogleAuthController;
 use Ecommerce\Base\Auth\Controllers\SocialiteController;
 use Ecommerce\Frontend\Controllers\CartController;
+use Ecommerce\Frontend\Controllers\CheckOutController;
 use Ecommerce\Frontend\Controllers\FlashSaleController;
 use Ecommerce\Frontend\Controllers\FrontendProductController;
 use Ecommerce\Frontend\Controllers\HomeController;
+use Ecommerce\Frontend\Controllers\PaymentController;
 use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
 use Ecommerce\Frontend\Controllers\UserProfileController;

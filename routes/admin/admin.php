@@ -6,6 +6,8 @@ use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Coupon\Controllers\CouponController;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Controllers\FlashSaleController;
+use Ecommerce\Backend\Controllers\Admin\Payment\Controllers\PaymentSettingController;
+use Ecommerce\Backend\Controllers\Admin\Paypal\Controllers\PaypalSettingController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductImageGalleryController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantController;
@@ -313,3 +315,13 @@ Route::put('pusher-setting-update', [
     'pusherSettingUpdate'
 ])
     ->name('pusher-setting-update');
+
+/** Payment settings routes */
+
+Route::get('payment-settings', [
+    PaymentSettingController::class,
+    'index'
+])
+    ->name('payment-settings.index');
+
+Route::resource('paypal-setting', PaypalSettingController::class);
