@@ -193,6 +193,27 @@ Route::get('payment-success', [
 ])
     ->name('payment.success');
 
+/** Paypal routes */
+
+Route::get('paypal/payment', [
+    PaymentController::class,
+    'payWithPaypal'
+])
+    ->name('paypal.payment');
+
+Route::get('paypal/success', [
+    PaymentController::class,
+    'paypalSuccess'
+])
+    ->name('paypal.success');
+
+Route::get('paypal/cancel', [
+    PaymentController::class,
+    'paypalCancel'
+])
+    ->name('paypal.cancel');
+
+
 
 /** GitHub Socialite Login */
 

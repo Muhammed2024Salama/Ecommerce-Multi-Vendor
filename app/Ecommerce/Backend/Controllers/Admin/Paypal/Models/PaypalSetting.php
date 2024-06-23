@@ -9,6 +9,9 @@ class PaypalSetting extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'status',
         'mode',
