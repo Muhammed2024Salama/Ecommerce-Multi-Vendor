@@ -17,6 +17,7 @@ use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Settings\Controllers\SettingController;
 use Ecommerce\Backend\Controllers\Admin\ShippingRule\Controllers\ShippingRuleController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
+use Ecommerce\Backend\Controllers\Admin\Stripe\Controllers\StripeSettingController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
 use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
 use Illuminate\Support\Facades\Route;
@@ -325,3 +326,10 @@ Route::get('payment-settings', [
     ->name('payment-settings.index');
 
 Route::resource('paypal-setting', PaypalSettingController::class);
+
+Route::put('stripe-setting/{id}', [
+    StripeSettingController::class,
+    'update'
+])
+    ->name('stripe-setting.update');
+

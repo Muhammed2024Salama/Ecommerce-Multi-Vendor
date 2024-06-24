@@ -213,6 +213,13 @@ Route::get('paypal/cancel', [
 ])
     ->name('paypal.cancel');
 
+/** Stripe routes */
+
+Route::post('stripe/payment', [
+    PaymentController::class,
+    'payWithStripe'
+])
+    ->name('stripe.payment');
 
 
 /** GitHub Socialite Login */

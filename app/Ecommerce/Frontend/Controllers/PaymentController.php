@@ -9,10 +9,13 @@ use App\Transaction;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Models\PaypalSetting;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
+use Ecommerce\Backend\Controllers\Admin\Stripe\Models\StripeSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 
 class PaymentController extends Controller
@@ -22,7 +25,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        if(!Session::has('address')){
+        if (!Session::has('address')) {
             return redirect()->route('user.checkout');
         }
         return view('frontend.pages.payment');
@@ -52,7 +55,7 @@ class PaymentController extends Controller
         $order->invocie_id = rand(1, 999999);
         $order->user_id = Auth::user()->id;
         $order->sub_total = getCartTotal();
-        $order->amount =  getFinalPayableAmount();
+        $order->amount = getFinalPayableAmount();
         $order->currency_name = $setting->currency_name;
         $order->currency_icon = $setting->currency_icon;
         $order->product_qty = \Cart::content()->count();
@@ -65,7 +68,7 @@ class PaymentController extends Controller
         $order->save();
 
         // store order products
-        foreach(\Cart::content() as $item){
+        foreach (\Cart::content() as $item) {
             $product = Product::find($item->id);
             $orderProduct = new OrderProduct();
             $orderProduct->order_id = $order->id;
@@ -113,23 +116,23 @@ class PaymentController extends Controller
     {
         $paypalSetting = PaypalSetting::first();
         $config = [
-            'mode'    => $paypalSetting->mode === 1 ? 'live' : 'sandbox',
+            'mode' => $paypalSetting->mode === 1 ? 'live' : 'sandbox',
             'sandbox' => [
-                'client_id'         => $paypalSetting->client_id,
-                'client_secret'     => $paypalSetting->secret_key,
-                'app_id'            => 'APP-80W284485P519543T',
+                'client_id' => $paypalSetting->client_id,
+                'client_secret' => $paypalSetting->secret_key,
+                'app_id' => 'APP-80W284485P519543T',
             ],
             'live' => [
-                'client_id'         => $paypalSetting->client_id,
-                'client_secret'     => $paypalSetting->secret_key,
-                'app_id'            => '',
+                'client_id' => $paypalSetting->client_id,
+                'client_secret' => $paypalSetting->secret_key,
+                'app_id' => '',
             ],
 
             'payment_action' => 'Sale',
-            'currency'       => $paypalSetting->currency_name,
-            'notify_url'     => '',
-            'locale'         => 'en_US',
-            'validate_ssl'   =>  true,
+            'currency' => $paypalSetting->currency_name,
+            'notify_url' => '',
+            'locale' => 'en_US',
+            'validate_ssl' => true,
         ];
         return $config;
     }
@@ -150,7 +153,7 @@ class PaymentController extends Controller
 
         // calculate payable amount depending on currency rate
         $total = getFinalPayableAmount();
-        $payableAmount = round($total*$paypalSetting->currency_rate, 2);
+        $payableAmount = round($total * $paypalSetting->currency_rate, 2);
 
 
         $response = $provider->createOrder([
@@ -169,9 +172,9 @@ class PaymentController extends Controller
             ]
         ]);
 
-        if(isset($response['id']) && $response['id'] != null){
-            foreach($response['links'] as $link){
-                if($link['rel'] === 'approve'){
+        if (isset($response['id']) && $response['id'] != null) {
+            foreach ($response['links'] as $link) {
+                if ($link['rel'] === 'approve') {
                     return redirect()->away($link['href']);
                 }
             }
@@ -199,7 +202,7 @@ class PaymentController extends Controller
             // calculate payable amount depending on currency rate
             $paypalSetting = PaypalSetting::first();
             $total = getFinalPayableAmount();
-            $paidAmount = round($total*$paypalSetting->currency_rate, 2);
+            $paidAmount = round($total * $paypalSetting->currency_rate, 2);
 
             $this->storeOrder('paypal', 1, $response['id'], $paidAmount, $paypalSetting->currency_name);
 
@@ -220,4 +223,41 @@ class PaymentController extends Controller
         toastr('Something went wrong try again later!', 'error', 'Error');
         return redirect()->route('user.payment');
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Stripe\Exception\ApiErrorException
+     * Stripe Payment
+     */
+
+    public function payWithStripe(Request $request)
+    {
+
+        // calculate payable amount depending on currency rate
+        $stripeSetting = StripeSetting::first();
+        $total = getFinalPayableAmount();
+        $payableAmount = round($total * $stripeSetting->currency_rate, 2);
+
+        Stripe::setApiKey($stripeSetting->secret_key);
+        $response = Charge::create([
+            "amount" => $payableAmount * 100,
+            "currency" => $stripeSetting->currency_name,
+            "source" => $request->stripe_token,
+            "description" => "product purchase !"
+        ]);
+
+        if ($response->status === 'succeeded') {
+            $this->storeOrder('stripe', 1, $response->id, $payableAmount, $stripeSetting->currency_name);
+            // clear session
+            $this->clearSession();
+
+            return redirect()->route('user.payment.success');
+        } else {
+            toastr('Something went wrong try again later!', 'error', 'Error');
+            return redirect()->route('user.payment');
+        }
+
+    }
+
 }
