@@ -221,6 +221,14 @@ Route::post('stripe/payment', [
 ])
     ->name('stripe.payment');
 
+/** Razorpay routes */
+Route::post('razorpay/payment', [
+    PaymentController::class,
+    'payWithRazorPay'
+])
+    ->name('razorpay.payment');
+
+
 
 /** GitHub Socialite Login */
 

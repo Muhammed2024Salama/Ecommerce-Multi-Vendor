@@ -4,7 +4,7 @@ aria-labelledby="v-pills-home-tab">
         <div class="col-xl-12 m-auto">
             <div class="wsus__payment_area">
                 @php
-                    $razorpaySetting = \App\Models\RazorpaySetting::first();
+                    $razorpaySetting = \Ecommerce\Backend\Controllers\Admin\Razorpay\Models\RazorpaySetting::first();
                     $total = getFinalPayableAmount();
                     $payableAmount = round($total * $razorpaySetting->currency_rate, 2);
 

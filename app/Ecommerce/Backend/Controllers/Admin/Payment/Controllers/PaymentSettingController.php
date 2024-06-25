@@ -4,6 +4,7 @@ namespace Ecommerce\Backend\Controllers\Admin\Payment\Controllers;
 
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Models\PaypalSetting;
+use Ecommerce\Backend\Controllers\Admin\Razorpay\Models\RazorpaySetting;
 use Ecommerce\Backend\Controllers\Admin\Stripe\Models\StripeSetting;
 
 class PaymentSettingController extends Controller

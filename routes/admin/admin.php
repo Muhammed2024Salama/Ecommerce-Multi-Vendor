@@ -14,6 +14,7 @@ use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantContro
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantItemController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\SellerProductController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
+use Ecommerce\Backend\Controllers\Admin\Razorpay\Controllers\RazorpaySettingController;
 use Ecommerce\Backend\Controllers\Admin\Settings\Controllers\SettingController;
 use Ecommerce\Backend\Controllers\Admin\ShippingRule\Controllers\ShippingRuleController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
@@ -332,4 +333,11 @@ Route::put('stripe-setting/{id}', [
     'update'
 ])
     ->name('stripe-setting.update');
+
+Route::put('razorpay-setting/{id}', [
+    RazorpaySettingController::class,
+    'update'
+])
+    ->name('razorpay-setting.update');
+
 

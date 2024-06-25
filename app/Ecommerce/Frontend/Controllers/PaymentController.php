@@ -8,6 +8,7 @@ use App\OrderProduct;
 use App\Transaction;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Models\PaypalSetting;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
+use Ecommerce\Backend\Controllers\Admin\Razorpay\Models\RazorpaySetting;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Ecommerce\Backend\Controllers\Admin\Stripe\Models\StripeSetting;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Stripe\Charge;
 use Stripe\Stripe;
+use Razorpay\Api\Api;
+
 
 
 class PaymentController extends Controller
@@ -258,6 +261,42 @@ class PaymentController extends Controller
             return redirect()->route('user.payment');
         }
 
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|void
+     * Razorpay payment
+     */
+    public function payWithRazorPay(Request $request)
+    {
+        $razorPaySetting = RazorpaySetting::first();
+        $api = new Api($razorPaySetting->razorpay_key, $razorPaySetting->razorpay_secret_key);
+
+        // amount calculation
+        $total = getFinalPayableAmount();
+        $payableAmount = round($total * $razorPaySetting->currency_rate, 2);
+        $payableAmountInPaisa = $payableAmount * 100;
+
+        if($request->has('razorpay_payment_id') && $request->filled('razorpay_payment_id')){
+            try{
+                $response = $api->payment->fetch($request->razorpay_payment_id)
+                    ->capture(['amount' => $payableAmountInPaisa]);
+            }catch(\Exception $e){
+                toastr($e->getMessage(), 'error', 'Error');
+                return redirect()->back();
+            }
+
+
+            if($response['status'] == 'captured'){
+                $this->storeOrder('razorpay', 1, $response['id'], $payableAmount, $razorPaySetting->currency_name);
+                // clear session
+                $this->clearSession();
+
+                return redirect()->route('user.payment.success');
+            }
+
+        }
     }
 
 }
