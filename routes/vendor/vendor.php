@@ -1,5 +1,6 @@
 <?php
 
+use Ecommerce\Backend\Controllers\Vendor\Models\VendorOrderController;
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductImageGalleryController;
@@ -127,3 +128,23 @@ Route::put('products-variant-item-status', [
     'chageStatus'
 ])
     ->name('products-variant-item.chages-status');
+
+/** Orders route */
+
+Route::get('orders', [
+    VendorOrderController::class,
+    'index'
+])
+    ->name('orders.index');
+
+Route::get('orders/show/{id}', [
+    VendorOrderController::class,
+    'show'
+])
+    ->name('orders.show');
+
+Route::get('orders/status/{id}', [
+    VendorOrderController::class,
+    'orderStatus'
+])
+    ->name('orders.status');

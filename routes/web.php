@@ -12,6 +12,7 @@ use Ecommerce\Frontend\Controllers\HomeController;
 use Ecommerce\Frontend\Controllers\PaymentController;
 use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
+use Ecommerce\Frontend\Controllers\UserOrderController;
 use Ecommerce\Frontend\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -289,6 +290,20 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
     /** User Address Route */
     Route::resource('address', UserAddressController::class);
+
+    /** Order Routes */
+
+    Route::get('orders', [
+        UserOrderController::class,
+        'index'
+    ])
+        ->name('orders.index');
+
+    Route::get('orders/show/{id}', [
+        UserOrderController::class,
+        'show'
+    ])
+        ->name('orders.show');
 
 });
 

@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace Ecommerce\Backend\Controllers\Admin\Transaction\Models;
 
+use Ecommerce\Backend\Controllers\Admin\Order\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Ecommerce\Backend\Controllers\Admin\Order\Models;
 
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Vendor\Models\Vendor;

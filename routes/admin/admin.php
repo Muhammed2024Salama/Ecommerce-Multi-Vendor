@@ -6,6 +6,7 @@ use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Coupon\Controllers\CouponController;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Controllers\FlashSaleController;
+use Ecommerce\Backend\Controllers\Admin\Order\Controllers\OrderController;
 use Ecommerce\Backend\Controllers\Admin\Payment\Controllers\PaymentSettingController;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Controllers\PaypalSettingController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductController;
@@ -20,6 +21,7 @@ use Ecommerce\Backend\Controllers\Admin\ShippingRule\Controllers\ShippingRuleCon
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\Stripe\Controllers\StripeSettingController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
+use Ecommerce\Backend\Controllers\Admin\Transaction\Controllers\TransactionController;
 use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -276,6 +278,73 @@ Route::put('coupons/change-status', [
     ->name('coupons.change-status');
 
 Route::resource('coupons', CouponController::class);
+
+/** Order routes */
+Route::get('payment-status', [
+    OrderController::class,
+    'changePaymentStatus'
+])
+    ->name('payment.status');
+
+Route::get('order-status', [
+    OrderController::class,
+    'changeOrderStatus'
+])
+    ->name('order.status');
+
+Route::get('pending-orders', [
+    OrderController::class,
+    'pendingOrders'
+])
+    ->name('pending-orders');
+
+Route::get('processed-orders', [
+    OrderController::class,
+    'processedOrders'
+])
+    ->name('processed-orders');
+
+Route::get('dropped-off-orders', [
+    OrderController::class,
+    'droppedOfOrders'
+])
+    ->name('dropped-off-orders');
+
+Route::get('shipped-orders', [
+    OrderController::class,
+    'shippedOrders'
+])
+    ->name('shipped-orders');
+
+Route::get('out-for-delivery-orders', [
+    OrderController::class,
+    'outForDeliveryOrders'
+])
+    ->name('out-for-delivery-orders');
+
+Route::get('delivered-orders', [
+    OrderController::class,
+    'deliveredOrders'
+])
+    ->name('delivered-orders');
+
+Route::get('canceled-orders', [
+    OrderController::class,
+    'canceledOrders'
+])
+    ->name('canceled-orders');
+
+Route::resource('order', OrderController::class);
+
+/** Order Transaction route */
+
+Route::get('transaction', [
+    TransactionController::class,
+    'index'
+])
+    ->name('transaction');
+
+
 
 /** Shipping Rule Routes */
 

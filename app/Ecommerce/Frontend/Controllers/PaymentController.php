@@ -3,22 +3,21 @@
 namespace Ecommerce\Frontend\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Order;
-use App\OrderProduct;
-use App\Transaction;
+use Ecommerce\Backend\Controllers\Admin\Order\Models\Order;
+use Ecommerce\Backend\Controllers\Admin\Order\Models\OrderProduct;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Models\PaypalSetting;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Admin\Razorpay\Models\RazorpaySetting;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Ecommerce\Backend\Controllers\Admin\Stripe\Models\StripeSetting;
+use Ecommerce\Backend\Controllers\Admin\Transaction\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Razorpay\Api\Api;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Stripe\Charge;
 use Stripe\Stripe;
-use Razorpay\Api\Api;
-
 
 
 class PaymentController extends Controller
