@@ -1,18 +1,17 @@
-{{--@php--}}
-{{--    $popularCategories = json_decode($popularCategory->value, true);--}}
-{{--    // dd($popularCategories)--}}
-{{--@endphp--}}
+@php
+    $popularCategories = json_decode($popularCategory->value, true);
+@endphp
 <section id="wsus__monthly_top" class="wsus__monthly_top_2">
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12">
-{{--                @if ($homepage_secion_banner_one->banner_one->status == 1)--}}
-{{--                <div class="wsus__monthly_top_banner">--}}
-{{--                    <a href="{{$homepage_secion_banner_one->banner_one->banner_url}}">--}}
-{{--                        <img class="img-fluid" src="{{asset($homepage_secion_banner_one->banner_one->banner_image)}}" alt="">--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--                @endif--}}
+                @if ($homepage_secion_banner_one->banner_one->status == 1)
+                <div class="wsus__monthly_top_banner">
+                    <a href="{{$homepage_secion_banner_one->banner_one->banner_url}}">
+                        <img class="img-fluid" src="{{asset($homepage_secion_banner_one->banner_one->banner_image)}}" alt="">
+                    </a>
+                </div>
+                @endif
             </div>
         </div>
         <div class="row">
@@ -21,42 +20,42 @@
                     <h3>Popular Categories</h3>
                     <div class="monthly_top_filter">
 
-{{--                        @php--}}
-{{--                            $products = [];--}}
-{{--                        @endphp--}}
-{{--                        @foreach ($popularCategories as $key => $popularCategory)--}}
-{{--                        @php--}}
-{{--                            $lastKey = [];--}}
+                        @php
+                            $products = [];
+                        @endphp
+                        @foreach ($popularCategories as $key => $popularCategory)
+                        @php
+                            $lastKey = [];
 
-{{--                            foreach($popularCategory as $key => $category){--}}
-{{--                                if($category === null ){--}}
-{{--                                    break;--}}
-{{--                                }--}}
-{{--                                $lastKey = [$key => $category];--}}
-{{--                            }--}}
+                            foreach($popularCategory as $key => $category){
+                                if($category === null ){
+                                    break;
+                                }
+                                $lastKey = [$key => $category];
+                            }
 
-{{--                            if(array_keys($lastKey)[0] === 'category'){--}}
-{{--                                $category = \App\Models\Category::find($lastKey['category']);--}}
-{{--                                $products[] = \App\Models\Product::withAvg('reviews', 'rating')--}}
-{{--                                ->with(['variants', 'category', 'productImageGalleries'])--}}
-{{--                                ->where('category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();--}}
-{{--                            }elseif(array_keys($lastKey)[0] === 'sub_category'){--}}
-{{--                                $category = \App\Models\SubCategory::find($lastKey['sub_category']);--}}
-{{--                                $products[] = \App\Models\Product::withAvg('reviews', 'rating')--}}
-{{--                                ->with(['variants', 'category', 'productImageGalleries'])--}}
-{{--                                ->where('sub_category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();--}}
+                            if(array_keys($lastKey)[0] === 'category'){
+                                $category = \Ecommerce\Backend\Controllers\Admin\Category\Models\Category::find($lastKey['category']);
+                                $products[] = \Ecommerce\Backend\Controllers\Admin\Product\Models\Product::withAvg('reviews', 'rating')
+                                ->with(['variants', 'category', 'productImageGalleries'])
+                                ->where('category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();
+                            }elseif(array_keys($lastKey)[0] === 'sub_category'){
+                                $category = \Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory::find($lastKey['sub_category']);
+                                $products[] = \Ecommerce\Backend\Controllers\Admin\Product\Models\Product::withAvg('reviews', 'rating')
+                                ->with(['variants', 'category', 'productImageGalleries'])
+                                ->where('sub_category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();
 
-{{--                            }else {--}}
-{{--                                $category = \App\Models\ChildCategory::find($lastKey['child_category']);--}}
-{{--                                $products[] = \App\Models\Product::withAvg('reviews', 'rating')--}}
-{{--                                ->with(['variants', 'category', 'productImageGalleries'])--}}
-{{--                                ->where('child_category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();--}}
+                            }else {
+                                $category = \Ecommerce\Backend\Controllers\Admin\ChildCategory\Models\ChildCategory::find($lastKey['child_category']);
+                                $products[] = \Ecommerce\Backend\Controllers\Admin\Product\Models\Product::withAvg('reviews', 'rating')
+                                ->with(['variants', 'category', 'productImageGalleries'])
+                                ->where('child_category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();
 
-{{--                            }--}}
+                            }
 
-{{--                        @endphp--}}
-{{--                        <button class="{{ $loop->index === 0 ? 'auto_click active' : ''}}" data-filter=".category-{{$loop->index}}">{{$category->name}}</button>--}}
-{{--                        @endforeach--}}
+                        @endphp
+                            <button class="{{ $loop->index === 0 ? 'auto_click active' : ''}}" data-filter=".category-{{$loop->index}}">{{$category->name}}</button>
+                        @endforeach
                     </div>
                 </div>
             </div>

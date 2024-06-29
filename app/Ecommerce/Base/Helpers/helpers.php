@@ -5,6 +5,7 @@
  * @return string|void
  */
 
+use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Illuminate\Support\Facades\Session;
 
 /** Set Sidebar Item Active */
@@ -131,4 +132,25 @@ function getShppingFee(){
  */
 function getFinalPayableAmount(){
     return  getMainCartTotal() + getShppingFee();
+}
+
+/**
+ * @param $text
+ * @param $limit
+ * @return mixed
+ * lemit text
+ */
+function limitText($text, $limit = 20)
+{
+    return \Str::limit($text, $limit);
+}
+
+/**
+ * @return mixed
+ */
+function getCurrencyIcon()
+{
+    $icon = GeneralSetting::first();
+
+    return $icon->currency_icon;
 }

@@ -60,11 +60,11 @@
 {{--                        <x-product-card :product="$product" />--}}
 {{--                    @endforeach--}}
                 </div>
-{{--                --}}{{-- <div class="mt-5">--}}
-{{--                    @if ($flashSaleItems->hasPages())--}}
-{{--                        {{$flashSaleItems->links()}}--}}
-{{--                    @endif--}}
-{{--                </div> --}}
+                 <div class="mt-5">
+                    @if ($flashSaleItems->hasPages())
+                        {{$flashSaleItems->links()}}
+                    @endif
+                </div>
             </div>
         </div>
     </section>

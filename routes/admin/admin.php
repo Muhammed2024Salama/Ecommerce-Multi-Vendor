@@ -6,6 +6,7 @@ use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Coupon\Controllers\CouponController;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Controllers\FlashSaleController;
+use Ecommerce\Backend\Controllers\Admin\HomePage\Controllers\HomePageSettingController;
 use Ecommerce\Backend\Controllers\Admin\Order\Controllers\OrderController;
 use Ecommerce\Backend\Controllers\Admin\Payment\Controllers\PaymentSettingController;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Controllers\PaypalSettingController;
@@ -344,7 +345,37 @@ Route::get('transaction', [
 ])
     ->name('transaction');
 
+/** home page setting route */
 
+Route::get('home-page-setting', [
+    HomePageSettingController::class,
+    'index'
+])
+    ->name('home-page-setting');
+
+Route::put('popular-category-section', [
+    HomePageSettingController::class,
+    'updatePopularCategorySection'
+])
+    ->name('popular-category-section');
+
+Route::put('product-slider-section-one', [
+    HomePageSettingController::class,
+    'updateProductSliderSectionOn'
+])
+    ->name('product-slider-section-one');
+
+Route::put('product-slider-section-two', [
+    HomePageSettingController::class,
+    'updateProductSliderSectionTwo'
+])
+    ->name('product-slider-section-two');
+
+Route::put('product-slider-section-three', [
+    HomePageSettingController::class,
+    'updateProductSliderSectionThree'
+])
+    ->name('product-slider-section-three');
 
 /** Shipping Rule Routes */
 
@@ -386,6 +417,7 @@ Route::put('pusher-setting-update', [
     'pusherSettingUpdate'
 ])
     ->name('pusher-setting-update');
+
 
 /** Payment settings routes */
 

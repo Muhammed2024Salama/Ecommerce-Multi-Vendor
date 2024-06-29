@@ -229,38 +229,6 @@ Route::post('razorpay/payment', [
 ])
     ->name('razorpay.payment');
 
-
-
-/** GitHub Socialite Login */
-
-Route::get('/auth/redirect', [
-    SocialiteController::class,
-    'redirectToProvider'
-])
-    ->name('github.login');
-
-Route::get('/auth/callback', [
-    SocialiteController::class,
-    'handleProviderCallback'
-]);
-/** End Of GitHub Socialite Login */
-
-/** Google Socialite Login */
-
-Route::get('/auth/google', [
-    GoogleAuthController::class,
-    'redirect'
-])
-    ->name('google-auth');
-
-Route::get('/auth/google/callback', [
-    GoogleAuthController::class,
-    'callbackGoogle'
-]);
-
-/** End Of Google Socialite Login */
-
-
 /** User Dashboard  */
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
