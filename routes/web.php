@@ -14,6 +14,7 @@ use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
 use Ecommerce\Frontend\Controllers\UserOrderController;
 use Ecommerce\Frontend\Controllers\UserProfileController;
+use Ecommerce\Frontend\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -272,6 +273,24 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         'show'
     ])
         ->name('orders.show');
+
+    /** Wishlist routes */
+
+    Route::get('wishlist', [
+        WishlistController::class,
+        'index'
+    ])
+        ->name('wishlist.index');
+
+    Route::get('wishlist/remove-product/{id}', [
+        WishlistController::class,
+        'destory'
+    ])
+        ->name('wishlist.destory');
+
+    /** add product in wishlist */
+    Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
+
 
 });
 

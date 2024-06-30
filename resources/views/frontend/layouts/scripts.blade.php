@@ -116,7 +116,7 @@
                 method: 'GET',
                 url: "{{ route('cart.sidebar-product-total') }}",
                 success: function(data) {
-                    {{--$('#mini_cart_subtotal').text("{{ $settings->currency_icon }}" + data);--}}
+                    $('#mini_cart_subtotal').text("{{ $settings->currency_icon }}" + data);
                 },
                 error: function(data) {
 
@@ -131,7 +131,7 @@
 
             $.ajax({
                 method: 'GET',
-                {{--url: "{{route('wishlist.store')}}",--}}
+                url: "{{route('user.wishlist.store')}}",
                 data: {id:id},
                 success:function(data){
                     if(data.status === 'success'){
@@ -154,7 +154,7 @@
 
             $.ajax({
                 method: 'POST',
-                {{--url: "{{route('newsletter-request')}}",--}}
+{{--                url: "{{route('newsletter-request')}}",--}}
                 data: data,
                 beforeSend: function(){
                     $('.subscribe_btn').text('Loading...');
