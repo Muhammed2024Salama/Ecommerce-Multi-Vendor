@@ -182,19 +182,27 @@
                     class="fas fa-th-large"></i><span>Footer</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ setActive(['admin.footer-info.index']) }}"><a class="nav-link"
-                                                                            href="{{ route('admin.footer-info.index') }}">Footer Info</a></li>
+                                                                            href="{{ route('admin.footer-info.index') }}">Footer
+                        Info</a></li>
 
                 <li class="{{ setActive(['admin.footer-socials.*']) }}"><a class="nav-link"
-                                                                           href="{{ route('admin.footer-socials.index') }}">FooterInfo Socials</a></li>
+                                                                           href="{{ route('admin.footer-socials.index') }}">FooterInfo
+                        Socials</a></li>
 
                 <li class="{{ setActive(['admin.footer-grid-two.*']) }}"><a class="nav-link"
-                                                                            href="{{ route('admin.footer-grid-two.index') }}">FooterInfo Grid Two</a></li>
+                                                                            href="{{ route('admin.footer-grid-two.index') }}">FooterInfo
+                        Grid Two</a></li>
 
                 <li class="{{ setActive(['admin.footer-grid-three.*']) }}"><a class="nav-link"
-                                                                              href="{{ route('admin.footer-grid-three.index') }}">FooterInfo Grid Three</a></li>
+                                                                              href="{{ route('admin.footer-grid-three.index') }}">FooterInfo
+                        Grid Three</a></li>
 
             </ul>
         </li>
+
+        <li><a class="nav-link {{ setActive(['admin.subscribers.*']) }}"
+               href="{{ route('admin.subscribers.index') }}"><i class="fas fa-user"></i>
+                <span>Subscribers</span></a></li>
 
         <li><a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="far fa-square"></i>
                 <span>Settings</span></a>

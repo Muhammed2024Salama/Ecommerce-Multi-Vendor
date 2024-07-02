@@ -26,6 +26,7 @@ use Ecommerce\Backend\Controllers\Admin\ShippingRule\Controllers\ShippingRuleCon
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\Stripe\Controllers\StripeSettingController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
+use Ecommerce\Backend\Controllers\Admin\Subscribers\Controllers\SubscribersController;
 use Ecommerce\Backend\Controllers\Admin\Transaction\Controllers\TransactionController;
 use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
 use Illuminate\Support\Facades\Route;
@@ -380,6 +381,27 @@ Route::put('product-slider-section-three', [
     'updateProductSliderSectionThree'
 ])
     ->name('product-slider-section-three');
+
+/** Subscribers route */
+
+Route::get('subscribers', [
+    SubscribersController::class,
+    'index'
+])
+    ->name('subscribers.index');
+
+Route::delete('subscribers/{id}', [
+    SubscribersController::class,
+    'destory'
+])
+    ->name('subscribers.destory');
+
+Route::post('subscribers-send-mail', [
+    SubscribersController::class,
+    'sendMail'
+])
+    ->name('subscribers-send-mail');
+
 
 /** footer routes */
 Route::resource('footer-info', FooterInfoController::class);

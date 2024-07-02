@@ -9,6 +9,7 @@ use Ecommerce\Frontend\Controllers\CheckOutController;
 use Ecommerce\Frontend\Controllers\FlashSaleController;
 use Ecommerce\Frontend\Controllers\FrontendProductController;
 use Ecommerce\Frontend\Controllers\HomeController;
+use Ecommerce\Frontend\Controllers\NewsletterController;
 use Ecommerce\Frontend\Controllers\PaymentController;
 use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
@@ -147,6 +148,22 @@ Route::get('coupon-calculation', [
     'couponCalculation'
 ])
     ->name('coupon-calculation');
+
+
+/** Newsletter routes */
+
+Route::post('newsletter-request', [
+    NewsletterController::class,
+    'newsLetterRequset'
+])
+    ->name('newsletter-request');
+
+Route::get('newsletter-verify/{token}', [
+    NewsletterController::class,
+    'newsLetterEmailVarify'
+])
+    ->name('newsletter-verify');
+
 
 /** Coupon routes */
 

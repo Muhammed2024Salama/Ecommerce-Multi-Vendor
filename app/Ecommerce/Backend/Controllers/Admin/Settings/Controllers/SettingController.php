@@ -3,8 +3,10 @@
 namespace Ecommerce\Backend\Controllers\Admin\Settings\Controllers;
 
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\EmailConfiguration\Models\EmailConfiguration;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Ecommerce\Base\Traits\ImageUploadTrait;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -17,17 +19,21 @@ class SettingController extends Controller
     public function index()
     {
         $generalSettings = GeneralSetting::first();
-
-        return view('admin.setting.index', compact('generalSettings'));
+        $emailSettings = EmailConfiguration::first();
+//        $logoSetting = LogoSetting::first();
+//        $pusherSetting = PusherSetting::first();
+        return view('admin.setting.index', compact('generalSettings', 'emailSettings'));
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function generalSettingUpdate(Request $request)
     {
         // dd($request->all());
+        /** Start Validation */
+
         $request->validate([
             'site_name' => ['required', 'max:200'],
             'layout' => ['required', 'max:200'],
@@ -36,6 +42,9 @@ class SettingController extends Controller
             'time_zone' => ['required', 'max:200'],
             'currency_icon' => ['required', 'max:200'],
         ]);
+
+        /** End Validation */
+
 
         GeneralSetting::updateOrCreate(
             ['id' => 1],
@@ -57,4 +66,77 @@ class SettingController extends Controller
         return redirect()->back();
 
     }
+
+    public function emailConfigSettingUpdate(Request $request)
+    {
+        /** Start Validation */
+        $request->validate([
+            'email' => ['required', 'email'],
+            'host' => ['required', 'max:200'],
+            'username' => ['required', 'max:200'],
+            'password' => ['required', 'max:200'],
+            'port' => ['required', 'max:200'],
+            'encryption' => ['required', 'max:200'],
+        ]);
+        /** End Validation */
+
+
+        EmailConfiguration::updateOrCreate(
+            ['id' => 1],
+            [
+                'email' => $request->email,
+                'host' => $request->host,
+                'username' => $request->username,
+                'password' => $request->password,
+                'port' => $request->port,
+                'encryption' => $request->encryption,
+            ]
+        );
+
+        toastr('Updates successfully!', 'success', 'success');
+        return redirect()->back();
+    }
+
+//    public function logoSettingUpdate(Request $request)
+//    {
+//        $request->validate([
+//            'logo' => ['image', 'max:3000'],
+//            'favicon' => ['image', 'max:3000'],
+//        ]);
+//
+//        $logoPath = $this->updateImage($request, 'logo', 'uploads', $request->old_logo);
+//        $favicon = $this->updateImage($request, 'favicon', 'uploads', $request->old_favicon);
+//
+//        LogoSetting::updateOrCreate(
+//            ['id' => 1],
+//            [
+//                'logo' =>  (!empty($logoPath)) ? $logoPath : $request->old_logo,
+//                'favicon' => (!empty($favicon)) ? $favicon : $request->old_favicon
+//            ]
+//        );
+//
+//        toastr('Updated successfully!', 'success', 'success');
+//
+//        return redirect()->back();
+//    }
+
+
+    /** Pusher settings update */
+//    function pusherSettingUpdate(Request $request) : RedirectResponse {
+//        $validatedData = $request->validate([
+//            'pusher_app_id' => ['required'],
+//            'pusher_key' => ['required'],
+//            'pusher_secret' => ['required'],
+//            'pusher_cluster' => ['required'],
+//        ]);
+//
+//        PusherSetting::updateOrCreate(
+//            ['id' => 1],
+//            $validatedData
+//        );
+//
+//        toastr('Updated successfully!', 'success', 'success');
+//        return redirect()->back();
+//
+//    }
 }
