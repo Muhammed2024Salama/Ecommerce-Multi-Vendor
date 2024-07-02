@@ -6,6 +6,10 @@ use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Coupon\Controllers\CouponController;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Controllers\FlashSaleController;
+use Ecommerce\Backend\Controllers\Admin\FooterGridThree\Controllers\FooterGridThreeController;
+use Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Controllers\FooterGridTwoController;
+use Ecommerce\Backend\Controllers\Admin\FooterInfo\Controllers\FooterInfoController;
+use Ecommerce\Backend\Controllers\Admin\FooterSocial\Controllers\FooterSocialController;
 use Ecommerce\Backend\Controllers\Admin\HomePage\Controllers\HomePageSettingController;
 use Ecommerce\Backend\Controllers\Admin\Order\Controllers\OrderController;
 use Ecommerce\Backend\Controllers\Admin\Payment\Controllers\PaymentSettingController;
@@ -376,6 +380,44 @@ Route::put('product-slider-section-three', [
     'updateProductSliderSectionThree'
 ])
     ->name('product-slider-section-three');
+
+/** footer routes */
+Route::resource('footer-info', FooterInfoController::class);
+Route::put('footer-socials/change-status', [
+    FooterSocialController::class,
+    'changeStatus'
+])
+    ->name('footer-socials.change-status');
+
+Route::resource('footer-socials', FooterSocialController::class);
+Route::put('footer-grid-two/change-status', [
+    FooterGridTwoController::class,
+    'changeStatus'
+])
+    ->name('footer-grid-two.change-status');
+
+Route::put('footer-grid-two/change-title', [
+    FooterGridTwoController::class,
+    'changeTitle'
+])
+    ->name('footer-grid-two.change-title');
+
+Route::resource('footer-grid-two', FooterGridTwoController::class);
+
+Route::put('footer-grid-three/change-status', [
+    FooterGridThreeController::class,
+    'changeStatus'
+])
+    ->name('footer-grid-three.change-status');
+
+Route::put('footer-grid-three/change-title', [
+    FooterGridThreeController::class,
+    'changeTitle'
+])
+    ->name('footer-grid-three.change-title');
+
+Route::resource('footer-grid-three', FooterGridThreeController::class);
+
 
 /** Shipping Rule Routes */
 

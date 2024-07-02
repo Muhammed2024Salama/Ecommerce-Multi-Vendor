@@ -3875,7 +3875,7 @@ var View = /** @class */ (function (_super) {
         if (dateMutation) {
             eventInstance.dateProfile = dateMutation.buildNewDateProfile(eventInstance.dateProfile, this.calendar);
         }
-        this.triggerEventDrop(eventInstance, 
+        this.triggerEventDrop(eventInstance,
         // a drop doesn't necessarily mean a date mutation (ex: resource change)
         (dateMutation && dateMutation.dateDelta) || moment.duration(), undoFunc, el, ev);
     };
@@ -9758,7 +9758,7 @@ var Calendar = /** @class */ (function () {
             this.el.prepend(header.el);
         }
     };
-    // can be called repeatedly and Footer will rerender
+    // can be called repeatedly and FooterInfo will rerender
     Calendar.prototype.renderFooter = function () {
         var footer = this.footer;
         footer.setToolbarOptions(this.computeFooterOptions());

@@ -96400,7 +96400,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 			fnDomSwitch( nTrs[i], iVisibleIndex, iInsertBeforeIndex );
 		}
 
-		/* Footer */
+		/* FooterInfo */
 		if ( oSettings.nTFoot !== null )
 		{
 			nTrs = oSettings.nTFoot.getElementsByTagName('tr');
@@ -98773,7 +98773,7 @@ $.extend( FixedColumns.prototype , {
 		this._fnEqualiseHeights( 'tbody', that.dom.body, oClone.body );
 
 		/*
-		 * Footer
+		 * FooterInfo
 		 */
 		if ( dt.nTFoot !== null )
 		{
@@ -99523,7 +99523,7 @@ $.extend( FixedHeader.prototype, {
 	 * * `in-place` - In the main DataTable
 	 * * `in` - Floating over the DataTable
 	 * * `below` - (Header only) Fixed to the bottom of the table body
-	 * * `above` - (Footer only) Fixed to the top of the table body
+	 * * `above` - (FooterInfo only) Fixed to the top of the table body
 	 *
 	 * @param  {string}  mode        Mode that the item should be shown in
 	 * @param  {string}  item        'header' or 'footer'
@@ -100670,7 +100670,7 @@ $.extend( Responsive.prototype, {
 			.append( $(dt.rows( { page: 'current' } ).nodes()).clone( false ) )
 			.find( 'th, td' ).css( 'display', '' );
 
-		// Footer
+		// FooterInfo
 		var footer = dt.table().footer();
 		if ( footer ) {
 			var clonedFooter = $( footer.cloneNode( false ) ).appendTo( clonedTable );
