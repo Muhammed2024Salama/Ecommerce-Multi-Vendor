@@ -280,7 +280,7 @@
                                                     @auth
                                                     @php
                                                         $isBrought = false;
-                                                        $orders = \App\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
+                                                        $orders = \Ecommerce\Backend\Controllers\Admin\Order\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
                                                         foreach ($orders as $key => $order) {
                                                            $existItem = $order->orderProducts()->where('product_id', $product->id)->first();
 

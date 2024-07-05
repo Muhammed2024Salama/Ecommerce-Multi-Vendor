@@ -1,6 +1,7 @@
 <?php
 
 use Ecommerce\Backend\Controllers\Admin\AdminController;
+use Ecommerce\Backend\Controllers\Admin\Advertisement\Controllers\AdvertisementController;
 use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
@@ -402,8 +403,52 @@ Route::post('subscribers-send-mail', [
 ])
     ->name('subscribers-send-mail');
 
+/** Advertisement Routes */
+
+Route::get('advertisement', [
+    AdvertisementController::class,
+    'index'
+])
+    ->name('advertisement.index');
+
+Route::put('advertisement/homepage-banner-secion-one', [
+    AdvertisementController::class,
+    'homepageBannerSecionOne'
+])
+    ->name('homepage-banner-secion-one');
+
+Route::put('advertisement/homepage-banner-secion-two', [
+    AdvertisementController::class,
+    'homepageBannerSecionTwo'
+])
+    ->name('homepage-banner-secion-two');
+
+Route::put('advertisement/homepage-banner-secion-three', [
+    AdvertisementController::class,
+    'homepageBannerSecionThree'
+])
+    ->name('homepage-banner-secion-three');
+
+Route::put('advertisement/homepage-banner-secion-four', [
+    AdvertisementController::class,
+    'homepageBannerSecionFour'
+])
+    ->name('homepage-banner-secion-four');
+
+Route::put('advertisement/productpage-banner', [
+    AdvertisementController::class,
+    'productPageBanner'
+])
+    ->name('productpage-banner');
+
+Route::put('advertisement/cartpage-banner', [
+    AdvertisementController::class,
+    'cartPageBanner'
+])
+    ->name('cartpage-banner');
 
 /** footer routes */
+
 Route::resource('footer-info', FooterInfoController::class);
 Route::put('footer-socials/change-status', [
     FooterSocialController::class,

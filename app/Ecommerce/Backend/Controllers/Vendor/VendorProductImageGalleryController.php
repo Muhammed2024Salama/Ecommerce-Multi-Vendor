@@ -41,9 +41,11 @@ class VendorProductImageGalleryController extends Controller
      */
     public function store(Request $request)
     {
+        /** Start Validation */
         $request->validate([
             'image.*' => ['required', 'image', 'max:2048']
         ]);
+        /** End Validation */
 
         /** Handle image upload */
         $imagePaths = $this->uploadMultiImage($request, 'image', 'uploads');

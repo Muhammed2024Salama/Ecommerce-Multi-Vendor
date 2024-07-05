@@ -42,6 +42,7 @@ class VendorProductController extends Controller
      */
     public function store(Request $request)
     {
+        /** Start Validation */
         $request->validate([
             'image' => ['required', 'image', 'max:3000'],
             'name' => ['required', 'max:200'],
@@ -55,6 +56,7 @@ class VendorProductController extends Controller
             'seo_description' => ['nullable','max:250'],
             'status' => ['required']
         ]);
+        /** End Validation */
 
         /** Handle the image upload */
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
@@ -130,6 +132,7 @@ class VendorProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        /** Start Validation */
 
         $request->validate([
             'image' => ['nullable', 'image', 'max:3000'],
@@ -144,6 +147,7 @@ class VendorProductController extends Controller
             'seo_description' => ['nullable','max:250'],
             'status' => ['required']
         ]);
+        /** End  Validation */
 
         $product = Product::findOrFail($id);
 

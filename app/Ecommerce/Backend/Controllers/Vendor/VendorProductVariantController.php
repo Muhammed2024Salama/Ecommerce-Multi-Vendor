@@ -40,11 +40,13 @@ class VendorProductVariantController extends Controller
      */
     public function store(Request $request)
     {
+        /** Start Validation */
         $request->validate([
             'product' => ['integer', 'required'],
             'name' => ['required', 'max:200'],
             'status' => ['required']
         ]);
+        /** End Validation  */
 
         $varinat = new ProductVariant();
         $varinat->product_id = $request->product;
@@ -83,10 +85,14 @@ class VendorProductVariantController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        /** Start Validation */
+
         $request->validate([
             'name' => ['required', 'max:200'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $varinat = ProductVariant::findOrFail($id);
         /** Check product vendor */

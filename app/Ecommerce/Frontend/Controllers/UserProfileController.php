@@ -24,11 +24,15 @@ class UserProfileController extends Controller
     public function updateProfile(Request $request)
     {
         // dd($request);
+        /** Start Validation */
+
         $request->validate([
             'name' => ['required','max:100'],
             'email' => ['required','email' , 'unique:users,email,'.Auth::user()->id],
             'image' => ['image','max:2048']
         ]);
+        /** End Validation */
+
 
         $user = Auth::user();
 
@@ -56,15 +60,23 @@ class UserProfileController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updatePassword(Request $request)
     {
         // dd($request->all());
+        /** Start Validation */
+
         $request->validate([
             'current_password' => ['required','current_password'],
             'password' => ['required','confirmed','min:8']
             // At The End Of Validation We Compare that current_password & password === password_confirmation
             // So We didn't add password_confirmation'
         ]);
+        /** End Validation */
+
         $request->user()->update([
             'password' => bcrypt($request->password)
         ]);

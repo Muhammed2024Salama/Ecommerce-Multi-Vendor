@@ -3,6 +3,7 @@
 namespace Ecommerce\Frontend\Controllers;
 
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\Advertisement\Models\Adverisement;
 use Ecommerce\Backend\Controllers\Admin\Brand\Models\Brand;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Models\ChildCategory;
@@ -112,8 +113,8 @@ class FrontendProductController extends Controller
         $categories = Category::where(['status' => 1])->get();
         $brands = Brand::where(['status' => 1])->get();
         // banner ad
-//        $productpage_banner_section = Adverisement::where('key', 'productpage_banner_section')->first();
-//        $productpage_banner_section = json_decode($productpage_banner_section?->value);
+        $productpage_banner_section = Adverisement::where('key', 'productpage_banner_section')->first();
+        $productpage_banner_section = json_decode($productpage_banner_section?->value);
 
         return view('frontend.pages.product', compact('products', 'categories', 'brands', 'productpage_banner_section'));
     }

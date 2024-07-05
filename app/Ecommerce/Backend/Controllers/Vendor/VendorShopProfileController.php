@@ -34,6 +34,8 @@ class VendorShopProfileController extends Controller
      */
     public function store(Request $request)
     {
+        /** Start Validation */
+
         $request->validate([
             'banner' => ['nullable','image', 'max:3000'],
             'shop_name' => ['required', 'max:200'],
@@ -45,6 +47,8 @@ class VendorShopProfileController extends Controller
             'tw_link' => ['nullable', 'active_url'],
             'insta_link' => ['nullable', 'active_url'],
         ]);
+        /** End Validation */
+
 
         $vendor = Vendor::where('user_id', Auth::user()->id)->first();
         $bannerPath = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);

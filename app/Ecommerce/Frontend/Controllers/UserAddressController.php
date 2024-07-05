@@ -31,6 +31,8 @@ class UserAddressController extends Controller
      */
     public function store(Request $request)
     {
+        /** Start Validation */
+
         $request->validate([
             'name' => ['required', 'max:200'],
             'email' => ['required', 'max:200', 'email'],
@@ -41,6 +43,9 @@ class UserAddressController extends Controller
             'zip' => ['required', 'max:200'],
             'address' => ['required'],
         ]);
+
+        /** End Validation */
+
 
         $address = new UserAddress();
         $address->user_id = Auth::user()->id;
@@ -81,6 +86,8 @@ class UserAddressController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        /** Start Validation */
+
         $request->validate([
             'name' => ['required', 'max:200'],
             'email' => ['required', 'max:200', 'email'],
@@ -91,6 +98,9 @@ class UserAddressController extends Controller
             'zip' => ['required', 'max:200'],
             'address' => ['required'],
         ]);
+
+        /** End Validation */
+
 
         $address = UserAddress::findOrFail($id);
         $address->user_id = Auth::user()->id;

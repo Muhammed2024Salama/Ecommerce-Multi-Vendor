@@ -117,6 +117,7 @@ class PaymentController extends Controller
     public function paypalConfig()
     {
         $paypalSetting = PaypalSetting::first();
+
         $config = [
             'mode' => $paypalSetting->mode === 1 ? 'live' : 'sandbox',
             'sandbox' => [
