@@ -33,11 +33,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
          // dd($request->all());
+        /** Start Validation */
+
         $request->validate([
             'icon' => ['required' , 'not_in:empty'],
             'name' => ['required' , 'max:200' , 'unique:categories,name'],
             'status' => ['required'],
         ]);
+        /** End Validation */
+
 
         $category = new Category();
         $category->icon = $request->icon;
@@ -75,11 +79,15 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($request);
+        /** Start Validation */
+
         $request->validate([
             'icon' => ['required', 'not_in:empty'],
             'name' => ['required', 'max:200', 'unique:categories,name,'.$id],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $category = Category::findOrFail($id);
 

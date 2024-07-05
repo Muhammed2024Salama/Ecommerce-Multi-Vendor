@@ -11,6 +11,7 @@ use Ecommerce\Frontend\Controllers\FrontendProductController;
 use Ecommerce\Frontend\Controllers\HomeController;
 use Ecommerce\Frontend\Controllers\NewsletterController;
 use Ecommerce\Frontend\Controllers\PaymentController;
+use Ecommerce\Frontend\Controllers\ReviewController;
 use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
 use Ecommerce\Frontend\Controllers\UserOrderController;
@@ -306,8 +307,24 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         ->name('wishlist.destory');
 
     /** add product in wishlist */
-    Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
+    Route::get('wishlist/add-product', [
+        WishlistController::class,
+        'addToWishlist'
+    ])
+        ->name('wishlist.store');
 
+    Route::get('reviews', [
+        ReviewController::class,
+        'index'
+    ])
+        ->name('review.index');
+
+    /** product review routes */
+    Route::post('review', [
+        ReviewController::class,
+        'create'
+    ])
+        ->name('review.create');
 
 });
 

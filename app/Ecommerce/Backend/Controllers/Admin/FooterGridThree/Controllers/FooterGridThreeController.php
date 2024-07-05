@@ -33,11 +33,15 @@ class FooterGridThreeController extends Controller
      */
     public function store(Request $request)
     {
+        /** Start Validation */
+
         $request->validate([
             'name' => ['required', 'max:200'],
             'url' => ['required', 'url'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $footer = new FooterGridThree();
         $footer->name = $request->name;
@@ -67,11 +71,15 @@ class FooterGridThreeController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        /** Start Validation */
+
         $request->validate([
             'name' => ['required', 'max:200'],
             'url' => ['required', 'url'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $footer = FooterGridThree::findOrFail($id);
         $footer->name = $request->name;
@@ -110,9 +118,13 @@ class FooterGridThreeController extends Controller
 
     public function changeTitle(Request $request)
     {
+        /** Start Validation */
+
         $request->validate([
             'title' => ['required', 'max:200']
         ]);
+        /** End Validation */
+
 
         FooterTitle::updateOrCreate(
             ['id' => 1],

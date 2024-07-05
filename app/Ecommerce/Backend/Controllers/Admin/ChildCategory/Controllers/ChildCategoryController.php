@@ -45,6 +45,7 @@ class ChildCategoryController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        /** Start Validation */
 
         $request->validate([
             'category' => ['required'],
@@ -52,6 +53,8 @@ class ChildCategoryController extends Controller
             'name' => ['required', 'max:200', 'unique:child_categories,name'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $childCategory = new ChildCategory();
 

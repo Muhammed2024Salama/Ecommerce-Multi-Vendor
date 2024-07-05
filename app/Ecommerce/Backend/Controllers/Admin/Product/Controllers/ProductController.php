@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Brand\Models\Brand;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Models\ChildCategory;
+use Ecommerce\Backend\Controllers\Admin\Order\Models\OrderProduct;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductImageGallery;
+use Ecommerce\Backend\Controllers\Admin\Product\Models\ProductVariant;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
@@ -116,6 +118,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        /** Start Validation */
         $request->validate([
             'image' => ['nullable', 'image', 'max:3000'],
             'name' => ['required', 'max:200'],
@@ -129,6 +132,7 @@ class ProductController extends Controller
             'seo_description' => ['nullable','max:250'],
             'status' => ['required']
         ]);
+        /** End Validation */
 
         $product = Product::findOrFail($id);
 

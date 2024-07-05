@@ -22,6 +22,7 @@ use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantItemCo
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\SellerProductController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\Razorpay\Controllers\RazorpaySettingController;
+use Ecommerce\Backend\Controllers\Admin\Reviews\Controllers\AdminReviewController;
 use Ecommerce\Backend\Controllers\Admin\Settings\Controllers\SettingController;
 use Ecommerce\Backend\Controllers\Admin\ShippingRule\Controllers\ShippingRuleController;
 use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
@@ -217,6 +218,21 @@ Route::put('products-variant-item-status', [
     'changeStatus'
 ])
     ->name('products-variant-item.change-status');
+
+/** reviews routes */
+
+Route::get('reviews', [
+    AdminReviewController::class,
+    'index'
+])
+    ->name('reviews.index');
+
+Route::put('reviews/change-status', [
+    AdminReviewController::class,
+    'changeStatus'
+])
+    ->name('reviews.change-status');
+
 
 /** Seller product routes */
 

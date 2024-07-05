@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class VendorProductController extends Controller
+class   VendorProductController extends Controller
 {
     use ImageUploadTrait;
     /**

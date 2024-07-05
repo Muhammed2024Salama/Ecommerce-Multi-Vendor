@@ -28,9 +28,13 @@ class FlashSaleController extends Controller
      */
     public function update(Request $request)
     {
+        /** Start Validation */
+
         $request->validate([
             'end_date' => ['required']
         ]);
+        /** End Validation */
+
 
         FlashSale::updateOrCreate(
             ['id' => 1],
@@ -49,6 +53,7 @@ class FlashSaleController extends Controller
     public function addProduct(Request $request)
     {
         // Validate the request inputs
+
         $request->validate([
             'product' => ['required', 'unique:flash_sale_items,product_id'],
             'show_at_home' => ['required'],

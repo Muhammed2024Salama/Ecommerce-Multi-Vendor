@@ -13,13 +13,13 @@
         </div>
         <div class="row flash_sell_slider">
 
-{{--            @php--}}
-{{--                $products = Ecommerce\Backend\Controllers\Admin\Product\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')--}}
-{{--                    ->with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();--}}
-{{--            @endphp--}}
-{{--            @foreach ($products as $product)--}}
-{{--                <x-product-card :product="$product" />--}}
-{{--            @endforeach--}}
+            @php
+                $products = Ecommerce\Backend\Controllers\Admin\Product\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
+                    ->with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();
+            @endphp
+            @foreach ($products as $product)
+                <x-product-card :product="$product" />
+            @endforeach
 
         </div>
     </div>

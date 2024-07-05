@@ -8,6 +8,7 @@ use Ecommerce\Backend\Controllers\Admin\Brand\Models\Brand;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Models\ChildCategory;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
+use Ecommerce\Backend\Controllers\Admin\Reviews\Models\ProductReview;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -127,8 +128,8 @@ class FrontendProductController extends Controller
     public function showProduct(string $slug)
     {
         $product = Product::with(['vendor', 'category', 'productImageGalleries', 'variants', 'brand'])->where('slug', $slug)->where('status', 1)->first();
-        //$reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(10);
-        return view('frontend.pages.product-detail', compact('product'));
+        $reviews = ProductReview::where('product_id', $product->id)->where('status', 1)->paginate(10);
+        return view('frontend.pages.product-detail', compact('product','reviews'));
     }
 
     /**

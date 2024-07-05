@@ -4,6 +4,7 @@ use Ecommerce\Backend\Controllers\Vendor\Models\VendorOrderController;
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductImageGalleryController;
+use Ecommerce\Backend\Controllers\Vendor\VendorProductReviewController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductVariantController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductVariantItemController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProfileController;
@@ -148,3 +149,12 @@ Route::get('orders/status/{id}', [
     'orderStatus'
 ])
     ->name('orders.status');
+
+/** Reviews route */
+
+Route::get('reviews', [
+    VendorProductReviewController::class,
+    'index'
+])
+    ->name('reviews.index');
+

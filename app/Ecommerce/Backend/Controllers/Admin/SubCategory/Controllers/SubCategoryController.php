@@ -35,11 +35,15 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        /** Start Validation */
+
         $request->validate([
             'category' => ['required'],
             'name' => ['required','max:200' , 'unique:sub_categories,name'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
         $subcategory = new SubCategory();
 
         $subcategory->category_id = $request->category;
@@ -78,11 +82,15 @@ class SubCategoryController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($request);
+        /** Start Validation */
+
         $request->validate([
             'category' => ['required'],
             'name' => ['required', 'max:200', 'unique:sub_categories,name,'.$id],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $subCategory = SubCategory::findOrFail($id);
 

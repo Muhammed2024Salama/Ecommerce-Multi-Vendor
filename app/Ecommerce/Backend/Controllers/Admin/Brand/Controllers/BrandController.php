@@ -36,6 +36,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        /** Start Validation */
 
         $request->validate([
             'logo' => ['image' , 'required' , 'max:2000'],
@@ -43,6 +44,8 @@ class BrandController extends Controller
             'is_featured' => ['required'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $logoPath = $this->uploadImage($request , 'logo' , 'uploads');
         $brand = new Brand();
@@ -81,12 +84,16 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        /** Start Validation */
+
         $request->validate([
             'logo' => ['image', 'max:2000'],
             'name' => ['required', 'max:200'],
             'is_featured' => ['required'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $brand = Brand::findOrFail($id);
 

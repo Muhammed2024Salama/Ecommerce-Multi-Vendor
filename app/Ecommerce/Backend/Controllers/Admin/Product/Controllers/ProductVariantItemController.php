@@ -46,6 +46,8 @@ class ProductVariantItemController extends Controller
      */
     public function store(Request $request)
     {
+        /** Start Validation */
+
         $request->validate([
             'variant_id' => ['integer', 'required'],
             'name' => ['required', 'max:200'],
@@ -53,6 +55,8 @@ class ProductVariantItemController extends Controller
             'is_default' => ['required'],
             'status' => ['required']
         ]);
+        /** Start Validation */
+
 
         $variantItem = new ProductVariantItem();
         $variantItem->product_variant_id = $request->variant_id;
@@ -86,12 +90,16 @@ class ProductVariantItemController extends Controller
      */
     public function update(Request $request, string $variantItemId)
     {
+        /** Start Validation */
+
         $request->validate([
             'name' => ['required', 'max:200'],
             'price' => ['integer', 'required'],
             'is_default' => ['required'],
             'status' => ['required']
         ]);
+        /** End Validation */
+
 
         $variantItem = ProductVariantItem::findOrFail($variantItemId);
         $variantItem->name = $request->name;

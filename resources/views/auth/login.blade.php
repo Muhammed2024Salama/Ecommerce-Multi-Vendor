@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{--        {{$settings->site_name}} || Login --}}
+        {{$settings->site_name}} || Login
 @endsection
 
 @section('content')
@@ -82,7 +82,7 @@
                                         </div>
 
 
-{{--                                        <button class="common_btn" type="submit">login</button>--}}
+                                        <button class="common_btn" type="submit">login</button>
 {{--                                        <p class="social_text">Sign in with social account</p>--}}
 {{--                                        <ul class="wsus__login_link">--}}
 {{--                                            <li><a href="{{ route('google-auth') }}"><i class="fab fa-google"></i></a></li>--}}
