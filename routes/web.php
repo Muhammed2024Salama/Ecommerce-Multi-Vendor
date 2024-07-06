@@ -10,12 +10,15 @@ use Ecommerce\Frontend\Controllers\FlashSaleController;
 use Ecommerce\Frontend\Controllers\FrontendProductController;
 use Ecommerce\Frontend\Controllers\HomeController;
 use Ecommerce\Frontend\Controllers\NewsletterController;
+use Ecommerce\Frontend\Controllers\PageController;
 use Ecommerce\Frontend\Controllers\PaymentController;
+use Ecommerce\Frontend\Controllers\ProductTrackController;
 use Ecommerce\Frontend\Controllers\ReviewController;
 use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
 use Ecommerce\Frontend\Controllers\UserOrderController;
 use Ecommerce\Frontend\Controllers\UserProfileController;
+use Ecommerce\Frontend\Controllers\UserVendorReqeustController;
 use Ecommerce\Frontend\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -166,6 +169,59 @@ Route::get('newsletter-verify/{token}', [
     ->name('newsletter-verify');
 
 
+/** vendor page routes */
+
+Route::get('vendor', [
+    HomeController::class,
+    'vendorPage'
+])
+    ->name('vendor.index');
+
+Route::get('vendor-product/{id}', [
+    HomeController::class,
+    'vendorProductsPage'
+])
+    ->name('vendor.products');
+
+/** about page route */
+
+Route::get('about', [
+    PageController::class,
+    'about'
+])
+    ->name('about');
+
+/** terms and conditions page route */
+
+Route::get('terms-and-conditions', [
+    PageController::class,
+    'termsAndCondition'
+])
+    ->name('terms-and-conditions');
+
+/** contact route */
+
+Route::get('contact', [
+    PageController::class,
+    'contact'
+])
+    ->name('contact');
+
+Route::post('contact', [
+    PageController::class,
+    'handleContactForm'
+])
+    ->name('handle-contact-form');
+
+/** Product track route */
+
+Route::get('product-traking', [
+    ProductTrackController::class,
+    'index'
+])
+    ->name('product-traking.index');
+
+
 /** Coupon routes */
 
 Route::get('apply-coupon', [
@@ -305,6 +361,20 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         'destory'
     ])
         ->name('wishlist.destory');
+
+    /** Vendor request route */
+
+    Route::get('vendor-request', [
+        UserVendorReqeustController::class,
+        'index'
+    ])
+        ->name('vendor-request.index');
+
+    Route::post('vendor-request', [
+        UserVendorReqeustController::class,
+        'create'
+    ])
+        ->name('vendor-request.create');
 
     /** add product in wishlist */
     Route::get('wishlist/add-product', [

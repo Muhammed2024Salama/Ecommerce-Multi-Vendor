@@ -29,6 +29,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+
+        /** Updating Login Logic */
+
+        if($request->user()->status === 'inactive'){
+            Auth::guard('web')->logout();
+            $request->session()->regenerateToken();
+            toastr('account has been banned from website please connect with support!', 'error', 'Account Banned!');
+            return redirect('/');
+        }
+
+        /** End Logic */
+
         /** Multi Auth
          Check if he logged in with
             . Admin

@@ -1,17 +1,21 @@
 <?php
 
+use Ecommerce\Backend\Controllers\Admin\About\Controllers\AboutController;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
+use Ecommerce\Backend\Controllers\Admin\AdminList\Controllers\AdminListController;
 use Ecommerce\Backend\Controllers\Admin\Advertisement\Controllers\AdvertisementController;
 use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Coupon\Controllers\CouponController;
+use Ecommerce\Backend\Controllers\Admin\CustomerList\Controllers\CustomerListController;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Controllers\FlashSaleController;
 use Ecommerce\Backend\Controllers\Admin\FooterGridThree\Controllers\FooterGridThreeController;
 use Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Controllers\FooterGridTwoController;
 use Ecommerce\Backend\Controllers\Admin\FooterInfo\Controllers\FooterInfoController;
 use Ecommerce\Backend\Controllers\Admin\FooterSocial\Controllers\FooterSocialController;
 use Ecommerce\Backend\Controllers\Admin\HomePage\Controllers\HomePageSettingController;
+use Ecommerce\Backend\Controllers\Admin\ManageUser\Controllers\ManageUserController;
 use Ecommerce\Backend\Controllers\Admin\Order\Controllers\OrderController;
 use Ecommerce\Backend\Controllers\Admin\Payment\Controllers\PaymentSettingController;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Controllers\PaypalSettingController;
@@ -29,7 +33,11 @@ use Ecommerce\Backend\Controllers\Admin\Slider\Controllers\SliderController;
 use Ecommerce\Backend\Controllers\Admin\Stripe\Controllers\StripeSettingController;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Controllers\SubCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Subscribers\Controllers\SubscribersController;
+use Ecommerce\Backend\Controllers\Admin\Terms\Controllers\TermsAndConditionController;
 use Ecommerce\Backend\Controllers\Admin\Transaction\Controllers\TransactionController;
+use Ecommerce\Backend\Controllers\Admin\VendorCondition\Controllers\VendorConditionController;
+use Ecommerce\Backend\Controllers\Admin\VendorList\Controllers\VendorListController;
+use Ecommerce\Backend\Controllers\Admin\VendorRequest\Controllers\VendorRequestController;
 use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -462,6 +470,127 @@ Route::put('advertisement/cartpage-banner', [
     'cartPageBanner'
 ])
     ->name('cartpage-banner');
+
+/** Vendor request routes */
+Route::get('vendor-requests', [
+    VendorRequestController::class,
+    'index'
+])
+    ->name('vendor-requests.index');
+
+Route::get('vendor-requests/{id}/show', [
+    VendorRequestController::class,
+    'show'
+])
+    ->name('vendor-requests.show');
+
+Route::put('vendor-requests/{id}/change-status', [
+    VendorRequestController::class,
+    'changeStatus'
+])
+    ->name('vendor-requests.change-status');
+
+/** customer list routes */
+Route::get('customer', [
+    CustomerListController::class,
+    'index'
+])
+    ->name('customer.index');
+
+Route::put('customer/status-change', [
+    CustomerListController::class,
+    'changeStatus'
+])
+    ->name('customer.status-change');
+
+/** manage user routes */
+
+Route::get('manage-user', [
+    ManageUserController::class,
+    'index'
+])
+    ->name('manage-user.index');
+
+Route::post('manage-user', [
+    ManageUserController::class,
+    'create'
+])
+    ->name('manage-user.create');
+
+/** Vendor Conditions Routes */
+Route::get('vendor-condition', [
+    VendorConditionController::class,
+    'index'
+])
+    ->name('vendor-condition.index');
+
+Route::put('vendor-condition/update', [
+    VendorConditionController::class,
+    'update'
+])
+    ->name('vendor-condition.update');
+
+
+/** Vendor List Routes */
+Route::get('vendor-list', [
+    VendorListController::class,
+    'index'
+])
+    ->name('vendor-list.index');
+
+Route::put('vendor-list/status-change', [
+    VendorListController::class,
+    'changeStatus'
+])
+    ->name('vendor-list.status-change');
+
+/** about routes */
+
+Route::get('about', [
+    AboutController::class,
+    'index'
+])
+    ->name('about.index');
+
+Route::put('about/update', [
+    AboutController::class,
+    'update'
+])
+    ->name('about.update');
+
+/** terms and conditions routes */
+
+Route::get('terms-and-conditions', [
+    TermsAndConditionController::class,
+    'index'
+])
+    ->name('terms-and-conditions.index');
+
+Route::put('terms-and-conditions/update', [
+    TermsAndConditionController::class,
+    'update'
+])
+    ->name('terms-and-conditions.update');
+
+/** Admin list routes */
+Route::get('admin-list', [
+    AdminListController::class,
+    'index'
+])
+    ->name('admin-list.index');
+
+Route::put('admin-list/status-change', [
+    AdminListController::class,
+    'changeStatus'
+])
+    ->name('admin-list.status-change');
+
+Route::delete('admin-list/{id}', [
+    AdminListController::class,
+    'destory'
+])
+    ->name('admin-list.destory');
+
 
 /** footer routes */
 

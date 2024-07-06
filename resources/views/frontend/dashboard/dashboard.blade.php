@@ -38,11 +38,11 @@
                   </a>
                 </div>
                 <div class="col-xl-2 col-6 col-md-4">
-{{--                  <a class="wsus__dashboard_item blue" href="{{route('user.review.index')}}">--}}
+                  <a class="wsus__dashboard_item blue" href="{{route('user.review.index')}}">
                     <i class="fas fa-star"></i>
                     <p>Reviews</p>
 {{--                    <h4 style="color:#ffff">{{$reviews}}</h4>--}}
-{{--                  </a>--}}
+                  </a>
                 </div>
 
                 <div class="col-xl-2 col-6 col-md-4">

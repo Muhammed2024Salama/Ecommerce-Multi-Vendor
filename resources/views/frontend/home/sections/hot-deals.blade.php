@@ -10,7 +10,6 @@
                             <button data-filter=".featured_product">Featured</button>
                             <button data-filter=".top_product">Top Product</button>
                             <button data-filter=".best_product">Best Product</button>
-
                         </div>
                     </div>
                 </div>
