@@ -1,21 +1,16 @@
 @php
     $footerInfo = Cache::rememberForever('footer_info', function(){
-            return \Ecommerce\Backend\Controllers\Admin\FooterInfo\Models\FooterInfo::first();
+            return \App\Models\FooterInfo::first();
     });
-
     $footerSocials = Cache::rememberForever('footer_socials', function(){
-        return \Ecommerce\Backend\Controllers\Admin\FooterSocial\Models\FooterSocial::where('status', 1)->get();
+        return \App\Models\FooterSocial::where('status', 1)->get();
     });
-
     $footerGridTwoLinks = Cache::rememberForever('footer_grid_two', function(){
-        return \Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Models\FooterGridTwo::where('status', 1)->get();
+        return \App\Models\FooterGridTwo::where('status', 1)->get();
     });
-
-    $footerTitle = \Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Models\FooterTitle::first();
-
-
+    $footerTitle = \App\Models\FooterTitle::first();
     $footerGridThreeLinks =Cache::rememberForever('footer_grid_three', function(){
-        return \Ecommerce\Backend\Controllers\Admin\FooterGridThree\Models\FooterGridThree::where('status', 1)->get();
+        return \App\Models\FooterGridThree::where('status', 1)->get();
     });
 @endphp
 <footer class="footer_2">

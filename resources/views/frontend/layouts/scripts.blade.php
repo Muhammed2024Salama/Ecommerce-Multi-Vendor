@@ -63,7 +63,7 @@
                             <div class="wsus__cart_text">
                                 <a class="wsus__cart_title" href="{{ url('product-detail') }}/${product.options.slug}">${product.name}</a>
                                 <p>{{ $settings->currency_icon }}${product.price}</p>
-                                {{--<small>Variants total: {{ $settings->currency_icon }}${product.options.variants_total}</small>--}}
+                                <small>Variants total: {{ $settings->currency_icon }}${product.options.variants_total}</small>
                                 <br>
                                 <small>Qty: ${product.qty}</small>
                             </div>
@@ -131,7 +131,7 @@
 
             $.ajax({
                 method: 'GET',
-                url: "{{route('user.wishlist.store')}}",
+                url: "{{route('wishlist.store')}}",
                 data: {id:id},
                 success:function(data){
                     if(data.status === 'success'){
@@ -189,7 +189,7 @@
 
             $.ajax({
                 mehtod: 'GET',
-                {{--url: '{{ route("show-product-modal", ":id" ) }}'.replace(":id", id),--}}
+                url: '{{ route("show-product-modal", ":id" ) }}'.replace(":id", id),
                 beforeSend: function(){
                     $('.product-modal-content').html('<span class="loader"></span>')
                 },

@@ -13,6 +13,6 @@
     <br>
     Email: {{$email}}
     <br>
-    Password: {{$password}}
+    Passwrod: {{$password}}
 </body>
 </html>

@@ -51,7 +51,7 @@
                             <input type="text" class="form-control" name="copyright" value="{{@$footerInfo->copyright}}">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submmit" class="btn btn-primary">Update</button>
                     </form>
                   </div>
 

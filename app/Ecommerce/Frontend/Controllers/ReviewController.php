@@ -14,6 +14,10 @@ class ReviewController extends Controller
 {
     use ImageUploadTrait;
 
+    /**
+     * @param UserProductReviewsDataTable $dataTable
+     * @return mixed
+     */
     public function index(UserProductReviewsDataTable $dataTable)
     {
         return $dataTable->render('frontend.dashboard.review.index');

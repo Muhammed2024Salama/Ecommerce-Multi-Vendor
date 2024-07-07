@@ -27,9 +27,9 @@
 
                 @for ($i = 1; $i <= 5; $i++)
                     @if ($i <= $product->reviews_avg_rating)
-                        <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                     @else
-                        <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
                     @endif
                 @endfor
 
@@ -44,15 +44,15 @@
             <form class="shopping-cart-form">
                 <input type="hidden" name="product_id" value="{{$product->id}}">
                 @foreach ($product->variants as $variant)
-                    @if ($variant->status != 0)
-                        <select class="d-none" name="variants_items[]">
-                            @foreach ($variant->productVariantItems as $variantItem)
-                                @if ($variantItem->status != 0)
-                                    <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} (${{$variantItem->price}})</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    @endif
+                @if ($variant->status != 0)
+                    <select class="d-none" name="variants_items[]">
+                        @foreach ($variant->productVariantItems as $variantItem)
+                            @if ($variantItem->status != 0)
+                                <option value="{{$variantItem->id}}" {{$variantItem->is_default == 1 ? 'selected' : ''}}>{{$variantItem->name}} (${{$variantItem->price}})</option>
+                            @endif
+                        @endforeach
+                    </select>
+                @endif
                 @endforeach
                 <input class="" name="qty" type="hidden" min="1" max="100" value="1" />
                 <button class="add_cart" type="submit">add to cart</button>

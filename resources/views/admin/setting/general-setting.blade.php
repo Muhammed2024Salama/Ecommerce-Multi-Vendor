@@ -36,7 +36,7 @@
                 <label>Default Currecy Name</label>
                 <select name="currency_name" id="" class="form-control select2">
                     <option value="">Select</option>
-                    @foreach (config('settings.currency_list') as $currency)
+                    @foreach (config('settings.currecy_list') as $currency)
                         <option {{@$generalSettings->currency_name == $currency ? 'selected' : ''}} value="{{$currency}}">{{$currency}}</option>
                     @endforeach
 

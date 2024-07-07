@@ -4,6 +4,9 @@ use Ecommerce\Backend\Controllers\Admin\About\Controllers\AboutController;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Backend\Controllers\Admin\AdminList\Controllers\AdminListController;
 use Ecommerce\Backend\Controllers\Admin\Advertisement\Controllers\AdvertisementController;
+use Ecommerce\Backend\Controllers\Admin\Blog\Controllers\BlogController;
+use Ecommerce\Backend\Controllers\Admin\BlogCategory\Controllers\BlogCategoryController;
+use Ecommerce\Backend\Controllers\Admin\BlogComment\Controllers\BlogCommentController;
 use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
@@ -406,6 +409,37 @@ Route::put('product-slider-section-three', [
     'updateProductSliderSectionThree'
 ])
     ->name('product-slider-section-three');
+
+/** Blog routes */
+
+Route::put('blog-category/status-change', [
+    BlogCategoryController::class,
+    'changeStatus'
+])
+    ->name('blog-category.status-change');
+
+Route::resource('blog-category', BlogCategoryController::class);
+
+Route::put('blog/status-change', [
+    BlogController::class,
+    'changeStatus'
+])
+    ->name('blog.status-change');
+
+Route::resource('blog', BlogController::class);
+
+Route::get('blog-comments', [
+    BlogCommentController::class,
+    'index'
+])
+    ->name('blog-comments.index');
+
+Route::delete('blog-comments/{id}/destory', [
+    BlogCommentController::class,
+    'destory'
+])
+    ->name('blog-comments.destory');
+
 
 /** Subscribers route */
 

@@ -1,10 +1,11 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    {{--        {{$settings->site_name}} || Forgot Password --}}
+{{$settings->site_name}} || Forgot Password
 @endsection
 
 @section('content')
+
     <!--============================
         BREADCRUMB START
     ==============================-->
@@ -15,7 +16,7 @@
                     <div class="col-12">
                         <h4>forget password</h4>
                         <ul>
-                            <li><a href="{{ route('login') }}">login</a></li>
+                            <li><a href="#">login</a></li>
                             <li><a href="#">forget password</a></li>
                         </ul>
                     </div>
@@ -42,19 +43,15 @@
                         <div class="wsus__login">
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
-
-                                <!-- Email Address -->
                                 <div class="wsus__login_input">
                                     <i class="fal fa-envelope"></i>
-                                    <input id="email"  type="email" name="email" value="{{ old('email') }}" placeholder="Your Email">
+                                    <input id="email" type="email" name="email" value="{{old('email')}}" placeholder="Your Email">
                                 </div>
 
-                                <!-- Submit Action -->
                                 <button class="common_btn" type="submit">send</button>
-
                             </form>
                         </div>
-                        <a class="see_btn mt-4" href="{{ route('login') }}">go to login</a>
+                        <a class="see_btn mt-4" href="{{route('login')}}">go to login</a>
                     </div>
                 </div>
             </div>

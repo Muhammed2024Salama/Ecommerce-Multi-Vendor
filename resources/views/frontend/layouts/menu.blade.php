@@ -1,5 +1,5 @@
 @php
-    $categories = Ecommerce\Backend\Controllers\Admin\Category\Models\Category::where('status', 1)
+    $categories = \App\Models\Category::where('status', 1)
     ->with(['subCategories' => function($query){
         $query->where('status', 1)
         ->with(['childCategories' => function($query){
@@ -18,7 +18,7 @@
                         <i class="far fa-bars"></i>
                     </div>
                     <ul class="wsus_menu_cat_item show_home toggle_menu">
-                         <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li>
+                        {{-- <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li> --}}
 
                         @foreach ($categories as $category)
                         <li><a class="{{count($category->subCategories) > 0 ? 'wsus__droap_arrow' : ''}}" href="{{route('products.index', ['category' => $category->slug])}}"><i class="{{$category->icon}}"></i> {{$category->name}} </a>
@@ -41,7 +41,7 @@
                         </li>
                         @endforeach
 
-                         <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li>
+                        {{-- <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li> --}}
                     </ul>
 
                     <ul class="wsus__menu_item">
@@ -49,21 +49,21 @@
 
                         <li><a class="{{setActive(['vendor.index'])}}" href="{{route('vendor.index')}}">vendors</a></li>
                         <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">flash Sale</a></li>
-{{--                        <li><a class="{{setActive(['blog'])}}" href="{{route('blog')}}">blog</a></li>--}}
-{{--                        <li><a class="{{setActive(['about'])}}" href="{{route('about')}}">about</a></li>--}}
+                        <li><a class="{{setActive(['blog'])}}" href="{{route('blog')}}">blog</a></li>
+                        <li><a class="{{setActive(['about'])}}" href="{{route('about')}}">about</a></li>
                         <li><a class="{{setActive(['contact'])}}" href="{{route('contact')}}">contact</a></li>
 
 
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
-{{--                        <li><a href="{{route('product-traking.index')}}">track order</a></li>--}}
+                        <li><a href="{{route('product-traking.index')}}">track order</a></li>
                         @if (auth()->check())
                         @if (auth()->user()->role === 'user')
                         <li><a href="{{route('user.dashboard')}}">my account</a></li>
                         @elseif (auth()->user()->role === 'vendor')
-                        <li><a href="{{route('vendor.dashboard')}}">Vendor Dashboard</a></li>
+                        <li><a href="{{route('vendor.dashbaord')}}">Vendor Dashboard</a></li>
                         @elseif (auth()->user()->role === 'admin')
-                        <li><a href="{{route('admin.dashboard')}}">Admin Dashboard</a></li>
+                        <li><a href="{{route('admin.dashbaord')}}">Admin Dashboard</a></li>
 
                         @endif
                         @else
@@ -84,7 +84,7 @@
 
         <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist_count">
             @if (auth()->check())
-            {{\Ecommerce\Frontend\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
+            {{\App\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
             @else
             0
             @endif
@@ -94,9 +94,9 @@
         @if (auth()->user()->role === 'user')
         <li><a href="{{route('user.dashboard')}}"><i class="fal fa-user"></i></a></li>
         @elseif (auth()->user()->role === 'vendor')
-        <li><a href="{{route('vendor.dashboard')}}"><i class="fal fa-user"></i></a></li>
+        <li><a href="{{route('vendor.dashbaord')}}"><i class="fal fa-user"></i></a></li>
         @elseif (auth()->user()->role === 'admin')
-        <li><a href="{{route('admin.dashboard')}}"><i class="fal fa-user"></i></a></li>
+        <li><a href="{{route('admin.dashbaord')}}"><i class="fal fa-user"></i></a></li>
         @endif
         @else
         <li><a href="{{route('login')}}"><i class="fal fa-user"></i></a></li>
@@ -157,13 +157,13 @@
 
                         <li><a href="{{route('vendor.index')}}">vendor</a></li>
 
-{{--                        <li><a href="{{route('blog')}}">blog</a></li>--}}
-{{--                        <li><a href="{{route('about')}}">about us</a></li>--}}
-{{--                        <li><a href="{{route('contact')}}">contact</a></li>--}}
+                        <li><a href="{{route('blog')}}">blog</a></li>
+                        <li><a href="{{route('about')}}">about us</a></li>
+                        <li><a href="{{route('contact')}}">contact</a></li>
 
 
 
-{{--                        <li><a href="{{route('product-traking.index')}}">track order</a></li>--}}
+                        <li><a href="{{route('product-traking.index')}}">track order</a></li>
                         <li><a href="{{route('flash-sale')}}">flash sale</a></li>
                     </ul>
                 </div>

@@ -17,7 +17,7 @@
                         <h4>products details</h4>
                         <ul>
                             <li><a href="#">home</a></li>
-                            <li><a href="#">product</a></li>
+                            <li><a href="#">peoduct</a></li>
                             <li><a href="#">product details</a></li>
                         </ul>
                     </div>
@@ -280,7 +280,7 @@
                                                     @auth
                                                     @php
                                                         $isBrought = false;
-                                                        $orders = \Ecommerce\Backend\Controllers\Admin\Order\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
+                                                        $orders = \App\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
                                                         foreach ($orders as $key => $order) {
                                                            $existItem = $order->orderProducts()->where('product_id', $product->id)->first();
 

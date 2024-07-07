@@ -19,6 +19,10 @@ class UserVendorReqeustController extends Controller
         return view('frontend.dashboard.vendor-request.index', compact('content'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function create(Request $request)
     {
         /** Start Validation */
@@ -55,6 +59,5 @@ class UserVendorReqeustController extends Controller
         toastr('Submitted successfully please wait for approve!', 'success', 'success');
 
         return redirect()->back();
-
     }
 }

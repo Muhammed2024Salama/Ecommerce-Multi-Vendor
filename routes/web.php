@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Base\Auth\Controllers\GoogleAuthController;
 use Ecommerce\Base\Auth\Controllers\SocialiteController;
+use Ecommerce\Frontend\Controllers\BlogController;
 use Ecommerce\Frontend\Controllers\CartController;
 use Ecommerce\Frontend\Controllers\CheckOutController;
 use Ecommerce\Frontend\Controllers\FlashSaleController;
@@ -220,6 +221,21 @@ Route::get('product-traking', [
     'index'
 ])
     ->name('product-traking.index');
+
+/** blog routes */
+
+Route::get('blog-details/{slug}', [
+    BlogController::class,
+    'blogDetails'
+])
+    ->name('blog-details');
+
+Route::get('blog', [
+    BlogController::class,
+    'blog'
+])
+    ->name('blog');
+
 
 
 /** Coupon routes */

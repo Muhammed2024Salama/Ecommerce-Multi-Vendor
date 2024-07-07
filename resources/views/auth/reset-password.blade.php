@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    {{--        {{$settings->site_name}} || Reset Password  --}}
+{{$settings->site_name}} || Reset Password
 @endsection
 
 @section('content')
@@ -15,8 +15,8 @@
                     <div class="col-12">
                         <h4>Reset password</h4>
                         <ul>
-                            <li><a href="{{ route('login') }}">login</a></li>
-                            <li><a href="#">reset password</a></li>
+                            <li><a href="#">login</a></li>
+                            <li><a href="#">rest password</a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,33 +38,31 @@
                     <form method="POST" action="{{ route('password.store') }}">
                         @csrf
 
+
                         <div class="wsus__change_password">
                             <h4>reset password</h4>
+                                <!-- Password Reset Token -->
+                                <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                            <!-- Password Reset Token -->
-                            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-                            <!-- Email Address -->
                             <div class="wsus__single_pass">
-                                <label>E-mail</label>
-                                <input id="email" type="email" name="email" value="{{ old('email', $request->email) }}" placeholder="E-mail">
+                                <label>email</label>
+                                <input id="email" type="email" name="email" value="{{old('email', $request->email)}}" placeholder="Email">
                             </div>
 
-                            <!-- Password -->
                             <div class="wsus__single_pass">
                                 <label>new password</label>
                                 <input id="password" type="password" name="password" placeholder="New Password">
                             </div>
 
-                            <!-- Confirm Password -->
+
                             <div class="wsus__single_pass">
                                 <label>confirm password</label>
-                                <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password">
+                                <input id="password_confirmation" type="password"
+                                name="password_confirmation" type="text" placeholder="Confirm Password">
                             </div>
 
-                            <!-- Submit Action -->
-                            <button class="common_btn" type="submit">submit</button>
 
+                            <button class="common_btn" type="submit">submit</button>
                         </div>
                     </form>
                 </div>
