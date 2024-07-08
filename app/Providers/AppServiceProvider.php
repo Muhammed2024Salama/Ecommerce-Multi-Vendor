@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 
+use Ecommerce\Backend\Controllers\Admin\LogoSetting\Models\LogoSetting;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Config;
@@ -29,14 +30,15 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         $generalSetting = GeneralSetting::first();
+        $logoSetting = LogoSetting::first();
 
         /** set time zone */
         Config::set('app.timezone', $generalSetting->time_zone);
 
 
         /** Share variable at all view */
-        View::composer('*', function($view) use ($generalSetting){
-            $view->with(['settings' => $generalSetting]);
+        View::composer('*', function($view) use ($generalSetting, $logoSetting){
+            $view->with(['settings' => $generalSetting, 'logoSetting' => $logoSetting]);
         });
     }
 }

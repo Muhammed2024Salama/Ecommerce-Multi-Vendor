@@ -4,6 +4,7 @@ namespace Ecommerce\Backend\Controllers\Admin\Settings\Controllers;
 
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\EmailConfiguration\Models\EmailConfiguration;
+use Ecommerce\Backend\Controllers\Admin\LogoSetting\Models\LogoSetting;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\RedirectResponse;
@@ -20,9 +21,9 @@ class SettingController extends Controller
     {
         $generalSettings = GeneralSetting::first();
         $emailSettings = EmailConfiguration::first();
-//        $logoSetting = LogoSetting::first();
+        $logoSetting = LogoSetting::first();
 //        $pusherSetting = PusherSetting::first();
-        return view('admin.setting.index', compact('generalSettings', 'emailSettings'));
+        return view('admin.setting.index', compact('generalSettings', 'emailSettings', 'logoSetting'));
     }
 
     /**
@@ -67,6 +68,10 @@ class SettingController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function emailConfigSettingUpdate(Request $request)
     {
         /** Start Validation */
@@ -97,28 +102,34 @@ class SettingController extends Controller
         return redirect()->back();
     }
 
-//    public function logoSettingUpdate(Request $request)
-//    {
-//        $request->validate([
-//            'logo' => ['image', 'max:3000'],
-//            'favicon' => ['image', 'max:3000'],
-//        ]);
-//
-//        $logoPath = $this->updateImage($request, 'logo', 'uploads', $request->old_logo);
-//        $favicon = $this->updateImage($request, 'favicon', 'uploads', $request->old_favicon);
-//
-//        LogoSetting::updateOrCreate(
-//            ['id' => 1],
-//            [
-//                'logo' =>  (!empty($logoPath)) ? $logoPath : $request->old_logo,
-//                'favicon' => (!empty($favicon)) ? $favicon : $request->old_favicon
-//            ]
-//        );
-//
-//        toastr('Updated successfully!', 'success', 'success');
-//
-//        return redirect()->back();
-//    }
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function logoSettingUpdate(Request $request)
+    {
+        /** Start Validation */
+        $request->validate([
+            'logo' => ['image', 'max:3000'],
+            'favicon' => ['image', 'max:3000'],
+        ]);
+        /** End Validation */
+
+        $logoPath = $this->updateImage($request, 'logo', 'uploads', $request->old_logo);
+        $favicon = $this->updateImage($request, 'favicon', 'uploads', $request->old_favicon);
+
+        LogoSetting::updateOrCreate(
+            ['id' => 1],
+            [
+                'logo' =>  (!empty($logoPath)) ? $logoPath : $request->old_logo,
+                'favicon' => (!empty($favicon)) ? $favicon : $request->old_favicon
+            ]
+        );
+
+        toastr('Updated successfully!', 'success', 'success');
+
+        return redirect()->back();
+    }
 
 
     /** Pusher settings update */

@@ -5505,7 +5505,7 @@ LeafChunk.prototype = {
     this.lines.splice(at, n)
   },
 
-  // Helpers used to collapse a small branch into a single leaf.
+  // Helper used to collapse a small branch into a single leaf.
   collapse: function collapse(lines) {
     lines.push.apply(lines, this.lines)
   },
@@ -6731,7 +6731,7 @@ function getKeyMap(val) {
   return typeof val == "string" ? keyMap[val] : val
 }
 
-// Helpers for deleting text near the selection(s), used to implement
+// Helper for deleting text near the selection(s), used to implement
 // backspace, delete, and similar functionality.
 function deleteNearSelection(cm, compute) {
   var ranges = cm.doc.sel.ranges, kill = []

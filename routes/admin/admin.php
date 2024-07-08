@@ -391,7 +391,12 @@ Route::put('email-setting-update', [
 ])
     ->name('email-setting-update');
 
-//Route::put('logo-setting-update', [SettingController::class, 'logoSettingUpdate'])->name('logo-setting-update');
+Route::put('logo-setting-update', [
+    SettingController::class,
+    'logoSettingUpdate'
+])
+    ->name('logo-setting-update');
+
 //Route::put('pusher-setting-update', [SettingController::class, 'pusherSettingUpdate'])->name('pusher-setting-update');
 
 

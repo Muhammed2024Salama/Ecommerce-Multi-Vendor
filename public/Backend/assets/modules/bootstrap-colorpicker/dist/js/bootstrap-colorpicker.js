@@ -2125,7 +2125,7 @@ exports.default = Color;
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_RESULT__;// TinyColor api.4.1
+var __WEBPACK_AMD_DEFINE_RESULT__;// TinyColor v1.4.1
 // https://github.com/bgrins/TinyColor
 // Brian Grinstead, MIT License
 

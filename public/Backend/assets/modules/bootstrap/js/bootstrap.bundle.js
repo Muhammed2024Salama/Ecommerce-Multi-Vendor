@@ -1732,7 +1732,7 @@
   }
 
   /*
-   * Helpers to detect borders of a given element
+   * Helper to detect borders of a given element
    * @method
    * @memberof Popper.Utils
    * @param {CSSStyleDeclaration} styles
@@ -2350,7 +2350,7 @@
   }
 
   /**
-   * Helpers used to know if the given modifier is enabled.
+   * Helper used to know if the given modifier is enabled.
    * @method
    * @memberof Popper.Utils
    * @returns {Boolean}
@@ -2706,7 +2706,7 @@
   }
 
   /**
-   * Helpers used to know if the given modifier depends from another one.<br />
+   * Helper used to know if the given modifier depends from another one.<br />
    * It checks if the needed modifier is listed and enabled.
    * @method
    * @memberof Popper.Utils
@@ -6439,7 +6439,7 @@
     var maxMajor = 4;
 
     if (version[0] < ltMajor && version[1] < minMinor || version[0] === minMajor && version[1] === minMinor && version[2] < minPatch || version[0] >= maxMajor) {
-      throw new Error('Bootstrap\'s JavaScript requires at least jQuery api.9.1 but less than v4.0.0');
+      throw new Error('Bootstrap\'s JavaScript requires at least jQuery v1.9.1 but less than v4.0.0');
     }
   })($);
 
