@@ -370,6 +370,10 @@ Route::group(['middleware' =>['auth', 'verified'], 'prefix' => 'user', 'as' => '
         ->name('razorpay.payment');
 
     /** COD routes */
-//    Route::get('cod/payment', [PaymentController::class, 'payWithCod'])->name('cod.payment');
+    Route::get('cod/payment', [
+        PaymentController::class,
+        'payWithCod'
+    ])
+        ->name('cod.payment');
 });
 

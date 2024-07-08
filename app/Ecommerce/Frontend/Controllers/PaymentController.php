@@ -3,6 +3,7 @@
 namespace Ecommerce\Frontend\Controllers;
 
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\CashOnDelivery\Models\CodSetting;
 use Ecommerce\Backend\Controllers\Admin\Order\Models\Order;
 use Ecommerce\Backend\Controllers\Admin\Order\Models\OrderProduct;
 use Ecommerce\Backend\Controllers\Admin\Paypal\Models\PaypalSetting;
@@ -223,7 +224,7 @@ class PaymentController extends Controller
      */
     public function paypalCancel()
     {
-        toastr('Someting went wrong try agin later!', 'error', 'Error');
+        toastr('Something went wrong try again later!', 'error', 'Error');
         return redirect()->route('user.payment');
     }
 
@@ -300,7 +301,11 @@ class PaymentController extends Controller
         }
     }
 
-    /** pay with cod */
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * pay with cod
+     */
     public function payWithCod(Request $request)
     {
         $codPaySetting = CodSetting::first();
@@ -319,8 +324,6 @@ class PaymentController extends Controller
         $this->clearSession();
 
         return redirect()->route('user.payment.success');
-
-
     }
 
 }

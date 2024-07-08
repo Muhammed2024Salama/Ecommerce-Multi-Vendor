@@ -8,6 +8,7 @@ use Ecommerce\Backend\Controllers\Admin\Blog\Controllers\BlogController;
 use Ecommerce\Backend\Controllers\Admin\BlogCategory\Controllers\BlogCategoryController;
 use Ecommerce\Backend\Controllers\Admin\BlogComment\Controllers\BlogCommentController;
 use Ecommerce\Backend\Controllers\Admin\Brand\Controllers\BrandController;
+use Ecommerce\Backend\Controllers\Admin\CashOnDelivery\Controllers\CodSettingController;
 use Ecommerce\Backend\Controllers\Admin\Category\Controllers\CategoryController;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Controllers\ChildCategoryController;
 use Ecommerce\Backend\Controllers\Admin\Coupon\Controllers\CouponController;
@@ -700,4 +701,8 @@ Route::put('razorpay-setting/{id}', [
 ])
     ->name('razorpay-setting.update');
 
-//Route::put('cod-setting/{id}', [CodSettingController::class, 'update'])->name('cod-setting.update');
+Route::put('cod-setting/{id}', [
+    CodSettingController::class,
+    'update'
+])
+    ->name('cod-setting.update');
