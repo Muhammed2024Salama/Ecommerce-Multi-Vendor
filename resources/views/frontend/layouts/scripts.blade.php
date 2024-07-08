@@ -189,7 +189,7 @@
 
             $.ajax({
                 mehtod: 'GET',
-                url: '{{ route("show-product-modal", ":id" ) }}'.replace(":id", id),
+{{--                url: '{{ route("show-product-modal", ":id" ) }}'.replace(":id", id),--}}
                 beforeSend: function(){
                     $('.product-modal-content').html('<span class="loader"></span>')
                 },

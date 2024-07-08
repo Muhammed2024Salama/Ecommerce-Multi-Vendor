@@ -65,143 +65,120 @@ Route::get('dashboard',[
     /** Middleware & Prefix added to RouteServiceProvider */
     ->name('dashboard');
 
-    /** Profile Routes */
-Route::get('profile',[
-    ProfileController::class ,
+/** Profile Routes */
+Route::get('profile', [
+    ProfileController::class,
     'index'
 ])
-    /** Middleware & Prefix added to RouteServiceProvider */
     ->name('profile');
 
-    /** Profile Update Routes */
-Route::post('profile/update',[
-    ProfileController::class ,
+Route::post('profile/update', [
+    ProfileController::class,
     'updateProfile'
 ])
-    /** Middleware & Prefix added to RouteServiceProvider */
     ->name('profile.update');
 
-/** Profile Update Routes */
-Route::post('profile/update/password',[
-    ProfileController::class ,
+Route::post('profile/update/password', [
+    ProfileController::class,
     'updatePassword'
 ])
-    /** Middleware & Prefix added to RouteServiceProvider */
     ->name('password.update');
 
-/** Slider Routes */
-Route::resource('slider' , SliderController::class);
+/** Slider Route */
+Route::resource('slider', SliderController::class);
 
-/** Category Change Status */
-
-Route::put('change-status',[
-    CategoryController::class ,
+/** Category Route */
+Route::put('change-status', [
+    CategoryController::class,
     'changeStatus'
 ])
     ->name('category.change-status');
 
-/** Category Routes */
-
-Route::resource('category' , CategoryController::class);
-
-/** Sub Category Change Status */
-
-Route::put('subcategory/change-status',[
-    SubCategoryController::class ,
+Route::resource('category', CategoryController::class);
+/** Sub Category Route */
+Route::put('subcategory/change-status', [
+    SubCategoryController::class,
     'changeStatus'
 ])
     ->name('sub-category.change-status');
 
-/** Sub Category Routes */
+Route::resource('sub-category', SubCategoryController::class);
 
-Route::resource('sub-category' , SubCategoryController::class);
-
-/** Chile Category Change Status */
-
+/** Child Category Route */
 Route::put('child-category/change-status', [
-    ChildCategoryController::class ,
+    ChildCategoryController::class,
     'changeStatus'
 ])
     ->name('child-category.change-status');
 
-/**  */
 Route::get('get-subcategories', [
-    ChildCategoryController::class ,
+    ChildCategoryController::class,
     'getSubCategories'
 ])
     ->name('get-subcategories');
 
-/** Chile Category Routes */
-
 Route::resource('child-category', ChildCategoryController::class);
 
-
-/** brand Change Status */
-
-Route::put('brand/change-status',[
-    BrandController::class ,
+/** Brand routes */
+Route::put('brand/change-status', [
+    BrandController::class,
     'changeStatus'
 ])
     ->name('brand.change-status');
 
-/** brand Routes */
+Route::resource('brand', BrandController::class);
 
-Route::resource('brand' , BrandController::class);
+/** Vendor Profile routes */
+Route::resource('vendor-profile', AdminVendorProfileController::class);
 
-/** Vendor Profile Routes */
-
-Route::resource('vendor-profile' , AdminVendorProfileController::class);
-
-/** Products Profile Routes */
+/** Products routes */
 Route::get('product/get-subcategories', [
-    ProductController::class ,
+    ProductController::class,
     'getSubCategories'
 ])
     ->name('product.get-subcategories');
 
 Route::get('product/get-child-categories', [
-    ProductController::class ,
+    ProductController::class,
     'getChildCategories'
 ])
     ->name('product.get-child-categories');
 
 Route::put('product/change-status', [
-    ProductController::class ,
+    ProductController::class,
     'changeStatus'
 ])
     ->name('product.change-status');
 
-Route::resource('products' , ProductController::class);
+Route::resource('products', ProductController::class);
 
 /** Products image gallery route */
-
 Route::resource('products-image-gallery', ProductImageGalleryController::class);
 
+/** Products variant route */
 Route::put('products-variant/change-status', [
-    ProductVariantController::class ,
+    ProductVariantController::class,
     'changeStatus'
 ])
     ->name('products-variant.change-status');
 
-/** Products variant route */
-
 Route::resource('products-variant', ProductVariantController::class);
 
 /** Products variant item route */
-
 Route::get('products-variant-item/{productId}/{variantId}', [
-    ProductVariantItemController::class ,
-    'index'])
+    ProductVariantItemController::class,
+    'index'
+])
     ->name('products-variant-item.index');
 
-Route::get('products-variant-item/create/{productId}/{variantId}' , [
-    ProductVariantItemController::class ,
+Route::get('products-variant-item/create/{productId}/{variantId}', [
+    ProductVariantItemController::class,
     'create'
 ])
     ->name('products-variant-item.create');
 
 Route::post('products-variant-item', [
-    ProductVariantItemController::class ,
+    ProductVariantItemController::class,
     'store'
 ])
     ->name('products-variant-item.store');
@@ -226,12 +203,11 @@ Route::delete('products-variant-item/{variantItemId}', [
 
 Route::put('products-variant-item-status', [
     ProductVariantItemController::class,
-    'changeStatus'
+    'chageStatus'
 ])
-    ->name('products-variant-item.change-status');
+    ->name('products-variant-item.chages-status');
 
 /** reviews routes */
-
 Route::get('reviews', [
     AdminReviewController::class,
     'index'
@@ -244,17 +220,15 @@ Route::put('reviews/change-status', [
 ])
     ->name('reviews.change-status');
 
-
 /** Seller product routes */
-
 Route::get('seller-products', [
-    SellerProductController::class ,
+    SellerProductController::class,
     'index'
 ])
     ->name('seller-products.index');
 
 Route::get('seller-pending-products', [
-    SellerProductController::class ,
+    SellerProductController::class,
     'pendingProducts'
 ])
     ->name('seller-pending-products.index');
@@ -266,7 +240,6 @@ Route::put('change-approve-status', [
     ->name('change-approve-status');
 
 /** Flash Sale Routes */
-
 Route::get('flash-sale', [
     FlashSaleController::class,
     'index'
@@ -304,7 +277,6 @@ Route::delete('flash-sale/{id}', [
     ->name('flash-sale.destory');
 
 /** Coupon Routes */
-
 Route::put('coupons/change-status', [
     CouponController::class,
     'changeStatus'
@@ -312,6 +284,15 @@ Route::put('coupons/change-status', [
     ->name('coupons.change-status');
 
 Route::resource('coupons', CouponController::class);
+
+/** Coupon Routes */
+Route::put('shipping-rule/change-status', [
+    ShippingRuleController::class,
+    'changeStatus'
+])
+    ->name('shipping-rule.change-status');
+
+Route::resource('shipping-rule', ShippingRuleController::class);
 
 /** Order routes */
 Route::get('payment-status', [
@@ -371,15 +352,52 @@ Route::get('canceled-orders', [
 Route::resource('order', OrderController::class);
 
 /** Order Transaction route */
-
 Route::get('transaction', [
     TransactionController::class,
     'index'
 ])
     ->name('transaction');
 
-/** home page setting route */
+///** Withdraw method route */
+//Route::resource('withdraw-method', WithdrawMehtodController::class);
+//Route::get('withdraw', [WithdrawController::class, 'index'])->name('withdraw.index');
+//Route::get('withdraw/{id}', [WithdrawController::class, 'show'])->name('withdraw.show');
+//Route::put('withdraw/{id}', [WithdrawController::class, 'update'])->name('withdraw.update');
+//
+///** Message route */
+//Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
+//Route::get('get-messages', [MessageController::class, 'getMessages'])->name('get-messages');
+//Route::post('send-message', [MessageController::class, 'sendMessage'])->name('send-message');
 
+
+
+
+/** settings routes */
+Route::get('settings', [
+    SettingController::class,
+    'index'
+])
+    ->name('settings.index');
+
+Route::put('generale-setting-update', [
+    SettingController::class,
+    'generalSettingUpdate'
+])
+    ->name('generale-setting-update');
+
+Route::put('email-setting-update', [
+    SettingController::class,
+    'emailConfigSettingUpdate'
+])
+    ->name('email-setting-update');
+
+//Route::put('logo-setting-update', [SettingController::class, 'logoSettingUpdate'])->name('logo-setting-update');
+//Route::put('pusher-setting-update', [SettingController::class, 'pusherSettingUpdate'])->name('pusher-setting-update');
+
+
+
+
+/** home page setting route */
 Route::get('home-page-setting', [
     HomePageSettingController::class,
     'index'
@@ -411,7 +429,6 @@ Route::put('product-slider-section-three', [
     ->name('product-slider-section-three');
 
 /** Blog routes */
-
 Route::put('blog-category/status-change', [
     BlogCategoryController::class,
     'changeStatus'
@@ -427,7 +444,6 @@ Route::put('blog/status-change', [
     ->name('blog.status-change');
 
 Route::resource('blog', BlogController::class);
-
 Route::get('blog-comments', [
     BlogCommentController::class,
     'index'
@@ -442,7 +458,6 @@ Route::delete('blog-comments/{id}/destory', [
 
 
 /** Subscribers route */
-
 Route::get('subscribers', [
     SubscribersController::class,
     'index'
@@ -462,7 +477,6 @@ Route::post('subscribers-send-mail', [
     ->name('subscribers-send-mail');
 
 /** Advertisement Routes */
-
 Route::get('advertisement', [
     AdvertisementController::class,
     'index'
@@ -537,76 +551,7 @@ Route::put('customer/status-change', [
 ])
     ->name('customer.status-change');
 
-/** manage user routes */
-
-Route::get('manage-user', [
-    ManageUserController::class,
-    'index'
-])
-    ->name('manage-user.index');
-
-Route::post('manage-user', [
-    ManageUserController::class,
-    'create'
-])
-    ->name('manage-user.create');
-
-/** Vendor Conditions Routes */
-Route::get('vendor-condition', [
-    VendorConditionController::class,
-    'index'
-])
-    ->name('vendor-condition.index');
-
-Route::put('vendor-condition/update', [
-    VendorConditionController::class,
-    'update'
-])
-    ->name('vendor-condition.update');
-
-
-/** Vendor List Routes */
-Route::get('vendor-list', [
-    VendorListController::class,
-    'index'
-])
-    ->name('vendor-list.index');
-
-Route::put('vendor-list/status-change', [
-    VendorListController::class,
-    'changeStatus'
-])
-    ->name('vendor-list.status-change');
-
-/** about routes */
-
-Route::get('about', [
-    AboutController::class,
-    'index'
-])
-    ->name('about.index');
-
-Route::put('about/update', [
-    AboutController::class,
-    'update'
-])
-    ->name('about.update');
-
-/** terms and conditions routes */
-
-Route::get('terms-and-conditions', [
-    TermsAndConditionController::class,
-    'index'
-])
-    ->name('terms-and-conditions.index');
-
-Route::put('terms-and-conditions/update', [
-    TermsAndConditionController::class,
-    'update'
-])
-    ->name('terms-and-conditions.update');
-
-/** Admin list routes */
+/** customer list routes */
 Route::get('admin-list', [
     AdminListController::class,
     'index'
@@ -626,8 +571,71 @@ Route::delete('admin-list/{id}', [
     ->name('admin-list.destory');
 
 
-/** footer routes */
+/** manage user routes */
+Route::get('manage-user', [
+    ManageUserController::class,
+    'index'
+])
+    ->name('manage-user.index');
 
+Route::post('manage-user', [
+    ManageUserController::class,
+    'create'
+])
+    ->name('manage-user.create');
+
+Route::get('vendor-list', [
+    VendorListController::class,
+    'index'
+])
+    ->name('vendor-list.index');
+
+Route::put('vendor-list/status-change', [
+    VendorListController::class,
+    'changeStatus'
+])
+    ->name('vendor-list.status-change');
+
+Route::get('vendor-condition', [
+    VendorConditionController::class,
+    'index'
+])
+    ->name('vendor-condition.index');
+
+Route::put('vendor-condition/update', [
+    VendorConditionController::class,
+    'update'
+])
+    ->name('vendor-condition.update');
+
+/** about routes */
+Route::get('about', [
+    AboutController::class,
+    'index'
+])
+    ->name('about.index');
+
+Route::put('about/update', [
+    AboutController::class,
+    'update'
+])
+    ->name('about.update');
+
+/** terms and conditions routes */
+Route::get('terms-and-conditions', [
+    TermsAndConditionController::class,
+    'index'
+])
+    ->name('terms-and-conditions.index');
+
+Route::put('terms-and-conditions/update', [
+    TermsAndConditionController::class,
+    'update'
+])
+    ->name('terms-and-conditions.update');
+
+
+/** footer routes */
 Route::resource('footer-info', FooterInfoController::class);
 Route::put('footer-socials/change-status', [
     FooterSocialController::class,
@@ -636,6 +644,7 @@ Route::put('footer-socials/change-status', [
     ->name('footer-socials.change-status');
 
 Route::resource('footer-socials', FooterSocialController::class);
+
 Route::put('footer-grid-two/change-status', [
     FooterGridTwoController::class,
     'changeStatus'
@@ -665,50 +674,8 @@ Route::put('footer-grid-three/change-title', [
 Route::resource('footer-grid-three', FooterGridThreeController::class);
 
 
-/** Shipping Rule Routes */
-
-Route::put('shipping-rule/change-status', [
-    ShippingRuleController::class,
-    'changeStatus'
-])
-    ->name('shipping-rule.change-status');
-
-Route::resource('shipping-rule', ShippingRuleController::class);
-
-/** settings routes */
-Route::get('settings', [
-    SettingController::class ,
-    'index'
-])
-    ->name('settings.index');
-
-Route::put('generale-setting-update', [
-    SettingController::class ,
-    'generalSettingUpdate'
-])
-    ->name('generale-setting-update');
-
-Route::put('email-setting-update', [
-    SettingController::class,
-    'emailConfigSettingUpdate'
-])
-    ->name('email-setting-update');
-
-Route::put('logo-setting-update', [
-    SettingController::class,
-    'logoSettingUpdate'
-])
-    ->name('logo-setting-update');
-
-Route::put('pusher-setting-update', [
-    SettingController::class,
-    'pusherSettingUpdate'
-])
-    ->name('pusher-setting-update');
-
 
 /** Payment settings routes */
-
 Route::get('payment-settings', [
     PaymentSettingController::class,
     'index'
@@ -716,7 +683,6 @@ Route::get('payment-settings', [
     ->name('payment-settings.index');
 
 Route::resource('paypal-setting', PaypalSettingController::class);
-
 Route::put('stripe-setting/{id}', [
     StripeSettingController::class,
     'update'
@@ -729,4 +695,4 @@ Route::put('razorpay-setting/{id}', [
 ])
     ->name('razorpay-setting.update');
 
-
+//Route::put('cod-setting/{id}', [CodSettingController::class, 'update'])->name('cod-setting.update');

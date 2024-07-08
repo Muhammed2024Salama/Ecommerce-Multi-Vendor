@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Ecommerce\Backend\Controllers\Admin\AdminController;
 use Ecommerce\Base\Auth\Controllers\GoogleAuthController;
 use Ecommerce\Base\Auth\Controllers\SocialiteController;
 use Ecommerce\Frontend\Controllers\BlogController;
@@ -43,22 +42,14 @@ Route::get('/', [
     ->name('home');
 
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
-
-
-/** Redirect To Admin Login  */
-
-Route::get('admin/login', [
-    AdminController::class,
-    'login'
-])
-    ->name('admin.login');
+require __DIR__.'/auth.php';
 
 Route::get('flash-sale', [
     FlashSaleController::class,
@@ -67,7 +58,6 @@ Route::get('flash-sale', [
     ->name('flash-sale');
 
 /** Product route */
-
 Route::get('products', [
     FrontendProductController::class,
     'productsIndex'
@@ -86,8 +76,8 @@ Route::get('change-product-list-view', [
 ])
     ->name('change-product-list-view');
 
-/** Cart routes */
 
+/** Cart routes */
 Route::post('add-to-cart', [
     CartController::class,
     'addToCart'
@@ -154,7 +144,6 @@ Route::get('coupon-calculation', [
 ])
     ->name('coupon-calculation');
 
-
 /** Newsletter routes */
 
 Route::post('newsletter-request', [
@@ -169,9 +158,7 @@ Route::get('newsletter-verify/{token}', [
 ])
     ->name('newsletter-verify');
 
-
 /** vendor page routes */
-
 Route::get('vendor', [
     HomeController::class,
     'vendorPage'
@@ -185,7 +172,6 @@ Route::get('vendor-product/{id}', [
     ->name('vendor.products');
 
 /** about page route */
-
 Route::get('about', [
     PageController::class,
     'about'
@@ -193,7 +179,6 @@ Route::get('about', [
     ->name('about');
 
 /** terms and conditions page route */
-
 Route::get('terms-and-conditions', [
     PageController::class,
     'termsAndCondition'
@@ -201,7 +186,6 @@ Route::get('terms-and-conditions', [
     ->name('terms-and-conditions');
 
 /** contact route */
-
 Route::get('contact', [
     PageController::class,
     'contact'
@@ -215,7 +199,6 @@ Route::post('contact', [
     ->name('handle-contact-form');
 
 /** Product track route */
-
 Route::get('product-traking', [
     ProductTrackController::class,
     'index'
@@ -223,7 +206,6 @@ Route::get('product-traking', [
     ->name('product-traking.index');
 
 /** blog routes */
-
 Route::get('blog-details/{slug}', [
     BlogController::class,
     'blogDetails'
@@ -236,122 +218,34 @@ Route::get('blog', [
 ])
     ->name('blog');
 
-
-
-/** Coupon routes */
-
-Route::get('apply-coupon', [
-    CartController::class,
-    'applyCoupon'
+/** Product routes */
+Route::get('show-product-modal/{id}', [
+    HomeController::class,
+    'ShowProductModal'
 ])
-    ->name('apply-coupon');
+    ->name('show-product-modal');
 
-Route::get('coupon-calculation',
-    [
-        CartController::class,
-        'couponCalculation'
-    ])
-    ->name('coupon-calculation');
-
-/** Checkout routes */
-Route::get('checkout', [
-    CheckOutController::class,
-    'index'
+/** add product in wishlist */
+Route::get('wishlist/add-product', [
+    WishlistController::class,
+    'addToWishlist'
 ])
-    ->name('checkout');
+    ->name('wishlist.store');
 
-Route::post('checkout/address-create', [
-    CheckOutController::class,
-    'createAddress'
-])
-    ->name('checkout.address.create');
+Route::group(['middleware' =>['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
+    Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile', [UserProfileController::class, 'index'])->name('profile'); // user.profile
+    Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update'); // user.profile.update
+    Route::post('profile', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
 
-Route::post('checkout/form-submit', [
-    CheckOutController::class,
-    'checkOutFormSubmit'
-])
-    ->name('checkout.form-submit');
-
-/** Payment Routes */
-
-Route::get('payment', [
-    PaymentController::class,
-    'index'])
-    ->name('payment');
-
-Route::get('payment-success', [
-    PaymentController::class,
-    'paymentSuccess'
-])
-    ->name('payment.success');
-
-/** Paypal routes */
-
-Route::get('paypal/payment', [
-    PaymentController::class,
-    'payWithPaypal'
-])
-    ->name('paypal.payment');
-
-Route::get('paypal/success', [
-    PaymentController::class,
-    'paypalSuccess'
-])
-    ->name('paypal.success');
-
-Route::get('paypal/cancel', [
-    PaymentController::class,
-    'paypalCancel'
-])
-    ->name('paypal.cancel');
-
-/** Stripe routes */
-
-Route::post('stripe/payment', [
-    PaymentController::class,
-    'payWithStripe'
-])
-    ->name('stripe.payment');
-
-/** Razorpay routes */
-Route::post('razorpay/payment', [
-    PaymentController::class,
-    'payWithRazorPay'
-])
-    ->name('razorpay.payment');
-
-/** User Dashboard  */
-
-Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
-    Route::get('dashboard', [
-        UserDashboardController::class,
-        'index'
-    ])
-        ->name('dashboard');
-
-    Route::get('profile', [
-        UserProfileController::class,
-        'index'
-    ])
-        ->name('profile');
-
-    Route::put('profile', [
-        UserProfileController::class,
-        'updateProfile'
-    ])
-        ->name('profile.update');
-
-    Route::post('profile', [
-        UserProfileController::class,
-        'updatePassword'
-    ])
-        ->name('profile.update.password');
+//    /** Message Route */
+//    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
+//    Route::post('send-message', [UserMessageController::class, 'sendMessage'])->name('send-message');
+//    Route::get('get-messages', [UserMessageController::class, 'getMessages'])->name('get-messages');
 
     /** User Address Route */
     Route::resource('address', UserAddressController::class);
-
     /** Order Routes */
-
     Route::get('orders', [
         UserOrderController::class,
         'index'
@@ -365,7 +259,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
         ->name('orders.show');
 
     /** Wishlist routes */
-
     Route::get('wishlist', [
         WishlistController::class,
         'index'
@@ -378,8 +271,13 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     ])
         ->name('wishlist.destory');
 
-    /** Vendor request route */
+    Route::get('reviews', [
+        ReviewController::class,
+        'index'
+    ])
+        ->name('review.index');
 
+    /** Vendor request route */
     Route::get('vendor-request', [
         UserVendorReqeustController::class,
         'index'
@@ -392,19 +290,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     ])
         ->name('vendor-request.create');
 
-    /** add product in wishlist */
-    Route::get('wishlist/add-product', [
-        WishlistController::class,
-        'addToWishlist'
-    ])
-        ->name('wishlist.store');
-
-    Route::get('reviews', [
-        ReviewController::class,
-        'index'
-    ])
-        ->name('review.index');
-
     /** product review routes */
     Route::post('review', [
         ReviewController::class,
@@ -412,5 +297,79 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     ])
         ->name('review.create');
 
+    /** blog comment routes */
+    Route::post('blog-comment', [
+        BlogController::class,
+        'comment'
+    ])
+        ->name('blog-comment');
+
+    /** Checkout routes */
+    Route::get('checkout', [
+        CheckOutController::class,
+        'index'
+    ])
+        ->name('checkout');
+
+    Route::post('checkout/address-create', [
+        CheckOutController::class,
+        'createAddress'
+    ])
+        ->name('checkout.address.create');
+
+    Route::post('checkout/form-submit', [
+        CheckOutController::class,
+        'checkOutFormSubmit'
+    ])
+        ->name('checkout.form-submit');
+
+    /** Payment Routes */
+    Route::get('payment', [
+        PaymentController::class,
+        'index'
+    ])
+        ->name('payment');
+
+    Route::get('payment-success', [
+        PaymentController::class,
+        'paymentSuccess'
+    ])
+        ->name('payment.success');
+
+    /** Paypal routes */
+    Route::get('paypal/payment', [
+        PaymentController::class,
+        'payWithPaypal'
+    ])
+        ->name('paypal.payment');
+
+    Route::get('paypal/success', [
+        PaymentController::class,
+        'paypalSuccess'
+    ])
+        ->name('paypal.success');
+
+    Route::get('paypal/cancel', [
+        PaymentController::class,
+        'paypalCancel'
+    ])
+        ->name('paypal.cancel');
+
+    /** Stripe routes */
+    Route::post('stripe/payment', [
+        PaymentController::class,
+        'payWithStripe'
+    ])
+        ->name('stripe.payment');
+
+    /** Razorpay routes */
+    Route::post('razorpay/payment', [
+        PaymentController::class,
+        'payWithRazorPay'
+    ])
+        ->name('razorpay.payment');
+
+    /** COD routes */
+//    Route::get('cod/payment', [PaymentController::class, 'payWithCod'])->name('cod.payment');
 });
 

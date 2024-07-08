@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{$settings->site_name}} || Wishlist
+    {{$settings->site_name}} || Wishlist
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                         <h4>wishlist</h4>
                         <ul>
                             <li><a href="#">home</a></li>
-                            <li><a href="#">peoduct</a></li>
+                            <li><a href="#">product</a></li>
                             <li><a href="#">wishlist</a></li>
                         </ul>
                     </div>

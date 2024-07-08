@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{$settings->site_name}} || Cart Details
+    {{$settings->site_name}} || Cart Details
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                         <h4>cart View</h4>
                         <ul>
                             <li><a href="#">home</a></li>
-                            <li><a href="#">peoduct</a></li>
+                            <li><a href="#">product</a></li>
                             <li><a href="#">cart view</a></li>
                         </ul>
                     </div>
@@ -141,20 +141,20 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="wsus__single_banner_content">
-                            @if ($cartpage_banner_section->banner_one->status == 1)
-                            <a href="{{$cartpage_banner_section->banner_one->banner_url}}">
-                                <img class="img-gluid" src="{{asset($cartpage_banner_section->banner_one->banner_image)}}" alt="">
-                            </a>
-                            @endif
+{{--                            @if ($cartpage_banner_section->banner_one->status == 1)--}}
+{{--                            <a href="{{$cartpage_banner_section->banner_one->banner_url}}">--}}
+{{--                                <img class="img-gluid" src="{{asset($cartpage_banner_section->banner_one->banner_image)}}" alt="">--}}
+{{--                            </a>--}}
+{{--                            @endif--}}
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
                     <div class="wsus__single_banner_content single_banner_2">
-                            @if ($cartpage_banner_section->banner_two->status == 1)
-                            <a href="{{$cartpage_banner_section->banner_two->banner_url}}">
-                                <img class="img-gluid" src="{{asset($cartpage_banner_section->banner_two->banner_image)}}" alt="">
-                            </a>
-                            @endif
+{{--                            @if ($cartpage_banner_section->banner_two->status == 1)--}}
+{{--                            <a href="{{$cartpage_banner_section->banner_two->banner_url}}">--}}
+{{--                                <img class="img-gluid" src="{{asset($cartpage_banner_section->banner_two->banner_image)}}" alt="">--}}
+{{--                            </a>--}}
+{{--                            @endif--}}
                     </div>
                 </div>
             </div>

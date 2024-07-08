@@ -10,7 +10,7 @@
             <div class="col-xl-2 col-7 col-md-8 col-lg-2">
                 <div class="wsus_logo_area">
                     <a class="wsus__header_logo" href="{{url('/')}}">
-                        <img src="{{asset($logoSetting->logo)}}" alt="logo" class="img-fluid w-100">
+{{--                        <img src="{{asset($logoSetting->logo)}}" alt="logo" class="img-fluid w-100">--}}
                     </a>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     <ul class="wsus__icon_area">
                         <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist_count">
                             @if (auth()->check())
-                            {{\App\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
+                            {{\Ecommerce\Frontend\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
                             @else
                             0
                             @endif
@@ -77,7 +77,7 @@
             <h5>sub total <span id="mini_cart_subtotal">{{$settings->currency_icon}}{{getCartTotal()}}</span></h5>
             <div class="wsus__minicart_btn_area">
                 <a class="common_btn" href="{{route('cart-details')}}">view cart</a>
-                <a class="common_btn" href="{{route('user.checkout')}}">checkout</a>
+{{--                <a class="common_btn" href="{{route('user.checkout')}}">checkout</a>--}}
             </div>
         </div>
     </div>

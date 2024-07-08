@@ -15,7 +15,7 @@ aria-labelledby="v-pills-home-tab">
     </div>
 </div>
 @php
-    $stripeSetting = \App\Models\StripeSetting::first();
+    $stripeSetting = \Ecommerce\Backend\Controllers\Admin\Stripe\Models\StripeSetting::first();
 @endphp
 @push('scripts')
 <script src="https://js.stripe.com/v3/"></script>

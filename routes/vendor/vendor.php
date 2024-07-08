@@ -30,57 +30,59 @@ Route::get('dashboard',[
    /** Middleware & Prefix added to RouteServiceProvider */
     ->name('dashboard');
 
-Route::get('profile' , [
-    VendorProfileController::class ,
+Route::get('profile', [
+    VendorProfileController::class,
     'index'
 ])
     ->name('profile');
 
-Route::put('profile' , [
-    VendorProfileController::class ,
+Route::put('profile', [
+    VendorProfileController::class,
     'updateProfile'
 ])
-    ->name('profile.update');
+    ->name('profile.update'); // vendor.profile.update
 
-Route::post('profile' , [
-    VendorProfileController::class ,
+Route::post('profile', [
+    VendorProfileController::class,
     'updatePassword'
 ])
-    ->name('profile.update.password');
+    ->name('profile.update.password'); // vendor.profile.update.password
 
-/** Vendor Shop Profile  */
+/** Message Route */
+//Route::get('messages', [VendorMessageController::class, 'index'])->name('messages.index');
+//Route::post('send-message', [VendorMessageController::class, 'sendMessage'])->name('send-message');
+//Route::get('get-messages', [VendorMessageController::class, 'getMessages'])->name('get-messages');
 
-Route::resource('shop-profile',VendorShopProfileController::class);
+/** Vendor shop profile  */
+Route::resource('shop-profile', VendorShopProfileController::class);
 
-/** Vendor Product Routes */
-
+/** Product Routes */
 Route::get('product/get-subcategories', [
-    VendorProductController::class ,
+    VendorProductController::class,
     'getSubCategories'
 ])
     ->name('product.get-subcategories');
 
 Route::get('product/get-child-categories', [
-    VendorProductController::class ,
+    VendorProductController::class,
     'getChildCategories'
 ])
     ->name('product.get-child-categories');
 
 Route::put('product/change-status', [
-    VendorProductController::class ,
+    VendorProductController::class,
     'changeStatus'
 ])
-     ->name('product.change-status');
+    ->name('product.change-status');
 
-Route::resource('products',VendorProductController::class);
+Route::resource('products', VendorProductController::class);
 
 /** Products image gallery route */
 Route::resource('products-image-gallery', VendorProductImageGalleryController::class);
 
 /** Products variant route */
-
 Route::put('products-variant/change-status', [
-    VendorProductVariantController::class ,
+    VendorProductVariantController::class,
     'changeStatus'
 ])
     ->name('products-variant.change-status');
@@ -89,7 +91,7 @@ Route::resource('products-variant', VendorProductVariantController::class);
 
 /** Products variant item route */
 Route::get('products-variant-item/{productId}/{variantId}', [
-    VendorProductVariantItemController::class ,
+    VendorProductVariantItemController::class,
     'index'
 ])
     ->name('products-variant-item.index');
@@ -131,7 +133,6 @@ Route::put('products-variant-item-status', [
     ->name('products-variant-item.chages-status');
 
 /** Orders route */
-
 Route::get('orders', [
     VendorOrderController::class,
     'index'
@@ -151,10 +152,13 @@ Route::get('orders/status/{id}', [
     ->name('orders.status');
 
 /** Reviews route */
-
 Route::get('reviews', [
     VendorProductReviewController::class,
     'index'
 ])
     ->name('reviews.index');
 
+/** Withdraw route */
+//Route::get('withdraw-request/{id}', [VendorWithdrawController::class, 'showRequest'])->name('withdraw-request.show');
+//
+//Route::resource('withdraw', VendorWithdrawController::class);

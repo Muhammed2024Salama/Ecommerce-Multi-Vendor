@@ -150,7 +150,7 @@
                                             <select name="status" id="" class="form-control">
                                                 @foreach (config('order_status.order_status_vendor') as $key => $status)
                                                     <option {{ $key === $order->order_status ? 'selected' : '' }}
-                                                        value="{{ $key }}">{{ $status['status'] }}</option>
+                                                            value="{{ $key }}">{{ $status['status'] }}</option>
                                                 @endforeach
                                             </select>
                                             <button class="btn btn-primary mt-3" type="submit">Save</button>

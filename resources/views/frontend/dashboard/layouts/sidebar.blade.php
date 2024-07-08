@@ -4,16 +4,16 @@
       <i class="far fa-bars dash_bar"></i>
       <i class="far fa-times dash_close"></i>
     </span>
-    <a href="javascript:;" class="dash_logo"><img src="{{asset($logoSetting->logo)}}" alt="logo" class="img-fluid"></a>
+{{--    <a href="javascript:;" class="dash_logo"><img src="{{asset($logoSetting->logo)}}" alt="logo" class="img-fluid"></a>--}}
     <ul class="dashboard_link">
       <li><a class="{{setActive(['user.dashboard'])}}" href="{{route('user.dashboard')}}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
 
-      <li><a class="{{setActive(['user.messages.index'])}}" href="{{route('user.messages.index')}}"><i class="fas fa-tachometer"></i>Messages</a></li>
+{{--      <li><a class="{{setActive(['user.messages.index'])}}" href="{{route('user.messages.index')}}"><i class="fas fa-tachometer"></i>Messages</a></li>--}}
 
       <li><a class="" href="{{url('/')}}"><i class="fas fa-home"></i>Go To Home Page</a></li>
 
       @if (auth()->user()->role === 'vendor')
-      <li><a class="{{setActive(['vendor.dashbaord'])}}" href="{{route('vendor.dashbaord')}}"><i class="fas fa-tachometer"></i>Go to Vendor Dashboard</a></li>
+      <li><a class="{{setActive(['vendor.dashboard'])}}" href="{{route('vendor.dashboard')}}"><i class="fas fa-tachometer"></i>Go to Vendor Dashboard</a></li>
       @endif
 
 
@@ -27,6 +27,7 @@
       @endif
       <li>
 
+        {{-- Logout Authentications --}}
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="{{route('logout')}}" onclick="event.preventDefault();

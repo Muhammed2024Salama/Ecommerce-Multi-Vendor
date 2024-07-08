@@ -1,11 +1,11 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{$settings->site_name}} || About
+    {{$settings->site_name}} || About
 @endsection
 
 @section('content')
-       <!--============================
+    <!--============================
         BREADCRUMB START
     ==============================-->
     <section id="wsus__breadcrumb">
@@ -58,50 +58,50 @@
                             </ul>
                         </div>
                         @if (count($recentBlogs) != 0)
-                        <div class="wsus__related_post">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <h5>Recent posts</h5>
-                                </div>
-                            </div>
-                            <div class="row blog_det_slider">
-                                @foreach ($recentBlogs as $blogItem)
-                                <div class="col-xl-3">
-                                    <div class="wsus__single_blog wsus__single_blog_2">
-                                        <a class="wsus__blog_img" href="{{route('blog-details', $blogItem->slug)}}">
-                                            <img src="{{asset($blogItem->image)}}" alt="blog" class="img-fluid w-100">
-                                        </a>
-                                        <div class="wsus__blog_text">
-                                            <a class="blog_top red" href="#">{{$blogItem->category->name}}</a>
-                                            <div class="wsus__blog_text_center">
-                                                <a href="{{route('blog-details', $blogItem->slug)}}">{!!limitText($blogItem->title, 45)!!}</a>
-                                                <p class="date">{{date('M D Y', strtotime($blogItem->created_at))}}</p>
-                                            </div>
-                                        </div>
+                            <div class="wsus__related_post">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <h5>Recent posts</h5>
                                     </div>
                                 </div>
-                                @endforeach
+                                <div class="row blog_det_slider">
+                                    @foreach ($recentBlogs as $blogItem)
+                                        <div class="col-xl-3">
+                                            <div class="wsus__single_blog wsus__single_blog_2">
+                                                <a class="wsus__blog_img" href="{{route('blog-details', $blogItem->slug)}}">
+                                                    <img src="{{asset($blogItem->image)}}" alt="blog" class="img-fluid w-100">
+                                                </a>
+                                                <div class="wsus__blog_text">
+                                                    <a class="blog_top red" href="#">{{$blogItem->category->name}}</a>
+                                                    <div class="wsus__blog_text_center">
+                                                        <a href="{{route('blog-details', $blogItem->slug)}}">{!!limitText($blogItem->title, 45)!!}</a>
+                                                        <p class="date">{{date('M D Y', strtotime($blogItem->created_at))}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
 
+                                </div>
                             </div>
-                        </div>
                         @endif
                         <div class="wsus__comment_area">
                             <h4>comment <span>{{count($comments)}}</span></h4>
                             @foreach ($comments as $comment)
 
-                            <div class="wsus__main_comment">
-                                <div class="wsus__comment_img">
-                                    <img style="width: 80px;height: 80px;object-fit: contain;" src="{{asset($comment->user->image)}}" alt="user" class="img-fluid w-100">
-                                </div>
-                                <div class="wsus__comment_text replay">
-                                    <h6>{{$comment->user->name}} <span>{{date('d M Y', strtotime($comment->created_at))}}</span></h6>
-                                    <p>{{$comment->comment}}</p>
+                                <div class="wsus__main_comment">
+                                    <div class="wsus__comment_img">
+                                        <img style="width: 80px;height: 80px;object-fit: contain;" src="{{asset($comment->user->image)}}" alt="user" class="img-fluid w-100">
+                                    </div>
+                                    <div class="wsus__comment_text replay">
+                                        <h6>{{$comment->user->name}} <span>{{date('d M Y', strtotime($comment->created_at))}}</span></h6>
+                                        <p>{{$comment->comment}}</p>
 
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
                             @if (count($comments) === 0)
-                             <i>Be a first one to comment! </i>
+                                <i>Be a first one to comment! </i>
                             @endif
 
                             <div id="pagination">
@@ -115,22 +115,22 @@
                         <div class="wsus__post_comment">
                             <h4>post a comment</h4>
                             @if (auth()->check())
-                            <form action="{{route('user.blog-comment')}}" method="POST">
-                                @csrf
-                                <div class="row">
+                                <form action="{{route('user.blog-comment')}}" method="POST">
+                                    @csrf
+                                    <div class="row">
 
-                                    <div class="col-xl-12">
-                                        <div class="wsus__single_com">
-                                            <textarea rows="5" placeholder="Your Comment" name="comment"></textarea>
-                                            <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                                        <div class="col-xl-12">
+                                            <div class="wsus__single_com">
+                                                <textarea rows="5" placeholder="Your Comment" name="comment"></textarea>
+                                                <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <button class="common_btn" type="submit">post comment</button>
-                            </form>
+                                    <button class="common_btn" type="submit">post comment</button>
+                                </form>
                             @else
-                            <p>Please login to comment on post!</p>
-                            <a class="common_btn" href="{{route('login')}}" >Login</a>
+                                <p>Please login to comment on post!</p>
+                                <a class="common_btn" href="{{route('login')}}" >Login</a>
                             @endif
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                             <h4>Categories</h4>
                             <ul>
                                 @foreach ($categories as $category)
-                                <li><a href="{{route('blog', ['category' => $category->slug])}}">{{$category->name}}</a></li>
+                                    <li><a href="{{route('blog', ['category' => $category->slug])}}">{{$category->name}}</a></li>
                                 @endforeach
 
                             </ul>
@@ -157,15 +157,15 @@
                             <h4>More Posts</h4>
                             @foreach ($moreBlogs as $blog)
 
-                            <div class="wsus__blog_post_single">
-                                <a href="{{route('blog-details', $blog->slug)}}" class="wsus__blog_post_img">
-                                    <img style="height: 71px;" src="{{asset($blog->image)}}" alt="blog" class="imgofluid w-100">
-                                </a>
-                                <div class="wsus__blog_post_text">
-                                    <a href="{{route('blog-details', $blog->slug)}}">{{limitText($blog->title, 35)}}</a>
-                                    <p> <span>{{date('M d Y', strtotime($blog->created_at))}} </span> {{count($blog->comments)}} Comment </p>
+                                <div class="wsus__blog_post_single">
+                                    <a href="{{route('blog-details', $blog->slug)}}" class="wsus__blog_post_img">
+                                        <img style="height: 71px;" src="{{asset($blog->image)}}" alt="blog" class="imgofluid w-100">
+                                    </a>
+                                    <div class="wsus__blog_post_text">
+                                        <a href="{{route('blog-details', $blog->slug)}}">{{limitText($blog->title, 35)}}</a>
+                                        <p> <span>{{date('M d Y', strtotime($blog->created_at))}} </span> {{count($blog->comments)}} Comment </p>
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
 
 

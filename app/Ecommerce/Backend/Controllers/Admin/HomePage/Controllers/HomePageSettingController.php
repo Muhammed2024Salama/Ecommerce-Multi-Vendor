@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class HomePageSettingController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
-     */
     public function index()
     {
         $categories = Category::where('status', 1)->get();
@@ -23,13 +20,9 @@ class HomePageSettingController extends Controller
         return view('admin.home-page-setting.index', compact('categories', 'popularCategorySection', 'sliderSectionOne', 'sliderSectionTwo', 'sliderSectionThree'));
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function updatePopularCategorySection(Request $request)
     {
-        /** Start Validation */
         $request->validate([
             'cat_one' => ['required'],
             'cat_two' => ['required'],
@@ -42,8 +35,6 @@ class HomePageSettingController extends Controller
             'cat_three.required' => 'Category three filed is required',
             'cat_four.required' => 'Category four filed is required',
         ]);
-
-        /** End  Validation */
 
         // dd($request->all());
         $data = [
@@ -83,10 +74,6 @@ class HomePageSettingController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function updateProductSliderSectionOn(Request $request)
     {
         $request->validate([
@@ -116,10 +103,6 @@ class HomePageSettingController extends Controller
 
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function updateProductSliderSectionTwo(Request $request)
     {
         $request->validate([
@@ -148,10 +131,6 @@ class HomePageSettingController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function updateProductSliderSectionThree(Request $request)
     {
         $request->validate([

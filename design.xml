@@ -1,0 +1,192 @@
+<mxfile host="app.diagrams.net">
+    <diagram name="E-commerce Multi-vendor Platform" id="sample-diagram">
+        <mxGraphModel dx="1312" dy="677" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+
+                <!-- Users -->
+                <mxCell id="users" value="Users&#xa;&#xa;id: int&#xa;name: string&#xa;email: string&#xa;password: string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="50" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Vendors -->
+                <mxCell id="vendors" value="Vendors&#xa;&#xa;id: int&#xa;user_id: int&#xa;name: string&#xa;email: string&#xa;address: string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="50" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Products -->
+                <mxCell id="products" value="Products&#xa;&#xa;id: int&#xa;vendor_id: int&#xa;name: string&#xa;description: text&#xa;price: decimal" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="50" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Categories -->
+                <mxCell id="categories" value="Categories&#xa;&#xa;id: int&#xa;name: string&#xa;description: text" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="250" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Sub Categories -->
+                <mxCell id="sub_categories" value="Sub Categories&#xa;&#xa;id: int&#xa;category_id: int&#xa;name: string&#xa;description: text" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="250" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Child Categories -->
+                <mxCell id="child_categories" value="Child Categories&#xa;&#xa;id: int&#xa;sub_category_id: int&#xa;name: string&#xa;description: text" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="250" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Brands -->
+                <mxCell id="brands" value="Brands&#xa;&#xa;id: int&#xa;name: string&#xa;description: text" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="250" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Product Image Galleries -->
+                <mxCell id="product_image_galleries" value="Product Image Galleries&#xa;&#xa;id: int&#xa;product_id: int&#xa;image_url: string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="850" y="250" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Product Variants -->
+                <mxCell id="product_variants" value="Product Variants&#xa;&#xa;id: int&#xa;product_id: int&#xa;variant_name: string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1050" y="250" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Product Variant Items -->
+                <mxCell id="product_variant_items" value="Product Variant Items&#xa;&#xa;id: int&#xa;product_variant_id: int&#xa;variant_item_name: string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1250" y="250" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Orders -->
+                <mxCell id="orders" value="Orders&#xa;&#xa;id: int&#xa;user_id: int&#xa;order_date: date&#xa;status: string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="450" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Order Products -->
+                <mxCell id="order_products" value="Order Products&#xa;&#xa;id: int&#xa;order_id: int&#xa;product_id: int&#xa;quantity: int" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="450" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Transactions -->
+                <mxCell id="transactions" value="Transactions&#xa;&#xa;id: int&#xa;order_id: int&#xa;transaction_date: date&#xa;amount: decimal" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="450" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Flash Sales -->
+                <mxCell id="flash_sales" value="Flash Sales&#xa;&#xa;id: int&#xa;name: string&#xa;start_date: date&#xa;end_date: date" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="450" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Flash Sale Items -->
+                <mxCell id="flash_sale_items" value="Flash Sale Items&#xa;&#xa;id: int&#xa;flash_sale_id: int&#xa;product_id: int&#xa;discount: decimal" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="850" y="450" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Product Reviews -->
+                <mxCell id="product_reviews" value="Product Reviews&#xa;&#xa;id: int&#xa;product_id: int&#xa;user_id: int&#xa;rating: int&#xa;review: text" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1050" y="450" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Product Review Galleries -->
+                <mxCell id="product_review_galleries" value="Product Review Galleries&#xa;&#xa;id: int&#xa;product_review_id: int&#xa;image_url: string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1250" y="450" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Blogs -->
+                <mxCell id="blogs" value="Blogs&#xa;&#xa;id: int&#xa;user_id: int&#xa;title: string&#xa;content: text&#xa;created_at: date" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="650" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Blog Categories -->
+                <mxCell id="blog_categories" value="Blog Categories&#xa;&#xa;id: int&#xa;name: string&#xa;description: text" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="650" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Wishlists -->
+                <mxCell id="wishlists" value="Wishlists&#xa;&#xa;id: int&#xa;user_id: int&#xa;product_id: int" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="650" width="140" height="140" as="geometry" />
+                </mxCell>
+
+                <!-- Relationships -->
+                <mxCell id="rel1" edge="1" parent="1" source="vendors" target="users">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel2" edge="1" parent="1" source="products" target="vendors">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel3" edge="1" parent="1" source="sub_categories" target="categories">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel4" edge="1" parent="1" source="child_categories" target="sub_categories">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel5" edge="1" parent="1" source="products" target="child_categories">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel6" edge="1" parent="1" source="products" target="brands">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel7" edge="1" parent="1" source="product_image_galleries" target="products">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel8" edge="1" parent="1" source="product_variants" target="products">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel9" edge="1" parent="1" source="product_variant_items" target="product_variants">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel10" edge="1" parent="1" source="order_products" target="orders">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel11" edge="1" parent="1" source="order_products" target="products">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel12" edge="1" parent="1" source="transactions" target="orders">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel13" edge="1" parent="1" source="flash_sale_items" target="flash_sales">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel14" edge="1" parent="1" source="flash_sale_items" target="products">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel15" edge="1" parent="1" source="product_reviews" target="products">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel16" edge="1" parent="1" source="product_review_galleries" target="product_reviews">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel17" edge="1" parent="1" source="blogs" target="users">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel18" edge="1" parent="1" source="blogs" target="blog_categories">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel19" edge="1" parent="1" source="wishlists" target="users">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+                <mxCell id="rel20" edge="1" parent="1" source="wishlists" target="products">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

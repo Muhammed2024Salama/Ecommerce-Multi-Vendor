@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{$settings->site_name}} || Flash Sale
+    {{$settings->site_name}} || Flash Sale
 @endsection
 
 @section('content')
@@ -52,7 +52,7 @@
 
                 <div class="row">
                     @php
-                        $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
+                        $products = \Ecommerce\Backend\Controllers\Admin\Product\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
                     ->with(['variants', 'category', 'productImageGalleries'])
                         ->whereIn('id', $flashSaleItems)->get();
                     @endphp
@@ -60,11 +60,11 @@
                         <x-product-card :product="$product" />
                     @endforeach
                 </div>
-                {{-- <div class="mt-5">
-                    @if ($flashSaleItems->hasPages())
-                        {{$flashSaleItems->links()}}
-                    @endif
-                </div> --}}
+{{--                 <div class="mt-5">--}}
+{{--                    @if ($flashSaleItems->hasPages())--}}
+{{--                        {{$flashSaleItems->links()}}--}}
+{{--                    @endif--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>

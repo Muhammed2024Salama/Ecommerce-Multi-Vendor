@@ -1,16 +1,16 @@
 @php
     $footerInfo = Cache::rememberForever('footer_info', function(){
-            return \App\Models\FooterInfo::first();
+            return \Ecommerce\Backend\Controllers\Admin\FooterInfo\Models\FooterInfo::first();
     });
     $footerSocials = Cache::rememberForever('footer_socials', function(){
-        return \App\Models\FooterSocial::where('status', 1)->get();
+        return \Ecommerce\Backend\Controllers\Admin\FooterSocial\Models\FooterSocial::where('status', 1)->get();
     });
     $footerGridTwoLinks = Cache::rememberForever('footer_grid_two', function(){
-        return \App\Models\FooterGridTwo::where('status', 1)->get();
+        return \Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Models\FooterGridTwo::where('status', 1)->get();
     });
-    $footerTitle = \App\Models\FooterTitle::first();
+    $footerTitle = \Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Models\FooterTitle::first();
     $footerGridThreeLinks =Cache::rememberForever('footer_grid_three', function(){
-        return \App\Models\FooterGridThree::where('status', 1)->get();
+        return \Ecommerce\Backend\Controllers\Admin\FooterGridThree\Models\FooterGridThree::where('status', 1)->get();
     });
 @endphp
 <footer class="footer_2">
@@ -21,12 +21,14 @@
                     <a class="wsus__footer_2_logo" href="{{url('/')}}">
                         <img src="{{asset(@$footerInfo->logo)}}" alt="logo">
                     </a>
-                    <a class="action" href="callto:{{@$footerInfo->phone}}"><i class="fas fa-phone-alt"></i>{{@$footerInfo->phone}}</a>
-                    <a class="action" href="mailto:{{@$footerInfo->email}}"><i class="far fa-envelope"></i>{{@$footerInfo->email}}</a>
+                    <a class="action" href="callto:{{@$footerInfo->phone}}"><i
+                            class="fas fa-phone-alt"></i>{{@$footerInfo->phone}}</a>
+                    <a class="action" href="mailto:{{@$footerInfo->email}}"><i
+                            class="far fa-envelope"></i>{{@$footerInfo->email}}</a>
                     <p><i class="fal fa-map-marker-alt"></i> {{@$footerInfo->address}}</p>
                     <ul class="wsus__footer_social">
                         @foreach ($footerSocials as $link)
-                        <li><a class="behance" href="{{$link->url}}"><i class="{{$link->icon}}"></i></a></li>
+                            <li><a class="behance" href="{{$link->url}}"><i class="{{$link->icon}}"></i></a></li>
                         @endforeach
                     </ul>
                 </div>
