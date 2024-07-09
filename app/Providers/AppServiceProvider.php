@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 
+use Ecommerce\Backend\Controllers\Admin\EmailConfiguration\Models\EmailConfiguration;
 use Ecommerce\Backend\Controllers\Admin\LogoSetting\Models\LogoSetting;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Illuminate\Pagination\Paginator;
@@ -31,9 +32,19 @@ class AppServiceProvider extends ServiceProvider
 
         $generalSetting = GeneralSetting::first();
         $logoSetting = LogoSetting::first();
+        $mailSetting = EmailConfiguration::first();
+        //dd($mailSetting);
 
         /** set time zone */
         Config::set('app.timezone', $generalSetting->time_zone);
+        //dd(config('mail.mailers.smtp'));
+        /** Set Mail Config */
+        Config::set('mail.mailers.smtp.host', $mailSetting->host);
+        Config::set('mail.mailers.smtp.port', $mailSetting->port);
+        Config::set('mail.mailers.smtp.encryption', $mailSetting->encryption);
+        Config::set('mail.mailers.smtp.username', $mailSetting->username);
+        Config::set('mail.mailers.smtp.password', $mailSetting->password);
+        //(config('mail'));
 
 
         /** Share variable at all view */

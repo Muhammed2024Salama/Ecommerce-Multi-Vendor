@@ -6,6 +6,8 @@ use App\DataTables\ChildCategoryDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
 use Ecommerce\Backend\Controllers\Admin\ChildCategory\Models\ChildCategory;
+use Ecommerce\Backend\Controllers\Admin\HomePage\Models\HomePageSetting;
+use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -30,8 +32,7 @@ class ChildCategoryController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return mixed
+     * Get sub categories
      */
     public function getSubCategories(Request $request)
     {
@@ -44,17 +45,12 @@ class ChildCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        /** Start Validation */
-
         $request->validate([
             'category' => ['required'],
             'sub_category' => ['required'],
             'name' => ['required', 'max:200', 'unique:child_categories,name'],
             'status' => ['required']
         ]);
-        /** End Validation */
-
 
         $childCategory = new ChildCategory();
 
@@ -87,11 +83,7 @@ class ChildCategoryController extends Controller
         $childCategory = ChildCategory::findOrFail($id);
         $subCategories = SubCategory::where('category_id', $childCategory->category_id)->get();
 
-        return view('admin.child-category.edit', compact(
-            'categories',
-            'childCategory',
-            'subCategories'
-        ));
+        return view('admin.child-category.edit', compact('categories', 'childCategory', 'subCategories'));
     }
 
     /**
@@ -99,7 +91,6 @@ class ChildCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request->all());
         $request->validate([
             'category' => ['required'],
             'sub_category' => ['required'],
@@ -127,15 +118,24 @@ class ChildCategoryController extends Controller
     public function destroy(string $id)
     {
         $childCategory = ChildCategory::findOrFail($id);
+        if(Product::where('child_category_id', $childCategory->id)->count() > 0){
+            return response(['status' => 'error', 'message' => 'This item contain relation can\'t delete it.']);
+        }
+        $homeSettings = HomePageSetting::all();
+
+        foreach($homeSettings as $item){
+            $array = json_decode($item->value, true);
+            $collection = collect($array);
+            if($collection->contains('child_category', $childCategory->id)){
+                return response(['status' => 'error', 'message' => 'This item contain relation can\'t delete it.']);
+            }
+        }
+
         $childCategory->delete();
 
-        return response(['status' => 'success' , 'message' => 'Deleted Successfully !' ]);
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
-     */
     public function changeStatus(Request $request)
     {
         $category = ChildCategory::findOrFail($request->id);

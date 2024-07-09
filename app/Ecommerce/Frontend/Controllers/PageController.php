@@ -44,14 +44,12 @@ class PageController extends Controller
      */
     public function handleContactForm(Request $request)
     {
-        /** Start Validation */
         $request->validate([
             'name' => ['required', 'max:200'],
             'email' => ['required', 'email'],
             'subject' => ['required', 'max:200'],
             'message' => ['required', 'max:1000']
         ]);
-        /** End Validation */
 
         $setting = EmailConfiguration::first();
 

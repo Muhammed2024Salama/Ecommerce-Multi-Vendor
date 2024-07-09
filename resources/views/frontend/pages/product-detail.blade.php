@@ -217,7 +217,7 @@
                                             </div>
                                             <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
                                                 <div class="wsus__pro_det_vendor_text">
-                                                    <h4>{{$product->vendor->user->name}}</h4>
+{{--                                                    <h4>{{$product->vendor->user->name}}</h4>--}}
                                                     <p class="rating">
                                                         @php
                                                             $avgRating = $product->reviews()->avg('rating');
@@ -297,7 +297,7 @@
                                                     @auth
                                                         @php
                                                             $isBrought = false;
-                                                            $orders = \App\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
+                                                            $orders = \Ecommerce\Backend\Controllers\Admin\Order\Models\Order::where(['user_id' => auth()->user()->id, 'order_status' => 'delivered'])->get();
                                                             foreach ($orders as $key => $order) {
                                                                $existItem = $order->orderProducts()->where('product_id', $product->id)->first();
 
@@ -416,7 +416,7 @@
 
                 $.ajax({
                     method: 'POST',
-                    url: '{{ route("user.send-message") }}',
+{{--                    url: '{{ route("user.send-message") }}',--}}
                     data: formData,
                     beforeSend: function () {
                         let html = `<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span> Sending..`
@@ -428,7 +428,7 @@
                     },
                     success: function (response) {
                         $('.message-box').val('');
-                        $('.modal-body').append(`<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`)
+                        {{--$('.modal-body').append(`<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`)--}}
                         toastr.success(response.message);
                     },
                     error: function (xhr, status, error) {
