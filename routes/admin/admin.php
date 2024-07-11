@@ -42,6 +42,8 @@ use Ecommerce\Backend\Controllers\Admin\Transaction\Controllers\TransactionContr
 use Ecommerce\Backend\Controllers\Admin\VendorCondition\Controllers\VendorConditionController;
 use Ecommerce\Backend\Controllers\Admin\VendorList\Controllers\VendorListController;
 use Ecommerce\Backend\Controllers\Admin\VendorRequest\Controllers\VendorRequestController;
+use Ecommerce\Backend\Controllers\Admin\Withdraw\Controllers\WithdrawController;
+use Ecommerce\Backend\Controllers\Admin\WithdrawMehtod\Controllers\WithdrawMethodController;
 use Ecommerce\Backend\Controllers\Vendor\AdminVendorProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -359,13 +361,29 @@ Route::get('transaction', [
 ])
     ->name('transaction');
 
-///** Withdraw method route */
-//Route::resource('withdraw-method', WithdrawMehtodController::class);
-//Route::get('withdraw', [WithdrawController::class, 'index'])->name('withdraw.index');
-//Route::get('withdraw/{id}', [WithdrawController::class, 'show'])->name('withdraw.show');
-//Route::put('withdraw/{id}', [WithdrawController::class, 'update'])->name('withdraw.update');
-//
-///** Message route */
+/** Withdraw method route */
+
+Route::resource('withdraw-method', WithdrawMethodController::class);
+
+Route::get('withdraw', [
+    WithdrawController::class,
+    'index'
+])
+    ->name('withdraw.index');
+
+Route::get('withdraw/{id}', [
+    WithdrawController::class,
+    'show'
+])
+    ->name('withdraw.show');
+
+Route::put('withdraw/{id}', [
+    WithdrawController::class,
+    'update'
+])
+    ->name('withdraw.update');
+
+/** Message route */
 //Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
 //Route::get('get-messages', [MessageController::class, 'getMessages'])->name('get-messages');
 //Route::post('send-message', [MessageController::class, 'sendMessage'])->name('send-message');

@@ -233,10 +233,29 @@ Route::get('wishlist/add-product', [
     ->name('wishlist.store');
 
 Route::group(['middleware' =>['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
-    Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
-    Route::get('profile', [UserProfileController::class, 'index'])->name('profile'); // user.profile
-    Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update'); // user.profile.update
-    Route::post('profile', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
+    Route::get('dashboard', [
+        UserDashboardController::class,
+        'index'
+    ])
+        ->name('dashboard');
+
+    Route::get('profile', [
+        UserProfileController::class,
+        'index'
+    ])
+        ->name('profile'); // user.profile
+
+    Route::put('profile', [
+        UserProfileController::class,
+        'updateProfile'
+    ])
+        ->name('profile.update'); // user.profile.update
+
+    Route::post('profile', [
+        UserProfileController::class,
+        'updatePassword'
+    ])
+        ->name('profile.update.password');
 
 //    /** Message Route */
 //    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');

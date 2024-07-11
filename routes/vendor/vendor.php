@@ -1,7 +1,7 @@
 <?php
 
-use Ecommerce\Backend\Controllers\Vendor\Models\VendorOrderController;
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
+use Ecommerce\Backend\Controllers\Vendor\VendorOrderController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductImageGalleryController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductReviewController;
@@ -9,6 +9,7 @@ use Ecommerce\Backend\Controllers\Vendor\VendorProductVariantController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductVariantItemController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProfileController;
 use Ecommerce\Backend\Controllers\Vendor\VendorShopProfileController;
+use Ecommerce\Backend\Controllers\Vendor\VendorWithdrawController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -159,6 +160,11 @@ Route::get('reviews', [
     ->name('reviews.index');
 
 /** Withdraw route */
-//Route::get('withdraw-request/{id}', [VendorWithdrawController::class, 'showRequest'])->name('withdraw-request.show');
-//
-//Route::resource('withdraw', VendorWithdrawController::class);
+
+Route::get('withdraw-request/{id}', [
+    VendorWithdrawController::class,
+    'showRequest'
+])
+    ->name('withdraw-request.show');
+
+Route::resource('withdraw', VendorWithdrawController::class);

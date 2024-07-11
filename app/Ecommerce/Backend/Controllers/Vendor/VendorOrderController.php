@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Backend\Controllers\Vendor\Models;
+namespace Ecommerce\Backend\Controllers\Vendor;
 
 use App\DataTables\VendorOrderDataTable;
 use App\Http\Controllers\Controller;
