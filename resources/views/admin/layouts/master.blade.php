@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>General Dashboard &mdash; Stisla</title>
 
     <!-- General CSS Files -->
@@ -31,19 +31,19 @@
         <link rel="stylesheet" href="{{asset('Backend/assets/css/rtl.css')}}">
     @endif
 
-{{--    <script>--}}
-{{--        const USER = {--}}
-{{--            id: "{{ auth()->user()->id }}",--}}
-{{--            name: "{{ auth()->user()->nmae }}",--}}
-{{--            image: "{{ asset(auth()->user()->image) }}"--}}
-{{--        }--}}
-{{--        const PUSHER = {--}}
-{{--            key: "{{ $pusherSetting->pusher_key }}",--}}
-{{--            cluster: "{{ $pusherSetting->pusher_cluster }}"--}}
-{{--        }--}}
-{{--    </script>--}}
+    {{--    <script>--}}
+    {{--        const USER = {--}}
+    {{--            id: "{{ auth()->user()->id }}",--}}
+    {{--            name: "{{ auth()->user()->nmae }}",--}}
+    {{--            image: "{{ asset(auth()->user()->image) }}"--}}
+    {{--        }--}}
+    {{--        const PUSHER = {--}}
+    {{--            key: "{{ $pusherSetting->pusher_key }}",--}}
+    {{--            cluster: "{{ $pusherSetting->pusher_cluster }}"--}}
+    {{--        }--}}
+    {{--    </script>--}}
 
-{{--    @vite(['resources/js/app.js', 'resources/js/admin.js'])--}}
+    {{--    @vite(['resources/js/app.js', 'resources/js/admin.js'])--}}
 
 </head>
 
@@ -110,7 +110,7 @@
 <!-- Dynamic Delete alart -->
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         $.ajaxSetup({
             headers: {
@@ -119,7 +119,7 @@
         });
 
 
-        $('body').on('click', '.delete-item', function(event){
+        $('body').on('click', '.delete-item', function (event) {
             event.preventDefault();
 
             let deleteUrl = $(this).attr('href');
@@ -139,16 +139,16 @@
                         type: 'DELETE',
                         url: deleteUrl,
 
-                        success: function(data){
+                        success: function (data) {
 
-                            if(data.status == 'success'){
+                            if (data.status == 'success') {
                                 Swal.fire(
                                     'Deleted!',
                                     data.message,
                                     'success'
                                 )
                                 window.location.reload();
-                            }else if (data.status == 'error'){
+                            } else if (data.status == 'error') {
                                 Swal.fire(
                                     'Cant Delete',
                                     data.message,
@@ -156,7 +156,7 @@
                                 )
                             }
                         },
-                        error: function(xhr, status, error){
+                        error: function (xhr, status, error) {
                             console.log(error);
                         }
                     })

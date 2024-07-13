@@ -7,6 +7,6 @@
 
 </head>
 <body>
-    {{$messageContent}}
+{{$messageContent}}
 </body>
 </html>

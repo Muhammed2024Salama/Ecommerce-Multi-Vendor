@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
     <title>
         @yield('title')
     </title>
@@ -30,127 +30,127 @@
     <link rel="stylesheet" href="{{asset('Frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('Frontend/css/responsive.css')}}">
     @if($settings->layout === 'RTL')
-    <link rel="stylesheet" href="{{asset('Frontend/css/rtl.css')}}">
+        <link rel="stylesheet" href="{{asset('Frontend/css/rtl.css')}}">
     @endif
-{{--    @vite(['resources/js/app.js'])--}}
+        @vite(['resources/js/app.js'])
 </head>
 
 <body>
 
-    <!--============================
-        HEADER START
-    ==============================-->
-        @include('frontend.layouts.header')
-    <!--============================
+<!--============================
+    HEADER START
+==============================-->
+@include('frontend.layouts.header')
+<!--============================
         HEADER END
     ==============================-->
 
 
-    <!--============================
-        MAIN MENU START
-    ==============================-->
-        @include('frontend.layouts.menu')
-    <!--============================
+<!--============================
+    MAIN MENU START
+==============================-->
+@include('frontend.layouts.menu')
+<!--============================
         MAIN MENU END
     ==============================-->
 
 
-    <!--============================
-        Main Content Start
-    ==============================-->
-        @yield('content')
-    <!--============================
+<!--============================
+    Main Content Start
+==============================-->
+@yield('content')
+<!--============================
        Main Content End
     ==============================-->
 
 
-    <section class="product_popup_modal">
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content product-modal-content">
+<section class="product_popup_modal">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content product-modal-content">
 
-                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!--============================
-        FOOTER PART START
-    ==============================-->
-        @include('frontend.layouts.footer')
-    <!--============================
+<!--============================
+    FOOTER PART START
+==============================-->
+@include('frontend.layouts.footer')
+<!--============================
         FOOTER PART END
     ==============================-->
 
 
-    <!--============================
-        SCROLL BUTTON START
-    ==============================-->
-    <div class="wsus__scroll_btn">
-        <i class="fas fa-chevron-up"></i>
-    </div>
-    <!--============================
-        SCROLL BUTTON  END
-    ==============================-->
+<!--============================
+    SCROLL BUTTON START
+==============================-->
+<div class="wsus__scroll_btn">
+    <i class="fas fa-chevron-up"></i>
+</div>
+<!--============================
+    SCROLL BUTTON  END
+==============================-->
 
 
-    <!--jquery library js-->
-    <script src="{{asset('Frontend/js/jquery-3.6.0.min.js')}}"></script>
-    <!--bootstrap js-->
-    <script src="{{asset('Frontend/js/bootstrap.bundle.min.js')}}"></script>
-    <!--font-awesome js-->
-    <script src="{{asset('Frontend/js/Font-Awesome.js')}}"></script>
-    <!--select2 js-->
-    <script src="{{asset('Frontend/js/select2.min.js')}}"></script>
-    <!--slick slider js-->
-    <script src="{{asset('Frontend/js/slick.min.js')}}"></script>
-    <!--simplyCountdown js-->
-    <script src="{{asset('Frontend/js/simplyCountdown.js')}}"></script>
-    <!--product zoomer js-->
-    <script src="{{asset('Frontend/js/jquery.exzoom.js')}}"></script>
-    <!--nice-number js-->
-    <script src="{{asset('Frontend/js/jquery.nice-number.min.js')}}"></script>
-    <!--counter js-->
-    <script src="{{asset('Frontend/js/jquery.waypoints.min.js')}}"></script>
-    <script src="{{asset('Frontend/js/jquery.countup.min.js')}}"></script>
-    <!--add row js-->
-    <script src="{{asset('Frontend/js/add_row_custon.js')}}"></script>
-    <!--multiple-image-video js-->
-    <script src="{{asset('Frontend/js/multiple-image-video.js')}}"></script>
-    <!--sticky sidebar js-->
-    <script src="{{asset('Frontend/js/sticky_sidebar.js')}}"></script>
-    <!--price ranger js-->
-    <script src="{{asset('Frontend/js/ranger_jquery-ui.min.js')}}"></script>
-    <script src="{{asset('Frontend/js/ranger_slider.js')}}"></script>
-    <!--isotope js-->
-    <script src="{{asset('Frontend/js/isotope.pkgd.min.js')}}"></script>
-    <!--venobox js-->
-    <script src="{{asset('Frontend/js/venobox.min.js')}}"></script>
-    <!--Toaster js-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <!--Sweetalert js-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!--classycountdown js-->
-    <script src="{{asset('Frontend/js/jquery.classycountdown.js')}}"></script>
+<!--jquery library js-->
+<script src="{{asset('Frontend/js/jquery-3.6.0.min.js')}}"></script>
+<!--bootstrap js-->
+<script src="{{asset('Frontend/js/bootstrap.bundle.min.js')}}"></script>
+<!--font-awesome js-->
+<script src="{{asset('Frontend/js/Font-Awesome.js')}}"></script>
+<!--select2 js-->
+<script src="{{asset('Frontend/js/select2.min.js')}}"></script>
+<!--slick slider js-->
+<script src="{{asset('Frontend/js/slick.min.js')}}"></script>
+<!--simplyCountdown js-->
+<script src="{{asset('Frontend/js/simplyCountdown.js')}}"></script>
+<!--product zoomer js-->
+<script src="{{asset('Frontend/js/jquery.exzoom.js')}}"></script>
+<!--nice-number js-->
+<script src="{{asset('Frontend/js/jquery.nice-number.min.js')}}"></script>
+<!--counter js-->
+<script src="{{asset('Frontend/js/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('Frontend/js/jquery.countup.min.js')}}"></script>
+<!--add row js-->
+<script src="{{asset('Frontend/js/add_row_custon.js')}}"></script>
+<!--multiple-image-video js-->
+<script src="{{asset('Frontend/js/multiple-image-video.js')}}"></script>
+<!--sticky sidebar js-->
+<script src="{{asset('Frontend/js/sticky_sidebar.js')}}"></script>
+<!--price ranger js-->
+<script src="{{asset('Frontend/js/ranger_jquery-ui.min.js')}}"></script>
+<script src="{{asset('Frontend/js/ranger_slider.js')}}"></script>
+<!--isotope js-->
+<script src="{{asset('Frontend/js/isotope.pkgd.min.js')}}"></script>
+<!--venobox js-->
+<script src="{{asset('Frontend/js/venobox.min.js')}}"></script>
+<!--Toaster js-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!--Sweetalert js-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--classycountdown js-->
+<script src="{{asset('Frontend/js/jquery.classycountdown.js')}}"></script>
 
 
-    <!--main/custom js-->
-    <script src="{{asset('Frontend/js/main.js')}}"></script>
+<!--main/custom js-->
+<script src="{{asset('Frontend/js/main.js')}}"></script>
 
-    <script>
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                toastr.error("{{$error}}")
-            @endforeach
-        @endif
-    </script>
-    <script>
-        $(document).ready(function(){
-            $('.auto_click').click();
-        })
-    </script>
-    @include('frontend.layouts.scripts')
-    @stack('scripts')
+<script>
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+    toastr.error("{{$error}}")
+    @endforeach
+    @endif
+</script>
+<script>
+    $(document).ready(function () {
+        $('.auto_click').click();
+    })
+</script>
+@include('frontend.layouts.scripts')
+@stack('scripts')
 </body>
 
 </html>

@@ -18,7 +18,7 @@
                     ->with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();
             @endphp
             @foreach ($products as $product)
-                <x-product-card :product="$product" />
+                <x-product-card :product="$product"/>
             @endforeach
 
         </div>
@@ -27,13 +27,13 @@
 
 
 @push('scripts')
-<script>
-    $(document).ready(function(){
-        simplyCountdown('.simply-countdown-one', {
-            year: {{date('Y', strtotime($flashSaleDate->end_date))}},
-            month: {{date('m', strtotime($flashSaleDate->end_date))}},
-            day: {{date('d', strtotime($flashSaleDate->end_date))}},
-        });
-    })
-</script>
+    <script>
+        $(document).ready(function () {
+            simplyCountdown('.simply-countdown-one', {
+                year: {{date('Y', strtotime($flashSaleDate->end_date))}},
+                month: {{date('m', strtotime($flashSaleDate->end_date))}},
+                day: {{date('d', strtotime($flashSaleDate->end_date))}},
+            });
+        })
+    </script>
 @endpush

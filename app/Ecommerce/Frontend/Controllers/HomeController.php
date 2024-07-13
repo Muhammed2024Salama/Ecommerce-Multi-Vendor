@@ -43,7 +43,7 @@ class HomeController extends Controller
 
 //        $homepage_secion_banner_one = Adverisement::where('key', 'homepage_secion_banner_one')->first();
 //        $homepage_secion_banner_one = json_decode($homepage_secion_banner_one->value);
-//
+
 //        $homepage_secion_banner_two = Adverisement::where('key', 'homepage_secion_banner_two')->first();
 //        $homepage_secion_banner_two = json_decode($homepage_secion_banner_two?->value);
 //

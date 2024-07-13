@@ -20,7 +20,8 @@
                             <div class="row">
                                 <div class="wsus__dash_pro_area col-md-6">
 
-                                    <form action="{{route('vendor.withdraw.store')}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('vendor.withdraw.store')}}" method="POST"
+                                          enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group wsus__input">
@@ -42,7 +43,6 @@
                                             <label>Account Information</label>
                                             <textarea name="account_info" class="form-control"></textarea>
                                         </div>
-
 
 
                                         <button type="submit" class="btn btn-primary">Create</button>
@@ -68,19 +68,19 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function(){
-            $('#method').on('change', function(e){
+        $(document).ready(function () {
+            $('#method').on('change', function (e) {
                 let id = $(this).val();
                 $.ajax({
                     method: 'GET',
                     url: "{{ route('vendor.withdraw.show', ':id') }}".replace(':id', id),
-                    success: function(response){
+                    success: function (response) {
                         $('.account_info_area').html(`
                     <h3>Payout range: {{ $settings->currency_icon }}${response.minimum_amount} - {{ $settings->currency_icon }}${response.maximum_amount}</h3>
                     <h3>Withdraw charge: ${response.withdraw_charge}%</h3>
                     <p>${response.description}</p>`)
                     },
-                    error: function(error){
+                    error: function (error) {
                         console.log(error);
                     }
                 })

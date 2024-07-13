@@ -59,10 +59,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
 /** Admin Route */
-Route::get('dashboard',[
-    AdminController::class ,
+Route::get('dashboard', [
+    AdminController::class,
     'dashboard'
 ])
     /** Middleware & Prefix added to RouteServiceProvider */
@@ -389,8 +388,6 @@ Route::put('withdraw/{id}', [
 //Route::post('send-message', [MessageController::class, 'sendMessage'])->name('send-message');
 
 
-
-
 /** settings routes */
 Route::get('settings', [
     SettingController::class,
@@ -416,9 +413,7 @@ Route::put('logo-setting-update', [
 ])
     ->name('logo-setting-update');
 
-//Route::put('pusher-setting-update', [SettingController::class, 'pusherSettingUpdate'])->name('pusher-setting-update');
-
-
+Route::put('pusher-setting-update', [SettingController::class, 'pusherSettingUpdate'])->name('pusher-setting-update');
 
 
 /** home page setting route */
@@ -696,7 +691,6 @@ Route::put('footer-grid-three/change-title', [
     ->name('footer-grid-three.change-title');
 
 Route::resource('footer-grid-three', FooterGridThreeController::class);
-
 
 
 /** Payment settings routes */

@@ -57,14 +57,14 @@
                         ->whereIn('id', $flashSaleItems)->get();
                     @endphp
                     @foreach ($products as $product)
-                        <x-product-card :product="$product" />
+                        <x-product-card :product="$product"/>
                     @endforeach
                 </div>
-{{--                 <div class="mt-5">--}}
+                <div class="mt-5">
 {{--                    @if ($flashSaleItems->hasPages())--}}
 {{--                        {{$flashSaleItems->links()}}--}}
 {{--                    @endif--}}
-{{--                </div>--}}
+                </div>
             </div>
         </div>
     </section>
@@ -75,13 +75,13 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function(){
-        simplyCountdown('.simply-countdown-one', {
-            year: {{date('Y', strtotime($flashSaleDate->end_date))}},
-            month: {{date('m', strtotime($flashSaleDate->end_date))}},
-            day: {{date('d', strtotime($flashSaleDate->end_date))}},
-        });
-    })
-</script>
+    <script>
+        $(document).ready(function () {
+            simplyCountdown('.simply-countdown-one', {
+                year: {{date('Y', strtotime($flashSaleDate->end_date))}},
+                month: {{date('m', strtotime($flashSaleDate->end_date))}},
+                day: {{date('d', strtotime($flashSaleDate->end_date))}},
+            });
+        })
+    </script>
 @endpush

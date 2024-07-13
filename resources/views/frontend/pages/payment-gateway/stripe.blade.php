@@ -1,5 +1,5 @@
 <div class="tab-pane fade show" id="v-pills-stripe" role="tabpanel"
-aria-labelledby="v-pills-home-tab">
+     aria-labelledby="v-pills-home-tab">
     <div class="row">
         <div class="col-xl-12 m-auto">
             <div class="wsus__payment_area">
@@ -8,7 +8,9 @@ aria-labelledby="v-pills-home-tab">
                     <input type="hidden" name="stripe_token" id="stripe-token-id">
                     <div id="card-element" class="form-control"></div>
                     <br>
-                    <button class="nav-link common_btn" id="pay-btn" onclick="createToken()" type="button">Pay with Stripe</button>
+                    <button class="nav-link common_btn" id="pay-btn" onclick="createToken()" type="button">Pay with
+                        Stripe
+                    </button>
                 </form>
             </div>
         </div>
@@ -18,29 +20,29 @@ aria-labelledby="v-pills-home-tab">
     $stripeSetting = \Ecommerce\Backend\Controllers\Admin\Stripe\Models\StripeSetting::first();
 @endphp
 @push('scripts')
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-    var stripe = Stripe("{{$stripeSetting->client_id}}");
-    var elements = stripe.elements();
-    var cardElement = elements.create('card');
-    cardElement.mount('#card-element');
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe("{{$stripeSetting->client_id}}");
+        var elements = stripe.elements();
+        var cardElement = elements.create('card');
+        cardElement.mount('#card-element');
 
-    function createToken() {
+        function createToken() {
             document.getElementById("pay-btn").disabled = true;
-            stripe.createToken(cardElement).then(function(result) {
+            stripe.createToken(cardElement).then(function (result) {
 
 
-                if(typeof result.error != 'undefined') {
+                if (typeof result.error != 'undefined') {
                     document.getElementById("pay-btn").disabled = false;
                     alert(result.error.message);
                 }
 
                 // creating token success
-                if(typeof result.token != 'undefined') {
+                if (typeof result.token != 'undefined') {
                     document.getElementById("stripe-token-id").value = result.token.id;
                     document.getElementById('checkout-form').submit();
                 }
             });
-    }
-</script>
+        }
+    </script>
 @endpush

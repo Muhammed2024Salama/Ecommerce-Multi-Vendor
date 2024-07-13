@@ -38,26 +38,31 @@
                     <div class="col-xl-3 col-lg-3">
                         <div class="wsus__payment_menu" id="sticky_sidebar">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                aria-orientation="vertical">
+                                 aria-orientation="vertical">
                                 {{-- <button class="nav-link common_btn active" id="v-pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
                                     aria-selected="true">card payment</button> --}}
 
                                 <button class="nav-link common_btn active" id="v-pills-home-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-paypal" type="button" role="tab" aria-controls="v-pills-paypal"
-                                aria-selected="true">Paypal</button>
+                                        data-bs-target="#v-pills-paypal" type="button" role="tab"
+                                        aria-controls="v-pills-paypal"
+                                        aria-selected="true">Paypal
+                                </button>
 
                                 <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-stripe" type="button" role="tab"
-                                    aria-controls="v-pills-stripe" aria-selected="false">Stripe</button>
+                                        data-bs-target="#v-pills-stripe" type="button" role="tab"
+                                        aria-controls="v-pills-stripe" aria-selected="false">Stripe
+                                </button>
 
                                 <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-razorpay" type="button" role="tab"
-                                aria-controls="v-pills-stripe" aria-selected="false">RazorPay</button>
+                                        data-bs-target="#v-pills-razorpay" type="button" role="tab"
+                                        aria-controls="v-pills-stripe" aria-selected="false">RazorPay
+                                </button>
 
                                 <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-cod" type="button" role="tab"
-                                aria-controls="v-pills-stripe" aria-selected="false">COD</button>
+                                        data-bs-target="#v-pills-cod" type="button" role="tab"
+                                        aria-controls="v-pills-stripe" aria-selected="false">COD
+                                </button>
 
 
                             </div>
@@ -68,11 +73,12 @@
 
 
                             <div class="tab-pane fade show active" id="v-pills-paypal" role="tabpanel"
-                            aria-labelledby="v-pills-home-tab">
+                                 aria-labelledby="v-pills-home-tab">
                                 <div class="row">
                                     <div class="col-xl-12 m-auto">
                                         <div class="wsus__payment_area">
-                                            <a class="nav-link common_btn text-center" href="{{route('user.paypal.payment')}}">Pay with Paypal</a>
+                                            <a class="nav-link common_btn text-center"
+                                               href="{{route('user.paypal.payment')}}">Pay with Paypal</a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +89,6 @@
                             @include('frontend.pages.payment-gateway.razorpay')
 
                             @include('frontend.pages.payment-gateway.cod')
-
 
 
                         </div>

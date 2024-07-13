@@ -92,35 +92,35 @@
                                                             </th>
                                                         </tr>
                                                         @foreach ($order->orderProducts as $product)
-                                                                @php
-                                                                    $variants = json_decode($product->variants);
-                                                                @endphp
-                                                                <tr>
-                                                                    <td class="name">
-                                                                        <p>{{ $product->product_name }}</p>
-                                                                        @foreach ($variants as $key => $item)
-                                                                            <span>{{ $key }} :
+                                                            @php
+                                                                $variants = json_decode($product->variants);
+                                                            @endphp
+                                                            <tr>
+                                                                <td class="name">
+                                                                    <p>{{ $product->product_name }}</p>
+                                                                    @foreach ($variants as $key => $item)
+                                                                        <span>{{ $key }} :
                                                                                 {{ $item->name }}(
                                                                                 {{ $settings->currency_icon }}{{ $item->price }}
                                                                                 )</span>
-                                                                        @endforeach
-                                                                    </td>
-                                                                    <td class="amount">
-                                                                        {{ $product->vendor->shop_name }}
-                                                                    </td>
-                                                                    <td class="amount">
-                                                                        {{ $settings->currency_icon }}
-                                                                        {{ $product->unit_price }}
-                                                                    </td>
+                                                                    @endforeach
+                                                                </td>
+                                                                <td class="amount">
+                                                                    {{ $product->vendor->shop_name }}
+                                                                </td>
+                                                                <td class="amount">
+                                                                    {{ $settings->currency_icon }}
+                                                                    {{ $product->unit_price }}
+                                                                </td>
 
-                                                                    <td class="quentity">
-                                                                        {{ $product->qty }}
-                                                                    </td>
-                                                                    <td class="total">
-                                                                        {{ $settings->currency_icon }}
-                                                                        {{ $product->unit_price * $product->qty }}
-                                                                    </td>
-                                                                </tr>
+                                                                <td class="quentity">
+                                                                    {{ $product->qty }}
+                                                                </td>
+                                                                <td class="total">
+                                                                    {{ $settings->currency_icon }}
+                                                                    {{ $product->unit_price * $product->qty }}
+                                                                </td>
+                                                            </tr>
 
                                                         @endforeach
 
@@ -130,10 +130,18 @@
                                         </div>
                                         <div class="wsus__invoice_footer">
 
-                                            <p><span>Sub Total:</span> {{ @$settings->currency_icon }} {{@$order->sub_total}}</p>
-                                            <p><span>Shipping Fee(+):</span>{{ @$settings->currency_icon }} {{@$shipping->cost}} </p>
-                                            <p><span>Coupon(-):</span>{{ @$settings->currency_icon }} {{@$coupon->discount ? $coupon->discount : 0}}</p>
-                                            <p><span>Total Amount :</span>{{ @$settings->currency_icon }} {{@$order->amount}}</p>
+                                            <p>
+                                                <span>Sub Total:</span> {{ @$settings->currency_icon }} {{@$order->sub_total}}
+                                            </p>
+                                            <p>
+                                                <span>Shipping Fee(+):</span>{{ @$settings->currency_icon }} {{@$shipping->cost}}
+                                            </p>
+                                            <p>
+                                                <span>Coupon(-):</span>{{ @$settings->currency_icon }} {{@$coupon->discount ? $coupon->discount : 0}}
+                                            </p>
+                                            <p>
+                                                <span>Total Amount :</span>{{ @$settings->currency_icon }} {{@$order->amount}}
+                                            </p>
 
 
                                         </div>
@@ -143,11 +151,11 @@
                             <!--============================
                             INVOICE PAGE END
                         ==============================-->
-                        <div class="col">
-                            <div class="mt-2 float-end">
-                                <button class="btn btn-warning print_invoice">print</button>
+                            <div class="col">
+                                <div class="mt-2 float-end">
+                                    <button class="btn btn-warning print_invoice">print</button>
+                                </div>
                             </div>
-                        </div>
                         </div>
 
                     </div>
@@ -162,7 +170,7 @@
 
 @push('scripts')
     <script>
-        $('.print_invoice').on('click', function() {
+        $('.print_invoice').on('click', function () {
             let printBody = $('.invoice-print');
             let originalContents = $('body').html();
 

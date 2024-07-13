@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    <p>Click the link for verify your email.</p>
-    <a href="{{route('newsletter-verify', $subscriber->verified_token)}}">Click here</a>
+<p>Click the link for verify your email.</p>
+<a href="{{route('newsletter-verify', $subscriber->verified_token)}}">Click here</a>
 </body>
 </html>

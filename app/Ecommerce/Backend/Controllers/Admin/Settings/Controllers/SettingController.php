@@ -5,6 +5,7 @@ namespace Ecommerce\Backend\Controllers\Admin\Settings\Controllers;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\EmailConfiguration\Models\EmailConfiguration;
 use Ecommerce\Backend\Controllers\Admin\LogoSetting\Models\LogoSetting;
+use Ecommerce\Backend\Controllers\Admin\Pusher\Models\PusherSetting;
 use Ecommerce\Backend\Controllers\Admin\Settings\Models\GeneralSetting;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\RedirectResponse;
@@ -22,8 +23,8 @@ class SettingController extends Controller
         $generalSettings = GeneralSetting::first();
         $emailSettings = EmailConfiguration::first();
         $logoSetting = LogoSetting::first();
-//        $pusherSetting = PusherSetting::first();
-        return view('admin.setting.index', compact('generalSettings', 'emailSettings', 'logoSetting'));
+        $pusherSetting = PusherSetting::first();
+        return view('admin.setting.index', compact('generalSettings', 'emailSettings', 'logoSetting', 'pusherSetting'));
     }
 
     /**
@@ -133,21 +134,23 @@ class SettingController extends Controller
 
 
     /** Pusher settings update */
-//    function pusherSettingUpdate(Request $request) : RedirectResponse {
-//        $validatedData = $request->validate([
-//            'pusher_app_id' => ['required'],
-//            'pusher_key' => ['required'],
-//            'pusher_secret' => ['required'],
-//            'pusher_cluster' => ['required'],
-//        ]);
-//
-//        PusherSetting::updateOrCreate(
-//            ['id' => 1],
-//            $validatedData
-//        );
-//
-//        toastr('Updated successfully!', 'success', 'success');
-//        return redirect()->back();
-//
-//    }
+    function pusherSettingUpdate(Request $request) : RedirectResponse {
+        /** Start Validate Data */
+        $validatedData = $request->validate([
+            'pusher_app_id' => ['required'],
+            'pusher_key' => ['required'],
+            'pusher_secret' => ['required'],
+            'pusher_cluster' => ['required'],
+        ]);
+        /** End Validate Data */
+
+        PusherSetting::updateOrCreate(
+            ['id' => 1],
+            $validatedData
+        );
+
+        toastr('Updated successfully!', 'success', 'success');
+        return redirect()->back();
+
+    }
 }

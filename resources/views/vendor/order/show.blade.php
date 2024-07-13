@@ -177,7 +177,7 @@
 
 @push('scripts')
     <script>
-        $('.print_invoice').on('click', function() {
+        $('.print_invoice').on('click', function () {
             let printBody = $('.invoice-print');
             let originalContents = $('body').html();
 

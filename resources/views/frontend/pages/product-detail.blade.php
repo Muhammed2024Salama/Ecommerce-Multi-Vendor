@@ -217,7 +217,7 @@
                                             </div>
                                             <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
                                                 <div class="wsus__pro_det_vendor_text">
-{{--                                                    <h4>{{$product->vendor->user->name}}</h4>--}}
+                                                    <h4>{{$product->vendor->user->name}}</h4>
                                                     <p class="rating">
                                                         @php
                                                             $avgRating = $product->reviews()->avg('rating');
@@ -416,7 +416,7 @@
 
                 $.ajax({
                     method: 'POST',
-{{--                    url: '{{ route("user.send-message") }}',--}}
+                    url: '{{ route("user.send-message") }}',
                     data: formData,
                     beforeSend: function () {
                         let html = `<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span> Sending..`

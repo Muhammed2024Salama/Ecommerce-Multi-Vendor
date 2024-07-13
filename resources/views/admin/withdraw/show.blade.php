@@ -16,7 +16,7 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td><b>Withdraw Mehtod</b></td>
+                                <td><b>Withdraw Method</b></td>
                                 <td>{{ $request->method }}</td>
                             </tr>
                             <tr>

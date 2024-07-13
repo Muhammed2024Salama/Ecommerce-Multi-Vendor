@@ -1,4 +1,3 @@
-
 <header>
     <div class="container">
         <div class="row">
@@ -34,16 +33,18 @@
                         </div>
                     </div>
                     <ul class="wsus__icon_area">
-                        <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist_count">
+                        <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span
+                                    id="wishlist_count">
                             @if (auth()->check())
-                            {{\Ecommerce\Frontend\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
-                            @else
-                            0
-                            @endif
+                                        {{\Ecommerce\Frontend\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
+                                    @else
+                                        0
+                                    @endif
                         </span></a></li>
                         {{-- <li><a href="compare.html"><i class="fal fa-random"></i><span>03</span></a></li> --}}
                         <li><a class="wsus__cart_icon" href="#"><i
-                                    class="fal fa-shopping-bag"></i><span id="cart-count">{{Cart::content()->count()}}</span></a></li>
+                                    class="fal fa-shopping-bag"></i><span
+                                    id="cart-count">{{Cart::content()->count()}}</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -55,15 +56,19 @@
             @foreach (Cart::content() as $sidebarProduct)
                 <li id="mini_cart_{{$sidebarProduct->rowId}}">
                     <div class="wsus__cart_img">
-                        <a href="#"><img src="{{asset($sidebarProduct->options->image)}}" alt="product" class="img-fluid w-100"></a>
-                        <a class="wsis__del_icon remove_sidebar_product" data-id="{{$sidebarProduct->rowId}}" href="#" ><i class="fas fa-minus-circle"></i></a>
+                        <a href="#"><img src="{{asset($sidebarProduct->options->image)}}" alt="product"
+                                         class="img-fluid w-100"></a>
+                        <a class="wsis__del_icon remove_sidebar_product" data-id="{{$sidebarProduct->rowId}}"
+                           href="#"><i class="fas fa-minus-circle"></i></a>
                     </div>
                     <div class="wsus__cart_text">
-                        <a class="wsus__cart_title" href="{{route('product-detail', $sidebarProduct->options->slug)}}">{{$sidebarProduct->name}}</a>
+                        <a class="wsus__cart_title"
+                           href="{{route('product-detail', $sidebarProduct->options->slug)}}">{{$sidebarProduct->name}}</a>
                         <p>
                             {{$settings->currency_icon}}{{$sidebarProduct->price}}
                         </p>
-                        <small>Variants total: {{$settings->currency_icon}}{{$sidebarProduct->options->variants_total}}</small>
+                        <small>Variants
+                            total: {{$settings->currency_icon}}{{$sidebarProduct->options->variants_total}}</small>
                         <br>
                         <small>Qty: {{$sidebarProduct->qty}}</small>
                     </div>

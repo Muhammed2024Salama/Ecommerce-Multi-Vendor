@@ -7,12 +7,12 @@
 
 </head>
 <body>
-    Hi, {{$name}}
-    <br>
-    Here is your login credentials:
-    <br>
-    Email: {{$email}}
-    <br>
-    Passwrod: {{$password}}
+Hi, {{$name}}
+<br>
+Here is your login credentials:
+<br>
+Email: {{$email}}
+<br>
+Passwrod: {{$password}}
 </body>
 </html>

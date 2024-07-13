@@ -21,31 +21,37 @@
                         {{-- <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li> --}}
 
                         @foreach ($categories as $category)
-                        <li><a class="{{count($category->subCategories) > 0 ? 'wsus__droap_arrow' : ''}}" href="{{route('products.index', ['category' => $category->slug])}}"><i class="{{$category->icon}}"></i> {{$category->name}} </a>
-                            @if(count($category->subCategories) > 0)
-                                <ul class="wsus_menu_cat_droapdown">
-                                    @foreach ($category->subCategories as $subCategory)
-                                        <li><a href="{{route('products.index', ['subcategory' => $subCategory->slug])}}">{{$subCategory->name}} <i class="{{count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : ''}}"></i></a>
-                                            @if(count($subCategory->childCategories) > 0)
-                                            <ul class="wsus__sub_category">
-                                                @foreach ($subCategory->childCategories as $childCategory)
-                                                    <li><a href="{{route('products.index', ['childcategory' => $childCategory->slug])}}">{{$childCategory->name}}</a> </li>
-                                                @endforeach
-                                            </ul>
-                                            @endif
-                                        </li>
-                                    @endforeach
+                            <li><a class="{{count($category->subCategories) > 0 ? 'wsus__droap_arrow' : ''}}"
+                                   href="{{route('products.index', ['category' => $category->slug])}}"><i
+                                        class="{{$category->icon}}"></i> {{$category->name}} </a>
+                                @if(count($category->subCategories) > 0)
+                                    <ul class="wsus_menu_cat_droapdown">
+                                        @foreach ($category->subCategories as $subCategory)
+                                            <li>
+                                                <a href="{{route('products.index', ['subcategory' => $subCategory->slug])}}">{{$subCategory->name}}
+                                                    <i class="{{count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : ''}}"></i></a>
+                                                @if(count($subCategory->childCategories) > 0)
+                                                    <ul class="wsus__sub_category">
+                                                        @foreach ($subCategory->childCategories as $childCategory)
+                                                            <li>
+                                                                <a href="{{route('products.index', ['childcategory' => $childCategory->slug])}}">{{$childCategory->name}}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
+                                        @endforeach
 
-                                </ul>
-                            @endif
-                        </li>
+                                    </ul>
+                                @endif
+                            </li>
                         @endforeach
 
                         {{-- <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li> --}}
                     </ul>
 
                     <ul class="wsus__menu_item">
-                        <li><a  class="{{setActive(['home'])}}" href="{{url('/')}}">home</a></li>
+                        <li><a class="{{setActive(['home'])}}" href="{{url('/')}}">home</a></li>
 
                         <li><a class="{{setActive(['vendor.index'])}}" href="{{route('vendor.index')}}">vendors</a></li>
                         <li><a class="{{setActive(['flash-sale'])}}" href="{{route('flash-sale')}}">flash Sale</a></li>
@@ -58,17 +64,17 @@
                     <ul class="wsus__menu_item wsus__menu_item_right">
                         <li><a href="{{route('product-traking.index')}}">track order</a></li>
                         @if (auth()->check())
-                        @if (auth()->user()->role === 'user')
-                        <li><a href="{{route('user.dashboard')}}">my account</a></li>
-                        @elseif (auth()->user()->role === 'vendor')
-                        <li><a href="{{route('vendor.dashboard')}}">Vendor Dashboard</a></li>
-                        @elseif (auth()->user()->role === 'admin')
-                        <li><a href="{{route('admin.dashboard')}}">Admin Dashboard</a></li>
+                            @if (auth()->user()->role === 'user')
+                                <li><a href="{{route('user.dashboard')}}">my account</a></li>
+                            @elseif (auth()->user()->role === 'vendor')
+                                <li><a href="{{route('vendor.dashboard')}}">Vendor Dashboard</a></li>
+                            @elseif (auth()->user()->role === 'admin')
+                                <li><a href="{{route('admin.dashboard')}}">Admin Dashboard</a></li>
 
-                        @endif
+                            @endif
                         @else
 
-                        <li><a href="{{route('login')}}">login</a></li>
+                            <li><a href="{{route('login')}}">login</a></li>
                         @endif
                     </ul>
                 </div>
@@ -84,22 +90,22 @@
 
         <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist_count">
             @if (auth()->check())
-            {{\Ecommerce\Frontend\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
-            @else
-            0
-            @endif
+                        {{\Ecommerce\Frontend\Models\Wishlist::where('user_id', auth()->user()->id)->count()}}
+                    @else
+                        0
+                    @endif
         </span></a></li>
 
         @if (auth()->check())
-        @if (auth()->user()->role === 'user')
-        <li><a href="{{route('user.dashboard')}}"><i class="fal fa-user"></i></a></li>
-        @elseif (auth()->user()->role === 'vendor')
-        <li><a href="{{route('vendor.dashboard')}}"><i class="fal fa-user"></i></a></li>
-        @elseif (auth()->user()->role === 'admin')
-        <li><a href="{{route('admin.dashboard')}}"><i class="fal fa-user"></i></a></li>
-        @endif
+            @if (auth()->user()->role === 'user')
+                <li><a href="{{route('user.dashboard')}}"><i class="fal fa-user"></i></a></li>
+            @elseif (auth()->user()->role === 'vendor')
+                <li><a href="{{route('vendor.dashboard')}}"><i class="fal fa-user"></i></a></li>
+            @elseif (auth()->user()->role === 'admin')
+                <li><a href="{{route('admin.dashboard')}}"><i class="fal fa-user"></i></a></li>
+            @endif
         @else
-        <li><a href="{{route('login')}}"><i class="fal fa-user"></i></a></li>
+            <li><a href="{{route('login')}}"><i class="fal fa-user"></i></a></li>
         @endif
 
 
@@ -112,11 +118,13 @@
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                role="tab" aria-controls="pills-home" aria-selected="true">Categories</button>
+                    role="tab" aria-controls="pills-home" aria-selected="true">Categories
+            </button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                role="tab" aria-controls="pills-profile" aria-selected="false">main menu</button>
+                    role="tab" aria-controls="pills-profile" aria-selected="false">main menu
+            </button>
         </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
@@ -125,24 +133,27 @@
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <ul class="wsus_mobile_menu_category">
                         @foreach ($categories as $categoryItem)
-                        <li>
-                            <a href="#" class="{{count($categoryItem->subCategories) > 0 ? 'accordion-button' : ''}} collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseThreew-{{$loop->index}}" aria-expanded="false"
-                                aria-controls="flush-collapseThreew-{{$loop->index}}"><i class="{{$categoryItem->icon}}"></i> {{$categoryItem->name}}</a>
+                            <li>
+                                <a href="#"
+                                   class="{{count($categoryItem->subCategories) > 0 ? 'accordion-button' : ''}} collapsed"
+                                   data-bs-toggle="collapse"
+                                   data-bs-target="#flush-collapseThreew-{{$loop->index}}" aria-expanded="false"
+                                   aria-controls="flush-collapseThreew-{{$loop->index}}"><i
+                                        class="{{$categoryItem->icon}}"></i> {{$categoryItem->name}}</a>
 
-                            @if(count($categoryItem->subCategories) > 0)
-                                <div id="flush-collapseThreew-{{$loop->index}}" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            @foreach ($categoryItem->subCategories as $subCategoryItem)
-                                                <li><a href="#">{{$subCategoryItem->name}}</a></li>
-                                            @endforeach
-                                        </ul>
+                                @if(count($categoryItem->subCategories) > 0)
+                                    <div id="flush-collapseThreew-{{$loop->index}}" class="accordion-collapse collapse"
+                                         data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                @foreach ($categoryItem->subCategories as $subCategoryItem)
+                                                    <li><a href="#">{{$subCategoryItem->name}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
-                        </li>
+                                @endif
+                            </li>
                         @endforeach
 
                     </ul>
@@ -160,7 +171,6 @@
                         <li><a href="{{route('blog')}}">blog</a></li>
                         <li><a href="{{route('about')}}">about us</a></li>
                         <li><a href="{{route('contact')}}">contact</a></li>
-
 
 
                         <li><a href="{{route('product-traking.index')}}">track order</a></li>

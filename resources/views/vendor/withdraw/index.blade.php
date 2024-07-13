@@ -45,7 +45,8 @@
                             </div>
                         </div>
                         <div class="create_button">
-                            <a href="{{route('vendor.withdraw.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Create Request</a>
+                            <a href="{{route('vendor.withdraw.create')}}" class="btn btn-primary"><i
+                                    class="fas fa-plus"></i> Create Request</a>
                         </div>
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">

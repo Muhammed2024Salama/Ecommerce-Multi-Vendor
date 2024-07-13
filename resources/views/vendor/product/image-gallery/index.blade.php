@@ -14,12 +14,14 @@
 
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
-                    <a href="{{route('vendor.products.index')}}" class="btn btn-warning mb-4"><i class="fas fa-long-arrow-left"></i> Back</a>
+                    <a href="{{route('vendor.products.index')}}" class="btn btn-warning mb-4"><i
+                            class="fas fa-long-arrow-left"></i> Back</a>
                     <div class="dashboard_content mt-2 mt-md-0">
                         <h3><i class="fas fa-images"></i> Product: {{$product->name}}</h3>
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">
-                                <form action="{{route('vendor.products-image-gallery.store')}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{route('vendor.products-image-gallery.store')}}" method="POST"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group wsus__input">
                                         <label for="">Image <code>(Multiple image supported!)</code></label>

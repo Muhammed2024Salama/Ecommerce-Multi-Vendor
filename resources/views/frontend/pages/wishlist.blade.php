@@ -40,33 +40,35 @@
                         <div class="table-responsive">
                             <table>
                                 <tbody>
+                                <tr class="d-flex">
+                                    <th class="wsus__pro_img">
+                                        product item
+                                    </th>
+
+                                    <th class="wsus__pro_name" style="width:500px">
+                                        product details
+                                    </th>
+
+                                    <th class="wsus__pro_status">
+                                        quantity
+                                    </th>
+
+                                    <th class="wsus__pro_tk" style="width:238px">
+                                        price
+                                    </th>
+
+                                    <th class="wsus__pro_icon">
+                                        action
+                                    </th>
+                                </tr>
+                                @foreach ($wishlistProducts as $item)
+
                                     <tr class="d-flex">
-                                        <th class="wsus__pro_img">
-                                            product item
-                                        </th>
-
-                                        <th class="wsus__pro_name" style="width:500px">
-                                            product details
-                                        </th>
-
-                                        <th class="wsus__pro_status">
-                                            quantity
-                                        </th>
-
-                                        <th class="wsus__pro_tk" style="width:238px" >
-                                            price
-                                        </th>
-
-                                        <th class="wsus__pro_icon">
-                                            action
-                                        </th>
-                                    </tr>
-                                    @foreach ($wishlistProducts as $item)
-
-                                    <tr class="d-flex">
-                                        <td class="wsus__pro_img"><img src="{{asset($item->product->thumb_image)}}" alt="product"
-                                                class="img-fluid w-100">
-                                            <a href="{{route('user.wishlist.destory', $item->id)}}"><i class="far fa-times"></i></a>
+                                        <td class="wsus__pro_img"><img src="{{asset($item->product->thumb_image)}}"
+                                                                       alt="product"
+                                                                       class="img-fluid w-100">
+                                            <a href="{{route('user.wishlist.destory', $item->id)}}"><i
+                                                    class="far fa-times"></i></a>
                                         </td>
 
                                         <td class="wsus__pro_name" style="width:500px">
@@ -84,11 +86,12 @@
                                         </td>
 
                                         <td class="">
-                                            <a class="common_btn" href="{{route('product-detail', $item->product->slug)}}">View Product</a>
+                                            <a class="common_btn"
+                                               href="{{route('product-detail', $item->product->slug)}}">View Product</a>
                                         </td>
                                     </tr>
 
-                                    @endforeach
+                                @endforeach
 
                                 </tbody>
                             </table>

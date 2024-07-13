@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{$settings->site_name}} || Forgot Password
+    {{$settings->site_name}} || Forgot Password
 @endsection
 
 @section('content')
@@ -45,7 +45,8 @@
                                 @csrf
                                 <div class="wsus__login_input">
                                     <i class="fal fa-envelope"></i>
-                                    <input id="email" type="email" name="email" value="{{old('email')}}" placeholder="Your Email">
+                                    <input id="email" type="email" name="email" value="{{old('email')}}"
+                                           placeholder="Your Email">
                                 </div>
 
                                 <button class="common_btn" type="submit">send</button>

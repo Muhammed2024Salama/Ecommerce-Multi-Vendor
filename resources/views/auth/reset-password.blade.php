@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-{{$settings->site_name}} || Reset Password
+    {{$settings->site_name}} || Reset Password
 @endsection
 
 @section('content')
@@ -41,12 +41,13 @@
 
                         <div class="wsus__change_password">
                             <h4>reset password</h4>
-                                <!-- Password Reset Token -->
-                                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                            <!-- Password Reset Token -->
+                            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                             <div class="wsus__single_pass">
                                 <label>email</label>
-                                <input id="email" type="email" name="email" value="{{old('email', $request->email)}}" placeholder="Email">
+                                <input id="email" type="email" name="email" value="{{old('email', $request->email)}}"
+                                       placeholder="Email">
                             </div>
 
                             <div class="wsus__single_pass">
@@ -58,7 +59,7 @@
                             <div class="wsus__single_pass">
                                 <label>confirm password</label>
                                 <input id="password_confirmation" type="password"
-                                name="password_confirmation" type="text" placeholder="Confirm Password">
+                                       name="password_confirmation" type="text" placeholder="Confirm Password">
                             </div>
 
 

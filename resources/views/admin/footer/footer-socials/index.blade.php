@@ -1,33 +1,34 @@
 @extends('admin.layouts.master')
 
 @section('content')
-      <!-- Main Content -->
-        <section class="section">
-          <div class="section-header">
+    <!-- Main Content -->
+    <section class="section">
+        <div class="section-header">
             <h1>Footer</h1>
-          </div>
+        </div>
 
-          <div class="section-body">
+        <div class="section-body">
 
             <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Footer Socials</h4>
-                    <div class="card-header-action">
-                        <a href="{{route('admin.footer-socials.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Create New</a>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    {{ $dataTable->table() }}
-                  </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Footer Socials</h4>
+                            <div class="card-header-action">
+                                <a href="{{route('admin.footer-socials.create')}}" class="btn btn-primary"><i
+                                        class="fas fa-plus"></i> Create New</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            {{ $dataTable->table() }}
+                        </div>
 
+                    </div>
                 </div>
-              </div>
             </div>
 
-          </div>
-        </section>
+        </div>
+    </section>
 
 @endsection
 
@@ -35,8 +36,8 @@
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
     <script>
-        $(document).ready(function(){
-            $('body').on('click', '.change-status', function(){
+        $(document).ready(function () {
+            $('body').on('click', '.change-status', function () {
                 let isChecked = $(this).is(':checked');
                 let id = $(this).data('id');
 
@@ -47,10 +48,10 @@
                         status: isChecked,
                         id: id
                     },
-                    success: function(data){
+                    success: function (data) {
                         toastr.success(data.message)
                     },
-                    error: function(xhr, status, error){
+                    error: function (xhr, status, error) {
                         console.log(error);
                     }
                 })

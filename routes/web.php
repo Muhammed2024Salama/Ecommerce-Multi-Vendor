@@ -16,6 +16,7 @@ use Ecommerce\Frontend\Controllers\ProductTrackController;
 use Ecommerce\Frontend\Controllers\ReviewController;
 use Ecommerce\Frontend\Controllers\UserAddressController;
 use Ecommerce\Frontend\Controllers\UserDashboardController;
+use Ecommerce\Frontend\Controllers\UserMessageController;
 use Ecommerce\Frontend\Controllers\UserOrderController;
 use Ecommerce\Frontend\Controllers\UserProfileController;
 use Ecommerce\Frontend\Controllers\UserVendorReqeustController;
@@ -42,14 +43,13 @@ Route::get('/', [
     ->name('home');
 
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('flash-sale', [
     FlashSaleController::class,
@@ -232,7 +232,7 @@ Route::get('wishlist/add-product', [
 ])
     ->name('wishlist.store');
 
-Route::group(['middleware' =>['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [
         UserDashboardController::class,
         'index'
@@ -257,10 +257,24 @@ Route::group(['middleware' =>['auth', 'verified'], 'prefix' => 'user', 'as' => '
     ])
         ->name('profile.update.password');
 
-//    /** Message Route */
-//    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
-//    Route::post('send-message', [UserMessageController::class, 'sendMessage'])->name('send-message');
-//    Route::get('get-messages', [UserMessageController::class, 'getMessages'])->name('get-messages');
+    /** Message Route */
+    Route::get('messages', [
+        UserMessageController::class,
+        'index'
+    ])
+        ->name('messages.index');
+
+    Route::post('send-message', [
+        UserMessageController::class,
+        'sendMessage'
+    ])
+        ->name('send-message');
+
+    Route::get('get-messages', [
+        UserMessageController::class,
+        'getMessages'
+    ])
+        ->name('get-messages');
 
     /** User Address Route */
     Route::resource('address', UserAddressController::class);

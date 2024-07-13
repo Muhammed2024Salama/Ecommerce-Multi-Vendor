@@ -1,31 +1,31 @@
 @extends('admin.layouts.master')
 
 @section('content')
-      <!-- Main Content -->
-        <section class="section">
-          <div class="section-header">
+    <!-- Main Content -->
+    <section class="section">
+        <div class="section-header">
             <h1>Blogs Comments</h1>
-          </div>
+        </div>
 
-          <div class="section-body">
+        <div class="section-body">
 
             <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>All Blogs Comments</h4>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>All Blogs Comments</h4>
 
-                  </div>
-                  <div class="card-body">
-                    {{ $dataTable->table() }}
-                  </div>
+                        </div>
+                        <div class="card-body">
+                            {{ $dataTable->table() }}
+                        </div>
 
+                    </div>
                 </div>
-              </div>
             </div>
 
-          </div>
-        </section>
+        </div>
+    </section>
 
 @endsection
 

@@ -1,6 +1,7 @@
 <?php
 
 use Ecommerce\Backend\Controllers\Vendor\VendorController;
+use Ecommerce\Backend\Controllers\Vendor\VendorMessageController;
 use Ecommerce\Backend\Controllers\Vendor\VendorOrderController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductController;
 use Ecommerce\Backend\Controllers\Vendor\VendorProductImageGalleryController;
@@ -24,11 +25,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 /** Vendor Route */
-Route::get('dashboard',[
-    VendorController::class ,
+Route::get('dashboard', [
+    VendorController::class,
     'dashboard'
 ])
-   /** Middleware & Prefix added to RouteServiceProvider */
+    /** Middleware & Prefix added to RouteServiceProvider */
     ->name('dashboard');
 
 Route::get('profile', [
@@ -50,9 +51,24 @@ Route::post('profile', [
     ->name('profile.update.password'); // vendor.profile.update.password
 
 /** Message Route */
-//Route::get('messages', [VendorMessageController::class, 'index'])->name('messages.index');
-//Route::post('send-message', [VendorMessageController::class, 'sendMessage'])->name('send-message');
-//Route::get('get-messages', [VendorMessageController::class, 'getMessages'])->name('get-messages');
+
+Route::get('messages', [
+    VendorMessageController::class,
+    'index'
+])
+    ->name('messages.index');
+
+Route::post('send-message', [
+    VendorMessageController::class,
+    'sendMessage'
+])
+    ->name('send-message');
+
+Route::get('get-messages', [
+    VendorMessageController::class,
+    'getMessages'
+])
+    ->name('get-messages');
 
 /** Vendor shop profile  */
 Route::resource('shop-profile', VendorShopProfileController::class);

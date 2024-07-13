@@ -14,8 +14,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
-    /** Show cart page  */
     /**
+     * Show cart page
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse
      */
     public function cartDetails()
@@ -34,8 +34,8 @@ class CartController extends Controller
         return view('frontend.pages.cart-detail', compact('cartItems', 'cartpage_banner_section'));
     }
 
-    /** Add item to cart */
     /**
+     * Add item to cart
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
      */
@@ -89,8 +89,8 @@ class CartController extends Controller
         return response(['status' => 'success', 'message' => 'Added to cart successfully!']);
     }
 
-    /** Update product quantity */
     /**
+     * Update product quantity
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
      */
@@ -112,8 +112,8 @@ class CartController extends Controller
         return response(['status' => 'success', 'message' => 'Product Quantity Updated!', 'product_total' => $productTotal]);
     }
 
-    /** get product total */
     /**
+     * get product total
      * @param $rowId
      * @return float|int
      */
@@ -124,8 +124,8 @@ class CartController extends Controller
         return $total;
     }
 
-    /** get cart total amount */
     /**
+     * get cart total amount
      * @return float|int
      */
     public function cartTotal()
@@ -138,8 +138,8 @@ class CartController extends Controller
         return $total;
     }
 
-    /** clear all cart products */
     /**
+     * clear all cart products
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
      */
     public function clearCart()
@@ -149,8 +149,8 @@ class CartController extends Controller
         return response(['status' => 'success', 'message' => 'Cart cleared successfully']);
     }
 
-    /** Remove product form cart */
     /**
+     * Remove product form cart
      * @param $rowId
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -161,8 +161,8 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    /** Get cart count */
     /**
+     * Get cart count
      * @return int
      */
     public function getCartCount()
@@ -170,8 +170,8 @@ class CartController extends Controller
         return Cart::content()->count();
     }
 
-    /** Get all cart products */
     /**
+     * Get all cart products
      * @return \Illuminate\Support\Collection
      */
     public function getCartProducts()
@@ -179,8 +179,8 @@ class CartController extends Controller
         return Cart::content();
     }
 
-    /** Remove product form sidebar cart */
     /**
+     * Remove product form sidebar cart
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
      */
@@ -191,7 +191,11 @@ class CartController extends Controller
         return response(['status' => 'success', 'message' => 'Product removed successfully!']);
     }
 
-    /** Apply coupon */
+    /**
+     * Apply coupon
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
+     */
     public function applyCoupon(Request $request)
     {
         if($request->coupon_code === null){
@@ -229,7 +233,10 @@ class CartController extends Controller
         return response(['status' => 'success', 'message' => 'Coupon applied successfully!']);
     }
 
-    /** Calculate coupon discount */
+    /**
+     * Calculate coupon discount
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response|void
+     */
     public function couponCalculation()
     {
         if(Session::has('coupon')){
