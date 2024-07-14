@@ -22,7 +22,7 @@ class BlogController extends Controller
                 ->paginate(12);
         } elseif ($request->has('category')) {
             $category = BlogCategory::where('slug', $request->category)
-                ->where('status',1)->firstOrFail();
+                ->where('status', 1)->firstOrFail();
 
             $blogs = Blog::with('category')->where('category_id', $category->id)
                 ->where('status', 1)->orderBy('id', 'DESC')
@@ -46,7 +46,7 @@ class BlogController extends Controller
 
         $comments = $blog->comments()->paginate(20);
         $categories = BlogCategory::where('status', 1)->get();
-        return view('frontend.pages.blog-detail', compact('blog', 'moreBlogs','recentBlogs', 'comments', 'categories'));
+        return view('frontend.pages.blog-detail', compact('blog', 'moreBlogs', 'recentBlogs', 'comments', 'categories'));
     }
 
     /**

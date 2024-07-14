@@ -24,36 +24,64 @@ class OrderController extends Controller
         return $dataTable->render('admin.order.index');
     }
 
+    /**
+     * @param PendingOrderDataTable $dataTable
+     * @return mixed
+     */
     public function pendingOrders(PendingOrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.pending-order');
     }
 
+    /**
+     * @param processedOrderDataTable $dataTable
+     * @return mixed
+     */
     public function processedOrders(processedOrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.pending-order');
     }
 
+    /**
+     * @param droppedOffOrderDataTable $dataTable
+     * @return mixed
+     */
     public function droppedOfOrders(droppedOffOrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.dropped-off-order');
     }
 
+    /**
+     * @param shippedOrderDataTable $dataTable
+     * @return mixed
+     */
     public function shippedOrders(shippedOrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.shipped-order');
     }
 
+    /**
+     * @param outForDeliveryOrderDataTable $dataTable
+     * @return mixed
+     */
     public function outForDeliveryOrders(outForDeliveryOrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.out-for-delivery-order');
     }
 
+    /**
+     * @param deliveredOrderDataTable $dataTable
+     * @return mixed
+     */
     public function deliveredOrders(deliveredOrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.delivered-order');
     }
 
+    /**
+     * @param canceledOrderDataTable $dataTable
+     * @return mixed
+     */
     public function canceledOrders(canceledOrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.canceled-order');
@@ -101,6 +129,10 @@ class OrderController extends Controller
         return response(['status' => 'success', 'message' => 'Deleted successfully!']);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
+     */
     public function changeOrderStatus(Request $request)
     {
         $order = Order::findOrFail($request->id);
@@ -110,6 +142,10 @@ class OrderController extends Controller
         return response(['status' => 'success', 'message' => 'Updated Order Status']);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
+     */
     public function changePaymentStatus(Request $request)
     {
         $paymentStatus = Order::findOrFail($request->id);

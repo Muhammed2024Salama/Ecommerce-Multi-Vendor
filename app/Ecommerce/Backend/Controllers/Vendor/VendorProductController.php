@@ -16,9 +16,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class   VendorProductController extends Controller
+class VendorProductController extends Controller
 {
     use ImageUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -52,8 +53,8 @@ class   VendorProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max: 600'],
             'long_description' => ['required'],
-            'seo_title' => ['nullable','max:200'],
-            'seo_description' => ['nullable','max:250'],
+            'seo_title' => ['nullable', 'max:200'],
+            'seo_description' => ['nullable', 'max:250'],
             'status' => ['required']
         ]);
         /** End Validation */
@@ -108,7 +109,7 @@ class   VendorProductController extends Controller
         $product = Product::findOrFail($id);
 
         /** Check if it's the owner of the product */
-        if($product->vendor_id != Auth::user()->vendor->id){
+        if ($product->vendor_id != Auth::user()->vendor->id) {
             abort(404);
         }
 
@@ -143,15 +144,15 @@ class   VendorProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max: 600'],
             'long_description' => ['required'],
-            'seo_title' => ['nullable','max:200'],
-            'seo_description' => ['nullable','max:250'],
+            'seo_title' => ['nullable', 'max:200'],
+            'seo_description' => ['nullable', 'max:250'],
             'status' => ['required']
         ]);
         /** End  Validation */
 
         $product = Product::findOrFail($id);
 
-        if($product->vendor_id != Auth::user()->vendor->id){
+        if ($product->vendor_id != Auth::user()->vendor->id) {
             abort(404);
         }
 
@@ -194,7 +195,7 @@ class   VendorProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
-        if($product->vendor_id != Auth::user()->vendor->id){
+        if ($product->vendor_id != Auth::user()->vendor->id) {
             abort(404);
         }
 
@@ -203,7 +204,7 @@ class   VendorProductController extends Controller
 
         /** Delete product gallery images */
         $galleryImages = ProductImageGallery::where('product_id', $product->id)->get();
-        foreach($galleryImages as $image){
+        foreach ($galleryImages as $image) {
             $this->deleteImage($image->image);
             $image->delete();
         }
@@ -211,7 +212,7 @@ class   VendorProductController extends Controller
         /** Delete product variants if exist */
         $variants = ProductVariant::where('product_id', $product->id)->get();
 
-        foreach($variants as $variant){
+        foreach ($variants as $variant) {
             $variant->productVariantItems()->delete();
             $variant->delete();
         }

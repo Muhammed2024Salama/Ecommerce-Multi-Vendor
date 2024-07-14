@@ -75,7 +75,7 @@ class CheckOutController extends Controller
         /** End Of  Validation */
 
         $shippingMethod = ShippingRule::findOrFail($request->shipping_method_id);
-        if($shippingMethod){
+        if ($shippingMethod) {
             Session::put('shipping_method', [
                 'id' => $shippingMethod->id,
                 'name' => $shippingMethod->name,
@@ -84,7 +84,7 @@ class CheckOutController extends Controller
             ]);
         }
         $address = UserAddress::findOrFail($request->shipping_address_id)->toArray();
-        if($address){
+        if ($address) {
             Session::put('address', $address);
         }
 

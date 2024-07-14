@@ -1,29 +1,29 @@
 <?php
 
-namespace Ecommerce\Backend\Controllers\Vendor;
+namespace Ecommerce\Backend\Controllers\Admin\Pusher\Controllers;
 
 use App\Events\MessageEvent;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\Pusher\Models\Chat;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-class VendorMessageController extends Controller
+class MessageController extends Controller
 {
     /**
-     * @return View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
-    function index(): View
+    function index()
     {
         $userId = auth()->user()->id;
 
-        $chatUsers = Chat::with('senderProfile')->select(['sender_id'])
+        $chatUsers = Chat::with('senderProfile')
+            ->select(['sender_id'])
             ->where('receiver_id', $userId)
             ->where('sender_id', '!=', $userId)
             ->groupBy('sender_id')
             ->get();
 
-        return view('vendor.messenger.index', compact('chatUsers'));
+        return view('admin.messenger.index', compact('chatUsers'));
     }
 
     /**
@@ -50,10 +50,12 @@ class VendorMessageController extends Controller
      */
     function sendMessage(Request $request)
     {
+        /** Start Validation */
         $request->validate([
             'message' => ['required'],
             'receiver_id' => ['required']
         ]);
+        /** End Validation */
 
         $message = new Chat();
         $message->sender_id = auth()->user()->id;

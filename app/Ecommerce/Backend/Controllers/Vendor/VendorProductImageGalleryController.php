@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class VendorProductImageGalleryController extends Controller
 {
     use ImageUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +22,7 @@ class VendorProductImageGalleryController extends Controller
         $product = Product::findOrFail($request->product);
 
         /** Check product vendor */
-        if($product->vendor_id !== Auth::user()->vendor->id){
+        if ($product->vendor_id !== Auth::user()->vendor->id) {
             abort(404);
         }
 
@@ -50,7 +51,7 @@ class VendorProductImageGalleryController extends Controller
         /** Handle image upload */
         $imagePaths = $this->uploadMultiImage($request, 'image', 'uploads');
 
-        foreach($imagePaths as $path){
+        foreach ($imagePaths as $path) {
             $productImageGallery = new ProductImageGallery();
             $productImageGallery->image = $path;
             $productImageGallery->product_id = $request->product;
@@ -94,7 +95,7 @@ class VendorProductImageGalleryController extends Controller
         $productImage = ProductImageGallery::findOrFail($id);
 
         /** Check product vendor */
-        if($productImage->product->vendor_id !== Auth::user()->vendor->id){
+        if ($productImage->product->vendor_id !== Auth::user()->vendor->id) {
             abort(404);
         }
 

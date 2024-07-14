@@ -21,14 +21,18 @@ class Chat extends Model
     /**
      * @return BelongsTo
      */
-    function receiverProfile() : BelongsTo {
-        return $this->belongsTo(User::class, 'receiver_id', 'id')->select(['id', 'image', 'name']);
+    function receiverProfile(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'receiver_id', 'id')
+            ->select(['id', 'image', 'name']);
     }
 
     /**
      * @return BelongsTo
      */
-    function senderProfile() : BelongsTo {
-        return $this->belongsTo(User::class, 'sender_id', 'id')->select(['id', 'image', 'name']);
+    function senderProfile(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'sender_id', 'id')
+            ->select(['id', 'image', 'name']);
     }
 }

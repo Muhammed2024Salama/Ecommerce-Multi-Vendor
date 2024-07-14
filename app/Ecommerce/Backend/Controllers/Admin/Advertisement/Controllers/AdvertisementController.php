@@ -69,9 +69,9 @@ class AdvertisementController extends Controller
                 'status' => $request->status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_old_image;
         }
@@ -121,15 +121,15 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_two_status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if(!empty($imagePathTwo)){
+        if (!empty($imagePathTwo)) {
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        }else {
+        } else {
 
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }
@@ -183,21 +183,21 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_three_status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if(!empty($imagePathTwo)){
+        if (!empty($imagePathTwo)) {
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        }else {
+        } else {
 
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }
-        if(!empty($imagePathThree)){
+        if (!empty($imagePathThree)) {
             $value['banner_three']['banner_image'] = $imagePathThree;
-        }else {
+        } else {
 
             $value['banner_three']['banner_image'] = $request->banner_three_old_image;
         }
@@ -238,9 +238,9 @@ class AdvertisementController extends Controller
                 'status' => $request->status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_old_image;
         }
@@ -282,9 +282,9 @@ class AdvertisementController extends Controller
                 'status' => $request->status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_old_image;
         }
@@ -331,15 +331,15 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_two_status == 'on' ? 1 : 0
             ]
         ];
-        if(!empty($imagePath)){
+        if (!empty($imagePath)) {
             $value['banner_one']['banner_image'] = $imagePath;
-        }else {
+        } else {
 
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if(!empty($imagePathTwo)){
+        if (!empty($imagePathTwo)) {
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        }else {
+        } else {
 
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }

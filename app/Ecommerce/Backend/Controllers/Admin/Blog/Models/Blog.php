@@ -31,7 +31,8 @@ class Blog extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(BlogComment::class);
     }
 }

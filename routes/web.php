@@ -232,181 +232,183 @@ Route::get('wishlist/add-product', [
 ])
     ->name('wishlist.store');
 
-Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
-    Route::get('dashboard', [
-        UserDashboardController::class,
-        'index'
-    ])
-        ->name('dashboard');
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'],
+    function () {
+        Route::get('dashboard', [
+            UserDashboardController::class,
+            'index'
+        ])
+            ->name('dashboard');
 
-    Route::get('profile', [
-        UserProfileController::class,
-        'index'
-    ])
-        ->name('profile'); // user.profile
+        Route::get('profile', [
+            UserProfileController::class,
+            'index'
+        ])
+            ->name('profile'); // user.profile
 
-    Route::put('profile', [
-        UserProfileController::class,
-        'updateProfile'
-    ])
-        ->name('profile.update'); // user.profile.update
+        Route::put('profile', [
+            UserProfileController::class,
+            'updateProfile'
+        ])
+            ->name('profile.update'); // user.profile.update
 
-    Route::post('profile', [
-        UserProfileController::class,
-        'updatePassword'
-    ])
-        ->name('profile.update.password');
+        Route::post('profile', [
+            UserProfileController::class,
+            'updatePassword'
+        ])
+            ->name('profile.update.password');
 
-    /** Message Route */
-    Route::get('messages', [
-        UserMessageController::class,
-        'index'
-    ])
-        ->name('messages.index');
+        /** Message Route */
+        Route::get('messages', [
+            UserMessageController::class,
+            'index'
+        ])
+            ->name('messages.index');
 
-    Route::post('send-message', [
-        UserMessageController::class,
-        'sendMessage'
-    ])
-        ->name('send-message');
+        Route::post('send-message', [
+            UserMessageController::class,
+            'sendMessage'
+        ])
+            ->name('send-message');
 
-    Route::get('get-messages', [
-        UserMessageController::class,
-        'getMessages'
-    ])
-        ->name('get-messages');
+        Route::get('get-messages', [
+            UserMessageController::class,
+            'getMessages'
+        ])
+            ->name('get-messages');
 
-    /** User Address Route */
-    Route::resource('address', UserAddressController::class);
-    /** Order Routes */
-    Route::get('orders', [
-        UserOrderController::class,
-        'index'
-    ])
-        ->name('orders.index');
+        /** User Address Route */
+        Route::resource('address', UserAddressController::class);
 
-    Route::get('orders/show/{id}', [
-        UserOrderController::class,
-        'show'
-    ])
-        ->name('orders.show');
+        /** Order Routes */
+        Route::get('orders', [
+            UserOrderController::class,
+            'index'
+        ])
+            ->name('orders.index');
 
-    /** Wishlist routes */
-    Route::get('wishlist', [
-        WishlistController::class,
-        'index'
-    ])
-        ->name('wishlist.index');
+        Route::get('orders/show/{id}', [
+            UserOrderController::class,
+            'show'
+        ])
+            ->name('orders.show');
 
-    Route::get('wishlist/remove-product/{id}', [
-        WishlistController::class,
-        'destory'
-    ])
-        ->name('wishlist.destory');
+        /** Wishlist routes */
+        Route::get('wishlist', [
+            WishlistController::class,
+            'index'
+        ])
+            ->name('wishlist.index');
 
-    Route::get('reviews', [
-        ReviewController::class,
-        'index'
-    ])
-        ->name('review.index');
+        Route::get('wishlist/remove-product/{id}', [
+            WishlistController::class,
+            'destory'
+        ])
+            ->name('wishlist.destory');
 
-    /** Vendor request route */
-    Route::get('vendor-request', [
-        UserVendorReqeustController::class,
-        'index'
-    ])
-        ->name('vendor-request.index');
+        Route::get('reviews', [
+            ReviewController::class,
+            'index'
+        ])
+            ->name('review.index');
 
-    Route::post('vendor-request', [
-        UserVendorReqeustController::class,
-        'create'
-    ])
-        ->name('vendor-request.create');
+        /** Vendor request route */
+        Route::get('vendor-request', [
+            UserVendorReqeustController::class,
+            'index'
+        ])
+            ->name('vendor-request.index');
 
-    /** product review routes */
-    Route::post('review', [
-        ReviewController::class,
-        'create'
-    ])
-        ->name('review.create');
+        Route::post('vendor-request', [
+            UserVendorReqeustController::class,
+            'create'
+        ])
+            ->name('vendor-request.create');
 
-    /** blog comment routes */
-    Route::post('blog-comment', [
-        BlogController::class,
-        'comment'
-    ])
-        ->name('blog-comment');
+        /** product review routes */
+        Route::post('review', [
+            ReviewController::class,
+            'create'
+        ])
+            ->name('review.create');
 
-    /** Checkout routes */
-    Route::get('checkout', [
-        CheckOutController::class,
-        'index'
-    ])
-        ->name('checkout');
+        /** blog comment routes */
+        Route::post('blog-comment', [
+            BlogController::class,
+            'comment'
+        ])
+            ->name('blog-comment');
 
-    Route::post('checkout/address-create', [
-        CheckOutController::class,
-        'createAddress'
-    ])
-        ->name('checkout.address.create');
+        /** Checkout routes */
+        Route::get('checkout', [
+            CheckOutController::class,
+            'index'
+        ])
+            ->name('checkout');
 
-    Route::post('checkout/form-submit', [
-        CheckOutController::class,
-        'checkOutFormSubmit'
-    ])
-        ->name('checkout.form-submit');
+        Route::post('checkout/address-create', [
+            CheckOutController::class,
+            'createAddress'
+        ])
+            ->name('checkout.address.create');
 
-    /** Payment Routes */
-    Route::get('payment', [
-        PaymentController::class,
-        'index'
-    ])
-        ->name('payment');
+        Route::post('checkout/form-submit', [
+            CheckOutController::class,
+            'checkOutFormSubmit'
+        ])
+            ->name('checkout.form-submit');
 
-    Route::get('payment-success', [
-        PaymentController::class,
-        'paymentSuccess'
-    ])
-        ->name('payment.success');
+        /** Payment Routes */
+        Route::get('payment', [
+            PaymentController::class,
+            'index'
+        ])
+            ->name('payment');
 
-    /** Paypal routes */
-    Route::get('paypal/payment', [
-        PaymentController::class,
-        'payWithPaypal'
-    ])
-        ->name('paypal.payment');
+        Route::get('payment-success', [
+            PaymentController::class,
+            'paymentSuccess'
+        ])
+            ->name('payment.success');
 
-    Route::get('paypal/success', [
-        PaymentController::class,
-        'paypalSuccess'
-    ])
-        ->name('paypal.success');
+        /** Paypal routes */
+        Route::get('paypal/payment', [
+            PaymentController::class,
+            'payWithPaypal'
+        ])
+            ->name('paypal.payment');
 
-    Route::get('paypal/cancel', [
-        PaymentController::class,
-        'paypalCancel'
-    ])
-        ->name('paypal.cancel');
+        Route::get('paypal/success', [
+            PaymentController::class,
+            'paypalSuccess'
+        ])
+            ->name('paypal.success');
 
-    /** Stripe routes */
-    Route::post('stripe/payment', [
-        PaymentController::class,
-        'payWithStripe'
-    ])
-        ->name('stripe.payment');
+        Route::get('paypal/cancel', [
+            PaymentController::class,
+            'paypalCancel'
+        ])
+            ->name('paypal.cancel');
 
-    /** Razorpay routes */
-    Route::post('razorpay/payment', [
-        PaymentController::class,
-        'payWithRazorPay'
-    ])
-        ->name('razorpay.payment');
+        /** Stripe routes */
+        Route::post('stripe/payment', [
+            PaymentController::class,
+            'payWithStripe'
+        ])
+            ->name('stripe.payment');
 
-    /** COD routes */
-    Route::get('cod/payment', [
-        PaymentController::class,
-        'payWithCod'
-    ])
-        ->name('cod.payment');
-});
+        /** Razorpay routes */
+        Route::post('razorpay/payment', [
+            PaymentController::class,
+            'payWithRazorPay'
+        ])
+            ->name('razorpay.payment');
+
+        /** COD routes */
+        Route::get('cod/payment', [
+            PaymentController::class,
+            'payWithCod'
+        ])
+            ->name('cod.payment');
+    });
 

@@ -31,19 +31,19 @@
         <link rel="stylesheet" href="{{asset('Backend/assets/css/rtl.css')}}">
     @endif
 
-    {{--    <script>--}}
-    {{--        const USER = {--}}
-    {{--            id: "{{ auth()->user()->id }}",--}}
-    {{--            name: "{{ auth()->user()->nmae }}",--}}
-    {{--            image: "{{ asset(auth()->user()->image) }}"--}}
-    {{--        }--}}
-    {{--        const PUSHER = {--}}
-    {{--            key: "{{ $pusherSetting->pusher_key }}",--}}
-    {{--            cluster: "{{ $pusherSetting->pusher_cluster }}"--}}
-    {{--        }--}}
-    {{--    </script>--}}
+    <script>
+        const USER = {
+            id: "{{ auth()->user()->id }}",
+            name: "{{ auth()->user()->nmae }}",
+            image: "{{ asset(auth()->user()->image) }}"
+        }
+        const PUSHER = {
+            key: "{{ $pusherSetting->pusher_key }}",
+            cluster: "{{ $pusherSetting->pusher_cluster }}"
+        }
+    </script>
 
-    {{--    @vite(['resources/js/app.js', 'resources/js/admin.js'])--}}
+    @vite(['resources/js/app.js', 'resources/js/admin.js'])
 
 </head>
 

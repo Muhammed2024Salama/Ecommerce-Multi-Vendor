@@ -18,15 +18,14 @@
                                             <div class="wsus__chatlist_body">
                                                 @foreach ($chatUsers as $chatUser)
                                                     @php
-                                                        $unseenMessages = \App\Models\Chat::where(['sender_id' => $chatUser->receiverProfile->id, 'receiver_id' => auth()->user()->id, 'seen' => 0])->exists();
+                                                        $unseenMessages = \Ecommerce\Backend\Controllers\Admin\Pusher\Models\Chat::where(['sender_id' => $chatUser->receiverProfile->id, 'receiver_id' => auth()->user()->id, 'seen' => 0])->exists();
                                                     @endphp
                                                     <button class="nav-link chat-user-profile"
                                                             data-id="{{ $chatUser->receiverProfile->id }}"
                                                             data-bs-toggle="pill"
                                                             data-bs-target="#v-pills-home" type="button" role="tab"
                                                             aria-controls="v-pills-home" aria-selected="true">
-                                                        <div
-                                                            class="wsus_chat_list_img {{ $unseenMessages ? 'msg-notification' : ''}}">
+                                                        <div class="wsus_chat_list_img {{ $unseenMessages ? 'msg-notification' : ''}}">
                                                             <img src="{{ asset($chatUser->receiverProfile->image) }}"
                                                                  alt="user" class="img-fluid">
                                                             <span class="pending d-none" id="pending-6">0</span>
@@ -48,7 +47,7 @@
                                                  aria-labelledby="v-pills-home-tab">
                                                 <div id="chat_box">
                                                     <div class="wsus__chat_area" style="position: relative;
-                                            height: 70vh;">
+                                            height: 70vh;" >
 
                                                         <div class="wsus__chat_area_header">
                                                             <h2 id="chat-inbox-title">Chat with Daniel Paul</h2>
@@ -62,13 +61,11 @@
                                                             <form id="message-form">
                                                                 @csrf
                                                                 <input type="text" placeholder="Type Message"
-                                                                       class="message-box" autocomplete="off"
-                                                                       name="message">
+                                                                       class="message-box" autocomplete="off" name="message">
                                                                 <input type="hidden" name="receiver_id"
                                                                        value="" id="receiver_id">
-                                                                <button type="submit"><i
-                                                                        class="fas fa-paper-plane send-button"
-                                                                        aria-hidden="true"></i></button>
+                                                                <button type="submit"><i class="fas fa-paper-plane send-button"
+                                                                                         aria-hidden="true"></i></button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -107,8 +104,8 @@
             mainChatInbox.scrollTop(mainChatInbox.prop("scrollHeight"));
         }
 
-        $(document).ready(function () {
-            $('.chat-user-profile').on('click', function () {
+        $(document).ready(function(){
+            $('.chat-user-profile').on('click', function(){
                 let receiverId = $(this).data('id');
                 let senderImage = $(this).find('img').attr('src');
                 let chatUserName = $(this).find('h4').text();
@@ -121,16 +118,16 @@
                     data: {
                         receiver_id: receiverId
                     },
-                    beforeSend: function () {
+                    beforeSend: function() {
                         mainChatInbox.html("");
                         // set chat inbox title
                         $('#chat-inbox-title').text(`Chat With ${chatUserName}`)
                     },
-                    success: function (response) {
+                    success: function(response) {
 
-                        $.each(response, function (index, value) {
+                        $.each(response, function(index, value) {
 
-                            if (value.sender_id == USER.id) {
+                            if(value.sender_id == USER.id) {
                                 var message = `<div class="wsus__chat_single single_chat_2">
                                         <div class="wsus__chat_single_img">
                                             <img src="${USER.image}"
@@ -141,7 +138,7 @@
                                             <span>${formatDateTime(value.created_at)}</span>
                                         </div>
                                     </div>`
-                            } else {
+                            }else {
                                 var message = `<div class="wsus__chat_single">
                                         <div class="wsus__chat_single_img">
                                             <img src="${senderImage}"
@@ -161,23 +158,23 @@
                         // scroll to bottom
                         scrollTobottom();
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
 
                     },
-                    complete: function () {
+                    complete: function() {
 
                     }
                 })
             })
 
-            $('#message-form').on('submit', function (e) {
+            $('#message-form').on('submit', function(e) {
                 e.preventDefault();
                 let formData = $(this).serialize();
                 let messageData = $('.message-box').val();
 
                 var formSubmitting = false;
 
-                if (formSubmitting || messageData === "") {
+                if(formSubmitting || messageData === "" ) {
                     return;
                 }
 
@@ -202,19 +199,19 @@
                     method: 'POST',
                     url: '{{ route("user.send-message") }}',
                     data: formData,
-                    beforeSend: function () {
+                    beforeSend: function() {
                         $('.send-button').prop('disabled', true);
                         formSubmitting = true;
                     },
-                    success: function (response) {
+                    success: function(response) {
 
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         toastr.error(xhr.responseJSON.message);
                         $('.send-button').prop('disabled', false);
                         formSubmitting = false;
                     },
-                    complete: function () {
+                    complete: function() {
                         $('.send-button').prop('disabled', false);
                         formSubmitting = false;
                     }

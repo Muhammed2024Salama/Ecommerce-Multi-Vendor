@@ -10,6 +10,9 @@ use Ecommerce\Backend\Controllers\Admin\Stripe\Models\StripeSetting;
 
 class PaymentSettingController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index()
     {
 
@@ -17,7 +20,6 @@ class PaymentSettingController extends Controller
         $stripeSetting = StripeSetting::first();
         $razorpaySetting = RazorpaySetting::first();
         $codSetting = CodSetting::first();
-
 
         return view('admin.payment-settings.index', compact('paypalSetting', 'stripeSetting', 'razorpaySetting', 'codSetting'));
     }

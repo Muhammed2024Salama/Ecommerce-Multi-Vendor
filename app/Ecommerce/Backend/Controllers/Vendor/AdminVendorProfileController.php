@@ -17,8 +17,8 @@ class AdminVendorProfileController extends Controller
      */
     public function index()
     {
-        $profile = Vendor::where('user_id' , Auth::user()->id)->first();
-        return view('admin.vendor-profile.index' , compact('profile'));
+        $profile = Vendor::where('user_id', Auth::user()->id)->first();
+        return view('admin.vendor-profile.index', compact('profile'));
     }
 
     /**
@@ -38,7 +38,7 @@ class AdminVendorProfileController extends Controller
         /** Start Validation */
 
         $request->validate([
-            'banner' => ['nullable','image', 'max:3000'],
+            'banner' => ['nullable', 'image', 'max:3000'],
             'shop_name' => ['required', 'max:200'],
             'phone' => ['required', 'max:50'],
             'email' => ['required', 'email', 'max:200'],

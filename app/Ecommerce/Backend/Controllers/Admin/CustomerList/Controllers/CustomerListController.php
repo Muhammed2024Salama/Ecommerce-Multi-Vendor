@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class CustomerListController extends Controller
 {
+    /**
+     * @param CustomerListDataTable $dataTable
+     * @return mixed
+     */
     public function index(CustomerListDataTable $dataTable)
     {
         return $dataTable->render('admin.customer-list.index');

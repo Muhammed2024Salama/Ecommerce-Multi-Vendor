@@ -29,6 +29,7 @@ use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantContro
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\ProductVariantItemController;
 use Ecommerce\Backend\Controllers\Admin\Product\Controllers\SellerProductController;
 use Ecommerce\Backend\Controllers\Admin\ProfileController;
+use Ecommerce\Backend\Controllers\Admin\Pusher\Controllers\MessageController;
 use Ecommerce\Backend\Controllers\Admin\Razorpay\Controllers\RazorpaySettingController;
 use Ecommerce\Backend\Controllers\Admin\Reviews\Controllers\AdminReviewController;
 use Ecommerce\Backend\Controllers\Admin\Settings\Controllers\SettingController;
@@ -383,10 +384,23 @@ Route::put('withdraw/{id}', [
     ->name('withdraw.update');
 
 /** Message route */
-//Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
-//Route::get('get-messages', [MessageController::class, 'getMessages'])->name('get-messages');
-//Route::post('send-message', [MessageController::class, 'sendMessage'])->name('send-message');
+Route::get('messages', [
+    MessageController::class,
+    'index'
+])
+    ->name('messages.index');
 
+Route::get('get-messages', [
+    MessageController::class,
+    'getMessages'
+])
+    ->name('get-messages');
+
+Route::post('send-message', [
+    MessageController::class,
+    'sendMessage'
+])
+    ->name('send-message');
 
 /** settings routes */
 Route::get('settings', [
@@ -413,7 +427,11 @@ Route::put('logo-setting-update', [
 ])
     ->name('logo-setting-update');
 
-Route::put('pusher-setting-update', [SettingController::class, 'pusherSettingUpdate'])->name('pusher-setting-update');
+Route::put('pusher-setting-update', [
+    SettingController::class,
+    'pusherSettingUpdate'
+])
+    ->name('pusher-setting-update');
 
 
 /** home page setting route */

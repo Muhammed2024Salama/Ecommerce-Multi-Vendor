@@ -18,7 +18,7 @@
                                             <div class="wsus__chatlist_body">
                                                 @foreach ($chatUsers as $chatUser)
                                                     @php
-                                                        $unseenMessages = \App\Models\Chat::where(['sender_id' => $chatUser->senderProfile->id, 'receiver_id' => auth()->user()->id, 'seen' => 0])->exists();
+                                                        $unseenMessages = \Ecommerce\Backend\Controllers\Admin\Pusher\Models\Chat::where(['sender_id' => $chatUser->senderProfile->id, 'receiver_id' => auth()->user()->id, 'seen' => 0])->exists();
                                                     @endphp
                                                     <button class="nav-link chat-user-profile"
                                                             data-id="{{ $chatUser->senderProfile->id }}"

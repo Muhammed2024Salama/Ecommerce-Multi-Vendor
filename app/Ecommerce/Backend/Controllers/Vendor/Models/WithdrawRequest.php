@@ -12,7 +12,8 @@ class WithdrawRequest extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    function vendor() {
+    function vendor()
+    {
         return $this->belongsTo(Vendor::class);
     }
 }

@@ -12,5 +12,7 @@ class FlashSale extends Model
     /**
      * @var string[]
      */
-    protected $fillable = ['end_date'];
+    protected $fillable = [
+        'end_date'
+    ];
 }

@@ -119,7 +119,7 @@
 
     <script>
         $(document).ready(function () {
-            // chage the flash sale status
+            // change the flash sale status
             $('body').on('click', '.change-status', function () {
                 let isChecked = $(this).is(':checked');
                 let id = $(this).data('id');
@@ -141,7 +141,7 @@
 
             })
 
-            // chage show at home status
+            // change show at home status
             $('body').on('click', '.change-at-home-status', function () {
                 let isChecked = $(this).is(':checked');
                 let id = $(this).data('id');

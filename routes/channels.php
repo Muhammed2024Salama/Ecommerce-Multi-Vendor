@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+Broadcast::channel('Ecommerce.Frontend.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+//App.Models.User.{id}
+/**
+ * Message Broadcasting
+ */
+Broadcast::channel('message.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
+});
+
