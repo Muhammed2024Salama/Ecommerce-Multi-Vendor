@@ -46,7 +46,8 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[DevSquad](https://devsquad.com)**
 - **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
 - **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=pa![1720526064500](https://github.com/user-attachments/assets/b2e20d0f-0253-4e5f-b036-8899e6a7a9ca)
+treon-sponsors)**
 - **[Lendio](https://lendio.com)**
 
 ## Contributing
