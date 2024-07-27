@@ -28,13 +28,9 @@ class FlashSaleController extends Controller
      */
     public function update(Request $request)
     {
-        /** Start Validation */
-
         $request->validate([
             'end_date' => ['required']
         ]);
-        /** End Validation */
-
 
         FlashSale::updateOrCreate(
             ['id' => 1],
@@ -44,6 +40,7 @@ class FlashSaleController extends Controller
         toastr('Updated Successfully!', 'success', 'Success');
 
         return redirect()->back();
+
     }
 
     /**
@@ -52,26 +49,17 @@ class FlashSaleController extends Controller
      */
     public function addProduct(Request $request)
     {
-        // Validate the request inputs
-
         $request->validate([
             'product' => ['required', 'unique:flash_sale_items,product_id'],
             'show_at_home' => ['required'],
             'status' => ['required'],
-        ], [
+        ],[
             'product.unique' => 'The product is already in flash sale!'
         ]);
 
-        // Retrieve the first FlashSale record
+
         $flashSaleDate = FlashSale::first();
 
-        // Check if a FlashSale record exists
-        if (!$flashSaleDate) {
-            // Handle the case where no FlashSale record exists
-            return redirect()->back()->withErrors(['flash_sale' => 'No flash sale found. Please create one first.']);
-        }
-
-        // Create a new FlashSaleItem and assign values
         $flashSaleItem = new FlashSaleItem();
         $flashSaleItem->product_id = $request->product;
         $flashSaleItem->flash_sale_id = $flashSaleDate->id;
@@ -79,9 +67,10 @@ class FlashSaleController extends Controller
         $flashSaleItem->status = $request->status;
         $flashSaleItem->save();
 
-        // Display success message and redirect back
         toastr('Product Added Successfully!', 'success', 'Success');
+
         return redirect()->back();
+
     }
 
     /**

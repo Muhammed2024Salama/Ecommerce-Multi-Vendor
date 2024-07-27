@@ -19,7 +19,6 @@ class BrandController extends Controller
     public function index(BrandDataTable $dataTable)
     {
         return $dataTable->render('admin.brand.index');
-        // return view('admin.brand.index');
     }
 
     /**
@@ -35,31 +34,25 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        /** Start Validation */
-
         $request->validate([
-            'logo' => ['image' , 'required' , 'max:2000'],
-            'name' => ['required' , 'max:200'],
+            'logo' => ['image', 'required', 'max:2000'],
+            'name' => ['required', 'max:200'],
             'is_featured' => ['required'],
             'status' => ['required']
         ]);
-        /** End Validation */
 
-
-        $logoPath = $this->uploadImage($request , 'logo' , 'uploads');
+        $logoPath = $this->uploadImage($request, 'logo', 'uploads');
         $brand = new Brand();
+
         $brand->logo = $logoPath;
         $brand->name = $request->name;
         $brand->slug = Str::slug($request->name);
         $brand->is_featured = $request->is_featured;
         $brand->status = $request->status;
-
         $brand->save();
 
-        toastr('Created Successfully ! ' , 'success');
+        toastr('Created Successfully!', 'success');
         return redirect()->route('admin.brand.index');
-
     }
 
     /**
@@ -76,7 +69,7 @@ class BrandController extends Controller
     public function edit(string $id)
     {
         $brand = Brand::findOrFail($id);
-        return view('admin.brand.edit',compact('brand'));
+        return view('admin.brand.edit', compact('brand'));
     }
 
     /**
@@ -84,16 +77,12 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        /** Start Validation */
-
         $request->validate([
             'logo' => ['image', 'max:2000'],
             'name' => ['required', 'max:200'],
             'is_featured' => ['required'],
             'status' => ['required']
         ]);
-        /** End Validation */
-
 
         $brand = Brand::findOrFail($id);
 
@@ -116,7 +105,9 @@ class BrandController extends Controller
     public function destroy(string $id)
     {
         $brand = Brand::findOrFail($id);
-
+        if(Product::where('brand_id', $brand->id)->count() > 0){
+            return response(['status' => 'error', 'message' => 'This brand have products you can\'t delete it.']);
+        }
         $this->deleteImage($brand->logo);
         $brand->delete();
 
@@ -125,10 +116,10 @@ class BrandController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $category = Category::findOrFail($request->id);
+        $category = Brand::findOrFail($request->id);
         $category->status = $request->status == 'true' ? 1 : 0;
         $category->save();
 
-        return response(['message' => 'Status has been updated ! ']);
+        return response(['message' => 'Status has been updated!']);
     }
 }

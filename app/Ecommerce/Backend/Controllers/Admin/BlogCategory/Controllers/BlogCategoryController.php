@@ -91,10 +91,6 @@ class BlogCategoryController extends Controller
         return response(['status' => 'success', 'message' => 'Deleted successfully!']);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
-     */
     public function changeStatus(Request $request)
     {
         $category = BlogCategory::findOrFail($request->id);

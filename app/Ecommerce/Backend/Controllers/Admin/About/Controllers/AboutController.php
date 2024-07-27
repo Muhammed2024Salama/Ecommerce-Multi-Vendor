@@ -4,6 +4,7 @@ namespace Ecommerce\Backend\Controllers\Admin\About\Controllers;
 
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\About\Models\About;
+use Ecommerce\Backend\Controllers\Admin\About\Requests\UpdateAboutRequest;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -18,20 +19,18 @@ class AboutController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateAboutRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function update(UpdateAboutRequest $request)
     {
-        $request->validate([
-            'content' => ['required']
-        ]);
+//        $request->validate([
+//            'content' => ['required']
+//        ]);
 
         About::updateOrCreate(
             ['id' => 1],
-            [
-                'content' => $request->content
-            ]
+            ['content' => $request->validated()['content']]
         );
 
         toastr('updated successfully!', 'success', 'success');

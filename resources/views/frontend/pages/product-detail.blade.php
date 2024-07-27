@@ -238,7 +238,7 @@
                                                     <p><span>Address:</span> {{$product->vendor->address}}</p>
                                                     <p><span>Phone:</span> {{$product->vendor->phone}}</p>
                                                     <p><span>mail:</span> {{$product->vendor->email}}</p>
-                                                    <a href="vendor_details.html" class="see_btn">visit store</a>
+{{--                                                    <a href="vendor_details.html" class="see_btn">visit store</a>--}}
                                                 </div>
                                             </div>
                                             <div class="col-xl-12">
@@ -428,7 +428,7 @@
                     },
                     success: function (response) {
                         $('.message-box').val('');
-                        {{--$('.modal-body').append(`<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`)--}}
+                        $('.modal-body').append(`<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`)
                         toastr.success(response.message);
                     },
                     error: function (xhr, status, error) {

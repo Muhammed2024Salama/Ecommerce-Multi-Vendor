@@ -37,7 +37,7 @@ class ManageUserController extends Controller
 
         $user = new User();
 
-        if($request->role === 'user'){
+        if ($request->role === 'user') {
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
@@ -49,7 +49,7 @@ class ManageUserController extends Controller
 
             toastr('Created Successfully!', 'success', 'success');
             return redirect()->back();
-        }elseif ($request->role === 'vendor'){
+        } elseif ($request->role === 'vendor') {
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
@@ -59,7 +59,7 @@ class ManageUserController extends Controller
 
             $vendor = new Vendor();
             $vendor->banner = 'uploads/1343.jpg';
-            $vendor->shop_name = $request->name.' Shop';
+            $vendor->shop_name = $request->name . ' Shop';
             $vendor->phone = '12321312';
             $vendor->email = 'test@gmail.com';
             $vendor->address = 'Usa';
@@ -72,7 +72,7 @@ class ManageUserController extends Controller
 
             toastr('Created Successfully!', 'success', 'success');
             return redirect()->back();
-        }elseif($request->role === 'admin'){
+        } elseif ($request->role === 'admin') {
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
@@ -82,7 +82,7 @@ class ManageUserController extends Controller
 
             $vendor = new Vendor();
             $vendor->banner = 'uploads/1343.jpg';
-            $vendor->shop_name = $request->name.' Shop';
+            $vendor->shop_name = $request->name . ' Shop';
             $vendor->phone = '12321312';
             $vendor->email = 'test@gmail.com';
             $vendor->address = 'Usa';

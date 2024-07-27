@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 
 class CodSettingController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, string $id)
     {
-        /** Start Validation */
         $request->validate([
             'status' => ['required', 'integer'],
 
         ]);
-        /** End Validation */
 
         CodSetting::updateOrCreate(
             ['id' => $id],

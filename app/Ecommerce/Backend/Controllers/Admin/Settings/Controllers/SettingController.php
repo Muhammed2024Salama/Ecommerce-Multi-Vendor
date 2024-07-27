@@ -122,7 +122,7 @@ class SettingController extends Controller
         LogoSetting::updateOrCreate(
             ['id' => 1],
             [
-                'logo' =>  (!empty($logoPath)) ? $logoPath : $request->old_logo,
+                'logo' => (!empty($logoPath)) ? $logoPath : $request->old_logo,
                 'favicon' => (!empty($favicon)) ? $favicon : $request->old_favicon
             ]
         );
@@ -134,7 +134,8 @@ class SettingController extends Controller
 
 
     /** Pusher settings update */
-    function pusherSettingUpdate(Request $request) : RedirectResponse {
+    function pusherSettingUpdate(Request $request): RedirectResponse
+    {
         /** Start Validate Data */
         $validatedData = $request->validate([
             'pusher_app_id' => ['required'],

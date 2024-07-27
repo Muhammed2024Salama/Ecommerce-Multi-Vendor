@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sliders = Cache::rememberForever('sliders', function(){
+        $sliders = Cache::rememberForever('sliders', function () {
             return Slider::where('status', 1)->orderBy('serial', 'asc')->get();
         });
 
@@ -41,39 +41,36 @@ class HomeController extends Controller
 
         // banners
 
-//        $homepage_secion_banner_one = Adverisement::where('key', 'homepage_secion_banner_one')->first();
-//        $homepage_secion_banner_one = json_decode($homepage_secion_banner_one->value);
+        $homepage_secion_banner_one = Adverisement::where('key', 'homepage_secion_banner_one')->first();
+        $homepage_secion_banner_one = $homepage_secion_banner_one ? json_decode($homepage_secion_banner_one->value) : null;
 
-//        $homepage_secion_banner_two = Adverisement::where('key', 'homepage_secion_banner_two')->first();
-//        $homepage_secion_banner_two = json_decode($homepage_secion_banner_two?->value);
-//
-//        $homepage_secion_banner_three = Adverisement::where('key', 'homepage_secion_banner_three')->first();
-//        $homepage_secion_banner_three = json_decode($homepage_secion_banner_three?->value);
-//
-//        $homepage_secion_banner_four = Adverisement::where('key', 'homepage_secion_banner_four')->first();
-//        $homepage_secion_banner_four = json_decode($homepage_secion_banner_four?->value);
+        $homepage_secion_banner_two = Adverisement::where('key', 'homepage_secion_banner_two')->first();
+        $homepage_secion_banner_two = $homepage_secion_banner_two ? json_decode($homepage_secion_banner_two->value) : null;
 
-        $recentBlogs = Blog::with(['category', 'user'])->where('status',1)->orderBy('id', 'DESC')->take(8)->get();
+        $homepage_secion_banner_three = Adverisement::where('key', 'homepage_secion_banner_three')->first();
+        $homepage_secion_banner_three = $homepage_secion_banner_three ? json_decode($homepage_secion_banner_three->value) : null;
 
-        return view('frontend.home.home',
-            compact(
-                'sliders',
-                'flashSaleDate',
-                'flashSaleItems',
-                'popularCategory',
-                'brands',
-                'typeBaseProducts',
-                'categoryProductSliderSectionOne',
-                'categoryProductSliderSectionTwo',
-                'categoryProductSliderSectionThree',
+        $homepage_secion_banner_four = Adverisement::where('key', 'homepage_secion_banner_four')->first();
+        $homepage_secion_banner_four = $homepage_secion_banner_four ? json_decode($homepage_secion_banner_four->value) : null;
 
-//                'homepage_secion_banner_one',
-//                'homepage_secion_banner_two',
-//                'homepage_secion_banner_three',
-//                'homepage_secion_banner_four',
-                'recentBlogs'
+        $recentBlogs = Blog::with(['category', 'user'])->where('status', 1)->orderBy('id', 'DESC')->take(8)->get();
 
-            ));
+        return view('frontend.home.home', compact(
+            'sliders',
+            'flashSaleDate',
+            'flashSaleItems',
+            'popularCategory',
+            'brands',
+            'typeBaseProducts',
+            'categoryProductSliderSectionOne',
+            'categoryProductSliderSectionTwo',
+            'categoryProductSliderSectionThree',
+            'homepage_secion_banner_one',
+            'homepage_secion_banner_two',
+            'homepage_secion_banner_three',
+            'homepage_secion_banner_four',
+            'recentBlogs'
+        ));
     }
 
     /**
@@ -107,7 +104,7 @@ class HomeController extends Controller
      */
     public function vendorPage()
     {
-        $vendors = Vendor::where('status',1)->paginate(20);
+        $vendors = Vendor::where('status', 1)->paginate(20);
         return view('frontend.pages.vendor', compact('vendors'));
     }
 
@@ -132,7 +129,8 @@ class HomeController extends Controller
      * @param string $id
      * @return mixed
      */
-    function ShowProductModal(string $id) {
+    function ShowProductModal(string $id)
+    {
         $product = Product::findOrFail($id);
 
         $content = view('frontend.layouts.modal', compact('product'))->render();

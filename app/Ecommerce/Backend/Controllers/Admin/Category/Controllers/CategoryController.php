@@ -32,12 +32,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-         // dd($request->all());
+        // dd($request->all());
         /** Start Validation */
 
         $request->validate([
-            'icon' => ['required' , 'not_in:empty'],
-            'name' => ['required' , 'max:200' , 'unique:categories,name'],
+            'icon' => ['required', 'not_in:empty'],
+            'name' => ['required', 'max:200', 'unique:categories,name'],
             'status' => ['required'],
         ]);
         /** End Validation */
@@ -51,7 +51,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        toastr('Created Successfully ! ' , 'success');
+        toastr('Created Successfully ! ', 'success');
 
         return redirect()->route('admin.category.index');
     }
@@ -83,7 +83,7 @@ class CategoryController extends Controller
 
         $request->validate([
             'icon' => ['required', 'not_in:empty'],
-            'name' => ['required', 'max:200', 'unique:categories,name,'.$id],
+            'name' => ['required', 'max:200', 'unique:categories,name,' . $id],
             'status' => ['required']
         ]);
         /** End Validation */
@@ -110,12 +110,12 @@ class CategoryController extends Controller
         // dd($id);
         $category = Category::findOrFail($id);
         $subCategory = SubCategory::where('category_id', $category->id)->count();
-        if($subCategory > 0){
+        if ($subCategory > 0) {
             return response(['status' => 'error', 'message' => 'This items contain, sub items for delete this you have to delete the sub items first!']);
         }
         $category->delete();
 
-        return response(['status' => 'success' , 'Deleted Successfully !']);
+        return response(['status' => 'success', 'Deleted Successfully !']);
     }
 
     public function changeStatus(Request $request)

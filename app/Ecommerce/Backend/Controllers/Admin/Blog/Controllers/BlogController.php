@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 class BlogController extends Controller
 {
     use ImageUploadTrait;
-
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +36,6 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        /** Start Validation */
         $request->validate([
             'image' => ['required', 'image', 'max:3000'],
             'title' => ['required', 'max:200', 'unique:blogs,title'],
@@ -46,7 +44,6 @@ class BlogController extends Controller
             'seo_title' => ['nullable', 'max:200'],
             'seo_description' => ['nullable', 'max:200']
         ]);
-        /** End Validation */
 
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
 
@@ -87,16 +84,14 @@ class BlogController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        /** Start Validation */
         $request->validate([
             'image' => ['nullable', 'image', 'max:3000'],
-            'title' => ['required', 'max:200', 'unique:blogs,title,' . $id],
+            'title' => ['required', 'max:200', 'unique:blogs,title,'.$id],
             'category' => ['required'],
             'description' => ['required'],
             'seo_title' => ['nullable', 'max:200'],
             'seo_description' => ['nullable', 'max:200']
         ]);
-        /** End Validation */
 
         $blog = Blog::findOrFail($id);
 
@@ -133,10 +128,6 @@ class BlogController extends Controller
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
-     */
     public function changeStatus(Request $request)
     {
         $blog = Blog::findOrFail($request->id);

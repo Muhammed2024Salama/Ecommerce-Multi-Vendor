@@ -17,25 +17,25 @@ class AdvertisementController extends Controller
     public function index()
     {
         $homepage_secion_banner_one = Adverisement::where('key', 'homepage_secion_banner_one')->first();
-        $homepage_secion_banner_one = json_decode($homepage_secion_banner_one->value);
+        $homepage_secion_banner_one = $homepage_secion_banner_one ? json_decode($homepage_secion_banner_one->value) : null;
 
         $homepage_secion_banner_two = Adverisement::where('key', 'homepage_secion_banner_two')->first();
-        $homepage_secion_banner_two = json_decode($homepage_secion_banner_two?->value);
+        $homepage_secion_banner_two = $homepage_secion_banner_two ? json_decode($homepage_secion_banner_two->value) : null;
 
         $homepage_secion_banner_three = Adverisement::where('key', 'homepage_secion_banner_three')->first();
-        $homepage_secion_banner_three = json_decode($homepage_secion_banner_three?->value);
+        $homepage_secion_banner_three = $homepage_secion_banner_three ? json_decode($homepage_secion_banner_three->value) : null;
 
         $homepage_secion_banner_four = Adverisement::where('key', 'homepage_secion_banner_four')->first();
-        $homepage_secion_banner_four = json_decode($homepage_secion_banner_four?->value);
+        $homepage_secion_banner_four = $homepage_secion_banner_four ? json_decode($homepage_secion_banner_four->value) : null;
 
         $productpage_banner_section = Adverisement::where('key', 'productpage_banner_section')->first();
-        $productpage_banner_section = json_decode($productpage_banner_section?->value);
+        $productpage_banner_section = $productpage_banner_section ? json_decode($productpage_banner_section->value) : null;
 
         $cartpage_banner_section = Adverisement::where('key', 'cartpage_banner_section')->first();
-        $cartpage_banner_section = json_decode($cartpage_banner_section?->value);
+        $cartpage_banner_section = $cartpage_banner_section ? json_decode($cartpage_banner_section->value) : null;
 
-
-        return view('admin.advertisement.index', compact('homepage_secion_banner_one',
+        return view('admin.advertisement.index', compact(
+            'homepage_secion_banner_one',
             'homepage_secion_banner_two',
             'homepage_secion_banner_three',
             'homepage_secion_banner_four',
@@ -50,15 +50,10 @@ class AdvertisementController extends Controller
      */
     public function homepageBannerSecionOne(Request $request)
     {
-        /** Start Validation */
-
         $request->validate([
             'banner_image' => ['image'],
             'banner_url' => ['required']
         ]);
-
-        /** End Validation */
-
 
         /** Handle the image upload */
         $imagePath = $this->updateImage($request, 'banner_image', 'uploads');
@@ -69,10 +64,9 @@ class AdvertisementController extends Controller
                 'status' => $request->status == 'on' ? 1 : 0
             ]
         ];
-        if (!empty($imagePath)) {
+        if(!empty($imagePath)){
             $value['banner_one']['banner_image'] = $imagePath;
-        } else {
-
+        }else {
             $value['banner_one']['banner_image'] = $request->banner_old_image;
         }
 
@@ -85,7 +79,6 @@ class AdvertisementController extends Controller
         toastr('Updated Successfully!', 'success', 'success');
 
         return redirect()->back();
-
     }
 
     /**
@@ -94,8 +87,6 @@ class AdvertisementController extends Controller
      */
     public function homepageBannerSecionTwo(Request $request)
     {
-        /** Start Validation */
-
         $request->validate([
             'banner_one_image' => ['image'],
             'banner_one_url' => ['required'],
@@ -103,13 +94,9 @@ class AdvertisementController extends Controller
             'banner_two_url' => ['required']
         ]);
 
-        /** End Validation */
-
-
         /** Handle the image upload */
         $imagePath = $this->updateImage($request, 'banner_one_image', 'uploads');
         $imagePathTwo = $this->updateImage($request, 'banner_two_image', 'uploads');
-
 
         $value = [
             'banner_one' => [
@@ -121,16 +108,14 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_two_status == 'on' ? 1 : 0
             ]
         ];
-        if (!empty($imagePath)) {
+        if(!empty($imagePath)){
             $value['banner_one']['banner_image'] = $imagePath;
-        } else {
-
+        }else {
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if (!empty($imagePathTwo)) {
+        if(!empty($imagePathTwo)){
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        } else {
-
+        }else {
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }
 
@@ -151,8 +136,6 @@ class AdvertisementController extends Controller
      */
     public function homepageBannerSecionThree(Request $request)
     {
-        /** Start Validation */
-
         $request->validate([
             'banner_one_image' => ['image'],
             'banner_one_url' => ['required'],
@@ -161,8 +144,6 @@ class AdvertisementController extends Controller
             'banner_three_image' => ['image'],
             'banner_three_url' => ['required'],
         ]);
-
-        /** End Validation */
 
         /** Handle the image upload */
         $imagePath = $this->updateImage($request, 'banner_one_image', 'uploads');
@@ -183,22 +164,19 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_three_status == 'on' ? 1 : 0
             ]
         ];
-        if (!empty($imagePath)) {
+        if(!empty($imagePath)){
             $value['banner_one']['banner_image'] = $imagePath;
-        } else {
-
+        }else {
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if (!empty($imagePathTwo)) {
+        if(!empty($imagePathTwo)){
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        } else {
-
+        }else {
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }
-        if (!empty($imagePathThree)) {
+        if(!empty($imagePathThree)){
             $value['banner_three']['banner_image'] = $imagePathThree;
-        } else {
-
+        }else {
             $value['banner_three']['banner_image'] = $request->banner_three_old_image;
         }
 
@@ -219,15 +197,10 @@ class AdvertisementController extends Controller
      */
     public function homepageBannerSecionFour(Request $request)
     {
-        /** Start Validation */
-
         $request->validate([
             'banner_image' => ['image'],
             'banner_url' => ['required']
         ]);
-
-        /** End Validation */
-
 
         /** Handle the image upload */
         $imagePath = $this->updateImage($request, 'banner_image', 'uploads');
@@ -238,10 +211,9 @@ class AdvertisementController extends Controller
                 'status' => $request->status == 'on' ? 1 : 0
             ]
         ];
-        if (!empty($imagePath)) {
+        if(!empty($imagePath)){
             $value['banner_one']['banner_image'] = $imagePath;
-        } else {
-
+        }else {
             $value['banner_one']['banner_image'] = $request->banner_old_image;
         }
 
@@ -254,7 +226,6 @@ class AdvertisementController extends Controller
         toastr('Updated Successfully!', 'success', 'success');
 
         return redirect()->back();
-
     }
 
     /**
@@ -263,15 +234,10 @@ class AdvertisementController extends Controller
      */
     public function productPageBanner(Request $request)
     {
-        /** Start Validation */
-
         $request->validate([
             'banner_image' => ['image'],
             'banner_url' => ['required']
         ]);
-
-        /** End Validation */
-
 
         /** Handle the image upload */
         $imagePath = $this->updateImage($request, 'banner_image', 'uploads');
@@ -282,10 +248,9 @@ class AdvertisementController extends Controller
                 'status' => $request->status == 'on' ? 1 : 0
             ]
         ];
-        if (!empty($imagePath)) {
+        if(!empty($imagePath)){
             $value['banner_one']['banner_image'] = $imagePath;
-        } else {
-
+        }else {
             $value['banner_one']['banner_image'] = $request->banner_old_image;
         }
 
@@ -298,7 +263,6 @@ class AdvertisementController extends Controller
         toastr('Updated Successfully!', 'success', 'success');
 
         return redirect()->back();
-
     }
 
     /**
@@ -307,19 +271,16 @@ class AdvertisementController extends Controller
      */
     public function cartPageBanner(Request $request)
     {
-        /** Start Validation */
         $request->validate([
             'banner_one_image' => ['image'],
             'banner_one_url' => ['required'],
             'banner_two_image' => ['image'],
             'banner_two_url' => ['required']
         ]);
-        /** End Validation */
 
         /** Handle the image upload */
         $imagePath = $this->updateImage($request, 'banner_one_image', 'uploads');
         $imagePathTwo = $this->updateImage($request, 'banner_two_image', 'uploads');
-
 
         $value = [
             'banner_one' => [
@@ -331,16 +292,14 @@ class AdvertisementController extends Controller
                 'status' => $request->banner_two_status == 'on' ? 1 : 0
             ]
         ];
-        if (!empty($imagePath)) {
+        if(!empty($imagePath)){
             $value['banner_one']['banner_image'] = $imagePath;
-        } else {
-
+        }else {
             $value['banner_one']['banner_image'] = $request->banner_one_old_image;
         }
-        if (!empty($imagePathTwo)) {
+        if(!empty($imagePathTwo)){
             $value['banner_two']['banner_image'] = $imagePathTwo;
-        } else {
-
+        }else {
             $value['banner_two']['banner_image'] = $request->banner_two_old_image;
         }
 
@@ -353,6 +312,5 @@ class AdvertisementController extends Controller
         toastr('Updated Successfully!', 'success', 'success');
 
         return redirect()->back();
-
     }
 }

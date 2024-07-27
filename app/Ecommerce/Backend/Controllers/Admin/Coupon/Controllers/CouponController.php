@@ -31,8 +31,6 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        /** Start Validation */
-
         $request->validate([
             'name' => ['required', 'max:200'],
             'code' => ['required', 'max:200'],
@@ -45,8 +43,6 @@ class CouponController extends Controller
             'status' => ['required', 'integer']
 
         ]);
-        /** End Validation */
-
 
         $coupon = new Coupon();
         $coupon->name = $request->name;
@@ -89,8 +85,6 @@ class CouponController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        /** Start Validation */
-
         $request->validate([
             'name' => ['required', 'max:200'],
             'code' => ['required', 'max:200'],
@@ -103,8 +97,6 @@ class CouponController extends Controller
             'status' => ['required', 'integer']
 
         ]);
-        /** End Validation */
-
 
         $coupon = Coupon::findOrFail($id);
         $coupon->name = $request->name;

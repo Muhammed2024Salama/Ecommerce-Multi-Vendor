@@ -46,10 +46,10 @@ class AppServiceProvider extends ServiceProvider
         Config::set('mail.mailers.smtp.password', $mailSetting->password);
 
         /** Set Broadcasting Config */
-//        Config::set('broadcasting.connections.pusher.key', $pusherSetting->pusher_key);
-//        Config::set('broadcasting.connections.pusher.secret', $pusherSetting->pusher_secret);
-//        Config::set('broadcasting.connections.pusher.app_id', $pusherSetting->pusher_app_id);
-//        Config::set('broadcasting.connections.pusher.options.host', "api-".$pusherSetting->pusher_cluster.".pusher.com");
+        Config::set('broadcasting.connections.pusher.key', $pusherSetting->pusher_key);
+        Config::set('broadcasting.connections.pusher.secret', $pusherSetting->pusher_secret);
+        Config::set('broadcasting.connections.pusher.app_id', $pusherSetting->pusher_app_id);
+        Config::set('broadcasting.connections.pusher.options.host', "api-".$pusherSetting->pusher_cluster.".pusher.com");
 
 
 

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class AdminVendorProfileController extends Controller
 {
     use ImageUploadTrait;
-
     /**
      * Display a listing of the resource.
      */
@@ -34,11 +33,8 @@ class AdminVendorProfileController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        /** Start Validation */
-
         $request->validate([
-            'banner' => ['nullable', 'image', 'max:3000'],
+            'banner' => ['nullable','image', 'max:3000'],
             'shop_name' => ['required', 'max:200'],
             'phone' => ['required', 'max:50'],
             'email' => ['required', 'email', 'max:200'],
@@ -48,8 +44,6 @@ class AdminVendorProfileController extends Controller
             'tw_link' => ['nullable', 'url'],
             'insta_link' => ['nullable', 'url'],
         ]);
-        /** End Validation */
-
 
         $vendor = Vendor::where('user_id', Auth::user()->id)->first();
         $bannerPath = $this->updateImage($request, 'banner', 'uploads', $vendor->banner);
