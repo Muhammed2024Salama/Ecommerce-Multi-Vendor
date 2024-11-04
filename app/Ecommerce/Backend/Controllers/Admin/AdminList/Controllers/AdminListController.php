@@ -4,6 +4,7 @@ namespace Ecommerce\Backend\Controllers\Admin\AdminList\Controllers;
 
 use App\DataTables\AdminListDataTable;
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\AdminList\Interface\AdminListRepositoryInterface;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Ecommerce\Backend\Controllers\Vendor\Models\Vendor;
 use Ecommerce\Frontend\Models\User;
@@ -11,6 +12,13 @@ use Illuminate\Http\Request;
 
 class AdminListController extends Controller
 {
+    protected $adminListRepository;
+
+    public function __construct(AdminListRepositoryInterface $adminListRepository)
+    {
+        $this->adminListRepository = $adminListRepository;
+    }
+
     /**
      * @param AdminListDataTable $dataTable
      * @return mixed
@@ -26,9 +34,8 @@ class AdminListController extends Controller
      */
     public function changeStatus(Request $request)
     {
-        $admin = User::findOrFail($request->id);
-        $admin->status = $request->status == 'true' ? 'active' : 'inactive';
-        $admin->save();
+        $admin = $this->adminListRepository->getUserById($request->id);
+        $this->adminListRepository->updateUserStatus($admin, $request->status);
 
         return response(['message' => 'Status has been updated!']);
     }
@@ -37,20 +44,18 @@ class AdminListController extends Controller
      * @param string $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
      */
-    public function destory(string $id)
+    public function destroy(string $id)
     {
-        $admin = User::findOrFail($id);
+        $admin = $this->adminListRepository->getUserById($id);
+        $products = $this->adminListRepository->getProductsByVendorId($admin->vendor->id);
 
-        $products = Product::where('vendor_id', $admin->vendor->id)->get();
-
-        if(count($products) > 0){
-            return response(['status' => 'error', 'message' => 'Admin can\'t be deleted please ban the user insted of delete!']);
+        if (count($products) > 0) {
+            return response(['status' => 'error', 'message' => 'Admin can\'t be deleted please ban the user instead of delete!']);
         }
 
-        Vendor::where('user_id', $admin->id)->delete();
-        $admin->delete();
+        $this->adminListRepository->deleteVendorByUserId($admin->id);
+        $this->adminListRepository->deleteUser($admin);
 
         return response(['status' => 'success', 'message' => 'Deleted successfully']);
-
     }
 }

@@ -5,6 +5,8 @@ namespace Ecommerce\Backend\Controllers\Admin\BlogCategory\Controllers;
 use App\DataTables\BlogCategoryDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\BlogCategory\Models\BlogCategory;
+use Ecommerce\Backend\Controllers\Admin\BlogCategory\Requests\StoreBlogCategoryRequest;
+use Ecommerce\Backend\Controllers\Admin\BlogCategory\Requests\UpdateBlogCategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -29,13 +31,13 @@ class BlogCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBlogCategoryRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'max:200', 'unique:blog_categories']
-        ],[
-            'name.unique' => 'Category already exist!'
-        ]);
+//        $request->validate([
+//            'name' => ['required', 'max:200', 'unique:blog_categories']
+//        ],[
+//            'name.unique' => 'Category already exist!'
+//        ]);
 
         $category = new BlogCategory();
         $category->name = $request->name;
@@ -61,13 +63,13 @@ class BlogCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateBlogCategoryRequest $request, string $id)
     {
-        $request->validate([
-            'name' => ['required', 'max:200', 'unique:blog_categories,name,'.$id]
-        ],[
-            'name.unique' => 'Category already exist!'
-        ]);
+//        $request->validate([
+//            'name' => ['required', 'max:200', 'unique:blog_categories,name,'.$id]
+//        ],[
+//            'name.unique' => 'Category already exist!'
+//        ]);
 
         $category = BlogCategory::findOrFail($id);
         $category->name = $request->name;

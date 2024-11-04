@@ -4,11 +4,19 @@ namespace Ecommerce\Backend\Controllers\Admin\CustomerList\Controllers;
 
 use App\DataTables\CustomerListDataTable;
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\CustomerList\Interface\CustomerListRepositoryInterface;
 use Ecommerce\Frontend\Models\User;
 use Illuminate\Http\Request;
 
 class CustomerListController extends Controller
 {
+    protected $customerListRepository;
+
+    public function __construct(CustomerListRepositoryInterface $customerListRepository)
+    {
+        $this->customerListRepository = $customerListRepository;
+    }
+
     /**
      * @param CustomerListDataTable $dataTable
      * @return mixed
@@ -24,9 +32,8 @@ class CustomerListController extends Controller
      */
     public function changeStatus(Request $request)
     {
-        $customer = User::findOrFail($request->id);
-        $customer->status = $request->status == 'true' ? 'active' : 'inactive';
-        $customer->save();
+        $customer = $this->customerListRepository->getUserById($request->id);
+        $this->customerListRepository->updateUserStatus($customer, $request->status);
 
         return response(['message' => 'Status has been updated!']);
     }

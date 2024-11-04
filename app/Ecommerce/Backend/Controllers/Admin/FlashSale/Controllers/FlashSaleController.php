@@ -6,6 +6,8 @@ use App\DataTables\FlashSaleItemDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Models\FlashSale;
 use Ecommerce\Backend\Controllers\Admin\FlashSale\Models\FlashSaleItem;
+use Ecommerce\Backend\Controllers\Admin\FlashSale\Requests\AddProductToFlashSaleRequest;
+use Ecommerce\Backend\Controllers\Admin\FlashSale\Requests\UpdateFlashSaleRequest;
 use Ecommerce\Backend\Controllers\Admin\Product\Models\Product;
 use Illuminate\Http\Request;
 
@@ -18,19 +20,26 @@ class FlashSaleController extends Controller
     public function index(FlashSaleItemDataTable $dataTable)
     {
         $flashSaleDate = FlashSale::first();
-        $products = Product::where('is_approved', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
-        return $dataTable->render('admin.flash-sale.index', compact('flashSaleDate', 'products'));
+        $products = Product::where('is_approved', 1)
+            ->where('status', 1)
+            ->orderBy('id', 'DESC')
+            ->get();
+        return $dataTable->render('admin.flash-sale.index',
+            compact(
+                'flashSaleDate',
+                'products'
+            ));
     }
 
     /**
-     * @param Request $request
+     * @param UpdateFlashSaleRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function update(UpdateFlashSaleRequest $request)
     {
-        $request->validate([
-            'end_date' => ['required']
-        ]);
+//        $request->validate([
+//            'end_date' => ['required']
+//        ]);
 
         FlashSale::updateOrCreate(
             ['id' => 1],
@@ -44,18 +53,18 @@ class FlashSaleController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param AddProductToFlashSaleRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addProduct(Request $request)
+    public function addProduct(AddProductToFlashSaleRequest $request)
     {
-        $request->validate([
-            'product' => ['required', 'unique:flash_sale_items,product_id'],
-            'show_at_home' => ['required'],
-            'status' => ['required'],
-        ],[
-            'product.unique' => 'The product is already in flash sale!'
-        ]);
+//        $request->validate([
+//            'product' => ['required', 'unique:flash_sale_items,product_id'],
+//            'show_at_home' => ['required'],
+//            'status' => ['required'],
+//        ],[
+//            'product.unique' => 'The product is already in flash sale!'
+//        ]);
 
 
         $flashSaleDate = FlashSale::first();

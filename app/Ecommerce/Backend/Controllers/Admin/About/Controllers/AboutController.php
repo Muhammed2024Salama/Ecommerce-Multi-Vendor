@@ -3,18 +3,26 @@
 namespace Ecommerce\Backend\Controllers\Admin\About\Controllers;
 
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\About\Interface\AboutRepositoryInterface;
 use Ecommerce\Backend\Controllers\Admin\About\Models\About;
 use Ecommerce\Backend\Controllers\Admin\About\Requests\UpdateAboutRequest;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    protected $aboutRepository;
+
+    public function __construct(AboutRepositoryInterface $aboutRepository)
+    {
+        $this->aboutRepository = $aboutRepository;
+    }
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function index()
     {
-        $content = About::first();
+        $content = $this->aboutRepository->getFirst();
         return view('admin.about.index', compact('content'));
     }
 
@@ -24,11 +32,7 @@ class AboutController extends Controller
      */
     public function update(UpdateAboutRequest $request)
     {
-//        $request->validate([
-//            'content' => ['required']
-//        ]);
-
-        About::updateOrCreate(
+        $this->aboutRepository->updateOrCreate(
             ['id' => 1],
             ['content' => $request->validated()['content']]
         );
@@ -36,6 +40,5 @@ class AboutController extends Controller
         toastr('updated successfully!', 'success', 'success');
 
         return redirect()->back();
-
     }
 }

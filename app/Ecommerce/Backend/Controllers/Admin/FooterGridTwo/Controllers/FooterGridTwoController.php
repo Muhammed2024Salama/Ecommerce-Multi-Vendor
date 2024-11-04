@@ -4,8 +4,11 @@ namespace Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Controllers;
 
 use App\DataTables\FooterGridTwoDataTable;
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\FooterGridThree\Requests\ChangeFooterTitleRequest;
 use Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Models\FooterGridTwo;
 use Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Models\FooterTitle;
+use Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Requests\StoreFooterGridTwoRequest;
+use Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Requests\UpdateFooterGridTwoRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -31,16 +34,16 @@ class FooterGridTwoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFooterGridTwoRequest $request)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'name' => ['required', 'max:200'],
-            'url' => ['required', 'url'],
-            'status' => ['required']
-        ]);
-        /** End Validation */
+//        /** Start Validation */
+//
+//        $request->validate([
+//            'name' => ['required', 'max:200'],
+//            'url' => ['required', 'url'],
+//            'status' => ['required']
+//        ]);
+//        /** End Validation */
 
 
         $footer = new FooterGridTwo();
@@ -69,16 +72,16 @@ class FooterGridTwoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateFooterGridTwoRequest $request, string $id)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'name' => ['required', 'max:200'],
-            'url' => ['required', 'url'],
-            'status' => ['required']
-        ]);
-        /** End Validation */
+//        /** Start Validation */
+//
+//        $request->validate([
+//            'name' => ['required', 'max:200'],
+//            'url' => ['required', 'url'],
+//            'status' => ['required']
+//        ]);
+//        /** End Validation */
 
 
         $footer = FooterGridTwo::findOrFail($id);
@@ -117,14 +120,14 @@ class FooterGridTwoController extends Controller
         return response(['message' => 'Status has been updated!']);
     }
 
-    public function changeTitle(Request $request)
+    public function changeTitle(ChangeFooterTitleRequest $request)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'title' => ['required', 'max:200']
-        ]);
-        /** End Validation */
+//        /** Start Validation */
+//
+//        $request->validate([
+//            'title' => ['required', 'max:200']
+//        ]);
+//        /** End Validation */
 
 
         FooterTitle::updateOrCreate(

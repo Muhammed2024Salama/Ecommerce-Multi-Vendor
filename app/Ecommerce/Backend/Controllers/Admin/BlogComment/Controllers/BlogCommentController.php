@@ -4,28 +4,37 @@ namespace Ecommerce\Backend\Controllers\Admin\BlogComment\Controllers;
 
 use App\DataTables\BlogCommentDataTable;
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\BlogComment\Interface\BlogCommentRepositoryInterface;
 use Ecommerce\Backend\Controllers\Admin\BlogComment\Models\BlogComment;
 
 class BlogCommentController extends Controller
 {
     /**
-     * @param BlogCommentDataTable $dataTable
-     * @return mixed
+     * @var BlogCommentRepositoryInterface
      */
-    public function index(BlogCommentDataTable $dataTable)
+    protected $blogCommentRepository;
+
+    /**
+     * @param BlogCommentRepositoryInterface $blogCommentRepository
+     */
+    public function __construct(BlogCommentRepositoryInterface $blogCommentRepository)
     {
-        return $dataTable->render('admin.blog.blog-comment.index');
+        $this->blogCommentRepository = $blogCommentRepository;
     }
 
     /**
-     * @param string $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
+     * Display a listing of the resource.
      */
-    public function destory(string $id)
+    public function index(BlogCommentDataTable $dataTable)
     {
-        $comment = BlogComment::findOrFail($id);
-        $comment->delete();
+        return $this->blogCommentRepository->getAllComments();
+    }
 
-        return response(['status' => 'success', 'message' => 'message']);
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        return $this->blogCommentRepository->deleteComment($id);
     }
 }

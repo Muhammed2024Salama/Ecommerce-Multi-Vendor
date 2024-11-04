@@ -14,7 +14,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Todays Orders</h4>
+                                <h4>Today's Orders</h4>
                             </div>
                             <div class="card-body">
                                 {{ $todaysOrder }}
@@ -31,7 +31,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Todays Peding Orders</h4>
+                                <h4>Today's Pending Orders</h4>
                             </div>
                             <div class="card-body">
                                 {{ $todaysPendingOrder }}
@@ -103,7 +103,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Complelte Orders</h4>
+                                <h4>Total Complete Orders</h4>
                             </div>
                             <div class="card-body">
                                 {{ $totalCompleteOrders }}
@@ -120,7 +120,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Todays Earnings</h4>
+                                <h4>Today's Earnings</h4>
                             </div>
                             <div class="card-body">
                                 {{$settings->currency_icon}}{{ $todaysEarnings }}
@@ -156,7 +156,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>This Years Earnings</h4>
+                                <h4>This Year's Earnings</h4>
                             </div>
                             <div class="card-body">
                                 {{$settings->currency_icon}}{{ $yearEarnings }}

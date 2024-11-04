@@ -4,6 +4,7 @@ namespace Ecommerce\Backend\Controllers\Admin\FooterInfo\Controllers;
 
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\FooterInfo\Models\FooterInfo;
+use Ecommerce\Backend\Controllers\Admin\FooterInfo\Requests\UpdateFooterInfoRequest;
 use Ecommerce\Base\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -25,18 +26,18 @@ class FooterInfoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateFooterInfoRequest $request, string $id)
     {
-        /** Start Validation */
-        $request->validate([
-            'logo' => ['nullable', 'image', 'max:3000'],
-            'phone' => ['max:100'],
-            'email' => ['max:100'],
-            'address' => ['max:300'],
-            'copyright' => ['max:200']
-        ]);
-
-        /** End Validation */
+//        /** Start Validation */
+//        $request->validate([
+//            'logo' => ['nullable', 'image', 'max:3000'],
+//            'phone' => ['max:100'],
+//            'email' => ['max:100'],
+//            'address' => ['max:300'],
+//            'copyright' => ['max:200']
+//        ]);
+//
+//        /** End Validation */
 
 
         $footerInfo = FooterInfo::find($id);

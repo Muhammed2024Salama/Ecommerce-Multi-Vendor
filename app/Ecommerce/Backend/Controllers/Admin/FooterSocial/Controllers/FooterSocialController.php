@@ -5,6 +5,8 @@ namespace Ecommerce\Backend\Controllers\Admin\FooterSocial\Controllers;
 use App\DataTables\FooterSocialDataTable;
 use App\Http\Controllers\Controller;
 use Ecommerce\Backend\Controllers\Admin\FooterSocial\Models\FooterSocial;
+use Ecommerce\Backend\Controllers\Admin\FooterSocial\Requests\StoreFooterSocialRequest;
+use Ecommerce\Backend\Controllers\Admin\FooterSocial\Requests\UpdateFooterSocialRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -29,18 +31,18 @@ class FooterSocialController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFooterSocialRequest $request)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'icon' => ['required', 'max:200'],
-            'name' => ['required', 'max:200'],
-            'url' => ['required', 'url'],
-            'status' => ['required'],
-        ]);
-
-        /**  End Validation */
+//        /** Start Validation */
+//
+//        $request->validate([
+//            'icon' => ['required', 'max:200'],
+//            'name' => ['required', 'max:200'],
+//            'url' => ['required', 'url'],
+//            'status' => ['required'],
+//        ]);
+//
+//        /**  End Validation */
 
         $footer = new FooterSocial();
         $footer->icon = $request->icon;
@@ -76,18 +78,18 @@ class FooterSocialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateFooterSocialRequest $request, string $id)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'icon' => ['required', 'max:200'],
-            'name' => ['required', 'max:200'],
-            'url' => ['required', 'url'],
-            'status' => ['required'],
-        ]);
-
-        /** End Validation */
+//        /** Start Validation */
+//
+//        $request->validate([
+//            'icon' => ['required', 'max:200'],
+//            'name' => ['required', 'max:200'],
+//            'url' => ['required', 'url'],
+//            'status' => ['required'],
+//        ]);
+//
+//        /** End Validation */
 
         $footer = FooterSocial::findOrFail($id);
         $footer->icon = $request->icon;

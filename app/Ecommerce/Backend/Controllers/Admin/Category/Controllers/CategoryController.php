@@ -4,7 +4,10 @@ namespace Ecommerce\Backend\Controllers\Admin\Category\Controllers;
 
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\Category\Interface\CategoryRepositoryInterface;
 use Ecommerce\Backend\Controllers\Admin\Category\Models\Category;
+use Ecommerce\Backend\Controllers\Admin\Category\Requests\StoreCategoryRequest;
+use Ecommerce\Backend\Controllers\Admin\Category\Requests\UpdateCategoryRequest;
 use Ecommerce\Backend\Controllers\Admin\SubCategory\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,7 +15,21 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @var CategoryRepositoryInterface
+     */
+    protected $categoryRepository;
+
+    /**
+     * @param CategoryRepositoryInterface $categoryRepository
+     */
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
+    /**
+     * @param CategoryDataTable $dataTable
+     * @return mixed
      */
     public function index(CategoryDataTable $dataTable)
     {
@@ -20,7 +37,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function create()
     {
@@ -28,28 +45,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param StoreCategoryRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        // dd($request->all());
-        /** Start Validation */
-
-        $request->validate([
-            'icon' => ['required', 'not_in:empty'],
-            'name' => ['required', 'max:200', 'unique:categories,name'],
-            'status' => ['required'],
-        ]);
-        /** End Validation */
-
-
-        $category = new Category();
-        $category->icon = $request->icon;
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
-        $category->status = $request->status;
-
-        $category->save();
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
+        $this->categoryRepository->create($data);
 
         toastr('Created Successfully ! ', 'success');
 
@@ -57,45 +60,25 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->categoryRepository->findById($id);
         return view('admin.category.edit', compact('category'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param UpdateCategoryRequest $request
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategoryRequest $request, string $id)
     {
-        // dd($request);
-        /** Start Validation */
-
-        $request->validate([
-            'icon' => ['required', 'not_in:empty'],
-            'name' => ['required', 'max:200', 'unique:categories,name,' . $id],
-            'status' => ['required']
-        ]);
-        /** End Validation */
-
-
-        $category = Category::findOrFail($id);
-
-        $category->icon = $request->icon;
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
-        $category->status = $request->status;
-        $category->save();
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
+        $this->categoryRepository->update($id, $data);
 
         toastr('Updated Successfully!', 'success');
 
@@ -103,28 +86,28 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param string $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
      */
     public function destroy(string $id)
     {
-        // dd($id);
-        $category = Category::findOrFail($id);
-        $subCategory = SubCategory::where('category_id', $category->id)->count();
-        if ($subCategory > 0) {
+        $category = $this->categoryRepository->findById($id);
+        $subCategoryCount = $category->subCategories()->count();
+        if ($subCategoryCount > 0) {
             return response(['status' => 'error', 'message' => 'This items contain, sub items for delete this you have to delete the sub items first!']);
         }
-        $category->delete();
+        $this->categoryRepository->delete($id);
 
         return response(['status' => 'success', 'Deleted Successfully !']);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\Response
+     */
     public function changeStatus(Request $request)
     {
-        // dd($request->all());
-        $category = Category::findOrFail($request->id);
-        $category->status = $request->status == 'true' ? 1 : 0;
-        $category->save();
-
+        $this->categoryRepository->changeStatus($request->id, $request->status);
         return response(['message' => 'Status has been updated!']);
     }
 }

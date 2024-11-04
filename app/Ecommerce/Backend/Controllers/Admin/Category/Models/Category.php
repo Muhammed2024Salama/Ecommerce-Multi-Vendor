@@ -11,6 +11,17 @@ class Category extends Model
     use HasFactory;
 
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'icon',
+        'name',
+        'slug',
+        'status'
+    ];
+
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function subCategories()

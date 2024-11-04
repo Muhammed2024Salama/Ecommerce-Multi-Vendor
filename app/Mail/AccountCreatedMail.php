@@ -14,6 +14,9 @@ class AccountCreatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * @var
+     */
     public $name, $email, $password;
 
     /**

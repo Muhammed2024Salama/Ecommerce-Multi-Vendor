@@ -13,7 +13,14 @@ class Newsletter extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * @var
+     */
     public $subject;
+
+    /**
+     * @var
+     */
     public $messageContent;
     /**
      * Create a new message instance.

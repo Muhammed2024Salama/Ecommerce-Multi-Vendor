@@ -2,6 +2,7 @@
 
 namespace Ecommerce\Base\Auth\Controllers;
 
+use App\Ecommerce\Base\Auth\Interface\SocialAuthInterface;
 use App\Http\Controllers\Controller;
 use Ecommerce\Frontend\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -11,36 +12,31 @@ use Laravel\Socialite\Facades\Socialite;
 class SocialiteController extends Controller
 {
     /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @var SocialAuthInterface
      */
-    public function redirectToProvider()
+    protected $socialAuthRepository;
+
+    /**
+     * @param SocialAuthInterface $socialAuthRepository
+     */
+    public function __construct(SocialAuthInterface $socialAuthRepository)
     {
-        return Socialite::driver('github')->redirect();
+        $this->socialAuthRepository = $socialAuthRepository;
     }
 
     /**
-     * Obtain the user information from GitHub.
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return mixed
+     */
+    public function redirectToProvider()
+    {
+        return $this->socialAuthRepository->redirectToProvider();
+    }
+
+    /**
+     * @return mixed
      */
     public function handleProviderCallback()
     {
-        $socialUser = Socialite::driver('github')->user();
-
-        $user = User::firstOrCreate(
-            ['email' => $socialUser->email],
-            [
-                'name' => $socialUser->name,
-                'password' => bcrypt(Str::random(24))
-            ]
-        );
-
-        Auth::login($user, true);
-
-        toastr()->success('Logged in with GitHub Account successfully!');
-
-        return redirect('/user/dashboard');
+        return $this->socialAuthRepository->handleProviderCallback();
     }
 }

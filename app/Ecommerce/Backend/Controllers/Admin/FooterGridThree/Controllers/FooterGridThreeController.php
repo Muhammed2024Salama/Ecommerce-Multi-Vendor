@@ -4,19 +4,29 @@ namespace Ecommerce\Backend\Controllers\Admin\FooterGridThree\Controllers;
 
 use App\DataTables\FooterGridThreeDataTable;
 use App\Http\Controllers\Controller;
+use Ecommerce\Backend\Controllers\Admin\FooterGridThree\Interface\FooterGridThreeRepositoryInterface;
 use Ecommerce\Backend\Controllers\Admin\FooterGridThree\Models\FooterGridThree;
+use Ecommerce\Backend\Controllers\Admin\FooterGridThree\Requests\ChangeFooterTitleRequest;
+use Ecommerce\Backend\Controllers\Admin\FooterGridThree\Requests\StoreFooterGridThreeRequest;
 use Ecommerce\Backend\Controllers\Admin\FooterGridTwo\Models\FooterTitle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class FooterGridThreeController extends Controller
 {
+    protected $footerGridThreeRepository;
+
+    public function __construct(FooterGridThreeRepositoryInterface $footerGridThreeRepository)
+    {
+        $this->footerGridThreeRepository = $footerGridThreeRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(FooterGridThreeDataTable $dataTable)
     {
-        $footerTitle = FooterTitle::first();
+        $footerTitle = $this->footerGridThreeRepository->getFooterTitle();
         return $dataTable->render('admin.footer.footer-grid-three.index', compact('footerTitle'));
     }
 
@@ -31,63 +41,30 @@ class FooterGridThreeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFooterGridThreeRequest $request)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'name' => ['required', 'max:200'],
-            'url' => ['required', 'url'],
-            'status' => ['required']
-        ]);
-        /** End Validation */
-
-
-        $footer = new FooterGridThree();
-        $footer->name = $request->name;
-        $footer->url = $request->url;
-        $footer->status = $request->status;
-        $footer->save();
-
-        Cache::forget('footer_grid_three');
+        $this->footerGridThreeRepository->createFooter($request->validated());
 
         toastr('Created Successfully!', 'success', 'success');
 
         return redirect()->route('admin.footer-grid-three.index');
     }
 
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $footer = FooterGridThree::findOrFail($id);
+        $footer = $this->footerGridThreeRepository->findFooterById($id);
         return view('admin.footer.footer-grid-three.edit', compact('footer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateFooterGridThreeRequest $request, string $id)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'name' => ['required', 'max:200'],
-            'url' => ['required', 'url'],
-            'status' => ['required']
-        ]);
-        /** End Validation */
-
-
-        $footer = FooterGridThree::findOrFail($id);
-        $footer->name = $request->name;
-        $footer->url = $request->url;
-        $footer->status = $request->status;
-        $footer->save();
-
-        Cache::forget('footer_grid_three');
+        $this->footerGridThreeRepository->updateFooter($id, $request->validated());
 
         toastr('Update Successfully!', 'success', 'success');
 
@@ -99,37 +76,21 @@ class FooterGridThreeController extends Controller
      */
     public function destroy(string $id)
     {
-        $footer = FooterGridThree::findOrFail($id);
-        $footer->delete();
-        Cache::forget('footer_grid_three');
+        $this->footerGridThreeRepository->deleteFooter($id);
 
         return response(['status' => 'success', 'message' => 'Deleted successfully!']);
     }
 
     public function changeStatus(Request $request)
     {
-        $footer = FooterGridThree::findOrFail($request->id);
-        $footer->status = $request->status == 'true' ? 1 : 0;
-        $footer->save();
-        Cache::forget('footer_grid_three');
+        $this->footerGridThreeRepository->changeFooterStatus($request->id, $request->status == 'true');
 
         return response(['message' => 'Status has been updated!']);
     }
 
-    public function changeTitle(Request $request)
+    public function changeTitle(ChangeFooterTitleRequest $request)
     {
-        /** Start Validation */
-
-        $request->validate([
-            'title' => ['required', 'max:200']
-        ]);
-        /** End Validation */
-
-
-        FooterTitle::updateOrCreate(
-            ['id' => 1],
-            ['footer_grid_three_title' => $request->title]
-        );
+        $this->footerGridThreeRepository->changeFooterTitle($request->validated());
 
         toastr('Updated Successfully', 'success', 'success');
 
